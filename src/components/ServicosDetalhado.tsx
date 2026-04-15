@@ -162,9 +162,7 @@ export default function ServicosDetalhado() {
   const tab = tabs[activeTab];
 
   return (
-    <section className="relative w-full py-32 px-6 sm:px-12 lg:px-24"
-      style={{ background: 'rgba(10,10,10,0.95)' }}
-    >
+    <section className="relative w-full py-section px-6 sm:px-12 lg:px-24 bg-secondary">
       <div className="max-w-6xl mx-auto flex flex-col items-center">
         
         {/* Header */}
@@ -181,7 +179,7 @@ export default function ServicosDetalhado() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
-          className="text-4xl md:text-5xl font-extrabold tracking-[-1px] text-primary leading-[1.1] mb-16 text-center"
+          className="text-4xl md:text-5xl font-semibold tracking-[-1px] text-primary leading-[1.1] mb-16 text-center"
         >
           Cada serviço. Uma engrenagem.&nbsp;<br className="hidden md:block" />
           Um sistema que vende.
@@ -220,7 +218,7 @@ export default function ServicosDetalhado() {
                 <span className="text-cta text-[13px] font-semibold tracking-[3px] uppercase mb-4 block">
                   {tab.subtitle}
                 </span>
-                <p className="text-lg md:text-xl text-[#999999] font-light leading-[1.7] mb-10">
+                <p className="text-lg md:text-xl text-secondary font-light leading-[1.7] mb-10">
                   {tab.description}
                 </p>
                 <ul className="flex flex-col gap-4">
@@ -237,7 +235,7 @@ export default function ServicosDetalhado() {
                         strokeWidth={2.5}
                         className="text-cta mt-1 shrink-0"
                       />
-                      <span className="text-[#999999] font-light leading-[1.7] text-sm md:text-base">
+                      <span className="text-secondary font-light leading-[1.7] text-sm md:text-base">
                         {bullet}
                       </span>
                     </motion.li>

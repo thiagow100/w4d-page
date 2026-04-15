@@ -62,7 +62,7 @@ function PhaseItem({
       <div className={`w-full md:w-1/2 flex pl-24 md:pl-0 ${index % 2 === 0 ? 'md:justify-end md:pr-20' : 'md:order-2 md:justify-start md:pl-20'}`}>
         <motion.h3 
           style={{ opacity: wordOpacity, color: wordColor }}
-          className="text-[clamp(48px,10vw,120px)] font-black tracking-[-4px]"
+          className="text-[clamp(48px,10vw,120px)] font-semibold tracking-[-4px]"
         >
           {phase.word}.
         </motion.h3>
@@ -72,7 +72,7 @@ function PhaseItem({
       <div className={`w-full md:w-1/2 flex pl-24 md:pl-0 mt-8 md:mt-0 ${index % 2 === 0 ? 'md:order-2 md:justify-start md:pl-20' : 'md:justify-end md:pr-20'}`}>
         <motion.p 
           style={{ opacity: descOpacity, y: descY }}
-          className={`text-xl md:text-3xl text-[#999999] leading-[1.7] font-light  max-w-md ${index % 2 === 0 ? 'text-left' : 'md:text-right text-left'}`}
+          className={`text-xl md:text-3xl text-secondary leading-[1.7] font-light  max-w-md ${index % 2 === 0 ? 'text-left' : 'md:text-right text-left'}`}
         >
           {phase.description}
         </motion.p>
@@ -94,7 +94,7 @@ export default function MetodoW4() {
   const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section className="relative w-full/80 py-32 px-6 sm:px-12 lg:px-24">
+    <section className="relative w-full py-section px-6 sm:px-12 lg:px-24">
       <div className="max-w-6xl mx-auto flex flex-col items-center">
         
         {/* Headers */}
@@ -113,9 +113,9 @@ export default function MetodoW4() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-extrabold tracking-[-1px] text-primary leading-[1.1] mb-6"
+            className="text-4xl md:text-6xl font-semibold tracking-[-1px] text-primary leading-[1.1] mb-6"
           >
-            Método W4D: 4 fases para sua<br />empresa vender todos os dias
+            Método W4: 4 fases para sua<br />empresa vender todos os dias
           </motion.h2>
 
           <motion.p 

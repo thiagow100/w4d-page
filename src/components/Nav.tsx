@@ -5,22 +5,26 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Nav() {
   const { scrollY } = useScroll();
-  
+
   // Nav fica transparente no topo e ganha fundo de vidro ao scrollar
+  // MotionValues passadas diretamente no style — Framer subscreve automaticamente
   const bgOpacity = useTransform(scrollY, [0, 80], [0, 1]);
   const borderOpacity = useTransform(scrollY, [0, 80], [0, 0.08]);
+
+  const backgroundColor = useTransform(bgOpacity, (v) => `rgba(23,23,23,${v})`);
+  const borderBottomColor = useTransform(borderOpacity, (v) => `rgba(255,255,255,${v})`);
 
   return (
     <motion.header
       className="fixed top-0 left-0 right-0 z-50 pointer-events-auto"
     >
       <motion.div
-        style={{ 
-          backgroundColor: `rgba(0,0,0,${bgOpacity.get()})`,
+        style={{
+          backgroundColor,
           backdropFilter: 'blur(20px)',
           borderBottomWidth: '1px',
           borderBottomStyle: 'solid',
-          borderBottomColor: `rgba(255,255,255,${borderOpacity.get()})`,
+          borderBottomColor,
         }}
         className="w-full px-6 sm:px-12 lg:px-24 py-4 flex items-center justify-between"
       >

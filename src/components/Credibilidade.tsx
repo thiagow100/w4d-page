@@ -30,12 +30,12 @@ function Counter({ from = 0, to, suffix, duration = 2 }: { from?: number, to: nu
     }
   }, [from, to, inView, duration, suffix]);
 
-  return <span ref={nodeRef} className="text-5xl md:text-6xl lg:text-7xl font-black text-primary tracking-tighter" />;
+  return <span ref={nodeRef} className="text-5xl md:text-6xl lg:text-7xl font-semibold text-primary tracking-tighter" />;
 }
 
 export default function Credibilidade() {
   return (
-    <section style={{ background: 'rgba(10,10,10,0.88)' }} className="relative w-full py-32 overflow-hidden">
+    <section className="relative w-full py-section overflow-hidden bg-secondary">
       {/* Fundo Gradiente para dark red/tertiary sutil */}
       <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-tertiary to-transparent z-0 opacity-80" />
       
@@ -79,7 +79,7 @@ export default function Credibilidade() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: 0.1 }}
-              className="text-5xl md:text-6xl font-extrabold tracking-[-1px] text-primary leading-[1.1] mb-8 tracking-tight"
+              className="text-5xl md:text-6xl font-semibold tracking-[-1px] text-primary leading-[1.1] mb-8 tracking-tight"
             >
               Thiago Weirich
             </motion.h2>
@@ -89,7 +89,7 @@ export default function Credibilidade() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: 0.2 }}
-              className="text-lg md:text-xl text-[#999999] leading-[1.7] font-light mb-8 max-w-xl "
+              className="text-lg md:text-xl text-secondary leading-[1.7] font-light mb-8 max-w-xl "
             >
               20 anos de experiência em vendas presenciais, sendo 14 no mercado imobiliário de Santa Catarina. 
               Mais de 10 anos em mídia paga, construindo funis e automações para empresas no Brasil e no exterior. 
@@ -138,7 +138,7 @@ export default function Credibilidade() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.5  }}
           className="mt-32 pt-12 border-t border-white/5 text-center"
         >
-          <p className="text-[#999999] text-lg max-w-3xl mx-auto font-light leading-relaxed">
+          <p className="text-secondary text-lg max-w-3xl mx-auto font-light leading-relaxed">
             A W4Digital conta com um time de especialistas em mídia paga, automação, funis e inteligência artificial, 
             operando diariamente na criação, otimização e escala de campanhas.
           </p>

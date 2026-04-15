@@ -49,7 +49,7 @@ const itemVariants = {
 
 export default function Beneficios() {
   return (
-    <section style={{ background: 'rgba(0,0,0,0.95)' }} className="relative w-full py-40 px-6 sm:px-12 lg:px-24 border-t border-white/5">
+    <section className="relative w-full py-section px-6 sm:px-12 lg:px-24 border-t border-white/5 bg-primary">
       <div className="max-w-6xl mx-auto flex flex-col items-center">
         
         <motion.span 
@@ -66,7 +66,7 @@ export default function Beneficios() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ delay: 0.1 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[-1px] text-primary text-center leading-[1.1] mb-32 tracking-tight"
+          className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-1px] text-primary text-center leading-[1.1] mb-32 tracking-tight"
         >
           O que muda no seu negócio<br />com a W4Digital
         </motion.h2>
@@ -85,7 +85,7 @@ export default function Beneficios() {
               className="flex flex-col items-start px-4 md:px-0"
             >
               {benefit.icon}
-              <p className="text-2xl md:text-3xl text-[#999999] font-light leading-[1.7]">
+              <p className="text-2xl md:text-3xl text-secondary font-light leading-[1.7]">
                 {benefit.text}
               </p>
             </motion.div>

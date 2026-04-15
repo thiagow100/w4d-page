@@ -46,7 +46,7 @@ const cardVariants = {
 
 export default function Solucao() {
   return (
-    <section style={{ background: 'rgba(0,0,0,0.92)' }} className="relative w-full py-32 px-6 sm:px-12 lg:px-24 border-t border-b border-white/5">
+    <section className="relative w-full py-section px-6 sm:px-12 lg:px-24 border-t border-b border-white/5 bg-primary">
       <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
         
         {/* Header da Seção */}
@@ -65,7 +65,7 @@ export default function Solucao() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.1  }}
-          className="text-4xl md:text-5xl lg:text-5xl font-extrabold tracking-[-1px] text-primary leading-[1.1] mb-8"
+          className="text-4xl md:text-5xl lg:text-5xl font-semibold tracking-[-1px] text-primary leading-[1.1] mb-8"
         >
           Um sistema completo para sua<br />empresa vender todos os dias
         </motion.h2>
@@ -75,7 +75,7 @@ export default function Solucao() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.2  }}
-          className="text-lg md:text-xl text-[#999999] font-light leading-[1.7] max-w-2xl mb-20 "
+          className="text-lg md:text-xl text-secondary font-light leading-[1.7] max-w-2xl mb-20 "
         >
           Não é só rodar anúncio. É um funil inteiro que funciona 24 horas: da primeira impressão até o fechamento.
         </motion.p>
@@ -98,7 +98,7 @@ export default function Solucao() {
               <h3 className="text-xl font-bold text-primary mb-4">
                 {pillar.title}
               </h3>
-              <p className="text-sm md:text-base text-[#999999] leading-[1.7] font-light">
+              <p className="text-sm md:text-base text-secondary leading-[1.7] font-light">
                 {pillar.description}
               </p>
             </motion.div>

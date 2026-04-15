@@ -42,7 +42,7 @@ const cardVariants = {
 
 export default function Dores() {
   return (
-    <section style={{ background: 'rgba(10,10,10,0.92)' }} id="dores" className="relative w-full py-32 px-6 sm:px-12 lg:px-24">
+    <section id="dores" className="relative w-full py-section px-6 sm:px-12 lg:px-24 bg-secondary">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-16 md:gap-24">
         
         {/* Lado Esquerdo - Textos */}
@@ -62,7 +62,7 @@ export default function Dores() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.1  }}
-            className="text-4xl md:text-5xl font-extrabold tracking-[-1px] text-primary leading-[1.1]"
+            className="text-4xl md:text-5xl font-semibold tracking-[-1px] text-primary leading-[1.1]"
           >
             Sinais de que sua operação de marketing está falhando
           </motion.h2>
@@ -85,7 +85,7 @@ export default function Dores() {
               <h3 className="text-xl font-bold text-primary mb-4">
                 {pain.title}
               </h3>
-              <p className="text-[#999999] leading-[1.7] font-light text-sm md:text-base">
+              <p className="text-secondary leading-[1.7] font-light text-sm md:text-base">
                 {pain.description}
               </p>
             </motion.div>

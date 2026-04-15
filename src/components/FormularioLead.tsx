@@ -86,7 +86,7 @@ export default function FormularioLead() {
   };
 
   return (
-    <section style={{ background: 'rgba(10,10,10,0.96)' }} ref={formSectionRef} id="formulario" className="relative w-full py-32 px-6 sm:px-12 lg:px-24">
+    <section ref={formSectionRef} id="formulario" className="relative w-full py-section px-6 sm:px-12 lg:px-24 bg-secondary">
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
         
         <div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left">
@@ -103,7 +103,7 @@ export default function FormularioLead() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[-1px] text-primary leading-[1.1] mb-8"
+            className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-1px] text-primary leading-[1.1] mb-8"
           >
             Fale com um especialista da W4Digital
           </motion.h2>
@@ -112,7 +112,7 @@ export default function FormularioLead() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.2 }}
-            className="text-lg md:text-xl text-[#999999] font-light leading-[1.7] max-w-lg mx-auto lg:mx-0"
+            className="text-lg md:text-xl text-secondary font-light leading-[1.7] max-w-lg mx-auto lg:mx-0"
           >
             Preencha o formulário e receba um contato personalizado do nosso time.
           </motion.p>
@@ -133,8 +133,8 @@ export default function FormularioLead() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-black tracking-[-2px] text-primary mb-2">Solicitação Enviada!</h3>
-                <p className="text-[#999999] font-light leading-[1.7]">Nossa equipe entrará em contato em breve.</p>
+                <h3 className="text-2xl font-semibold tracking-[-2px] text-primary mb-2">Solicitação Enviada!</h3>
+                <p className="text-secondary font-light leading-[1.7]">Nossa equipe entrará em contato em breve.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -202,7 +202,7 @@ export default function FormularioLead() {
                     {...register("lgpd")}
                     className="mt-1 w-5 h-5 min-w-5 shrink-0 rounded border border-white/20 outline-none text-cta focus:ring-1 focus:ring-cta-hover bg-white/5 cursor-pointer accent-cta transition-colors duration-300 ease-out"
                   />
-                  <label htmlFor="lgpd" className="text-sm text-[#999999] cursor-pointer leading-[1.7] font-light">
+                  <label htmlFor="lgpd" className="text-sm text-secondary cursor-pointer leading-[1.7] font-light">
                     Li e concordo com a <a href="#" className="text-primary hover:text-cta transition-colors underline decoration-white/30">Política de Privacidade</a>
                   </label>
                 </div>
