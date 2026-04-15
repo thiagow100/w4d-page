@@ -13,11 +13,11 @@ const painPoints = [
   },
   {
     title: "Você virou o gestor de marketing da sua própria empresa",
-    description: "Você deveria estar focado em decisões de negócio, não escolhendo anúncios, ajustando públicos e cuidando de plataformas. Você contratou pra resolver, não pra virar gerente."
+    description: "Você deveria estar focado em decisões de negócio, não escolhendo anúncios, ajustando públicos e cuidando de plataformas. Você contratou para resolver, não para virar gerente."
   },
   {
     title: "Contato chegando, ninguém fechando",
-    description: "Chegam contatos, mas seu time comercial gasta tempo com quem nunca vai comprar. O problema não é falta de gente entrando. É que ninguém filtrou quem tem perfil pra comprar."
+    description: "Chegam contatos, mas seu time comercial gasta tempo com quem nunca vai comprar. O problema não é falta de gente entrando. É que ninguém filtrou quem tem perfil para comprar."
   }
 ];
 

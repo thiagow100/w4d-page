@@ -62,7 +62,7 @@ export default function Hero() {
           variants={fadeUp}
           className="text-lg md:text-xl text-body font-light leading-[1.7] max-w-2xl mb-12 "
         >
-          Aqui na W4Digital, construímos toda a estrutura para trazer cliente novo: dos anúncios, passando pela qualificação, até o momento em que ele está pronto pra comprar.
+          Aqui na W4Digital, construímos toda a estrutura para trazer cliente novo: dos anúncios, passando pela qualificação, até o momento em que ele está pronto para comprar.
         </motion.p>
 
         {/* CTAs */}
