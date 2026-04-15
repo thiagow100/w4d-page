@@ -4,20 +4,20 @@ import { motion } from 'framer-motion';
 
 const painPoints = [
   {
-    title: "Crescimento imprevisível",
-    description: "Alguns meses vendem bem, outros não. Sem um sistema de aquisição estruturado, o faturamento oscila sem controle."
+    title: "Mês bom, mês ruim, sem padrão",
+    description: "Em alguns meses a empresa vende bem. Em outros, o time comercial espera o telefone tocar. Crescimento que depende da sorte não é crescimento. É ciclo."
   },
   {
-    title: "Investimento sem clareza de retorno",
-    description: "Há verba em mídia paga, mas falta visibilidade sobre custo de aquisição, ROI por canal e qual campanha realmente gera receita."
+    title: "Anúncio rodando, retorno invisível",
+    description: "Você investe em anúncios, mas qual canal está trazendo cliente de verdade? Qual campanha está pagando o que custou? Sem rastreamento real, cada decisão de investimento é chute."
   },
   {
-    title: "Operação consumindo seu tempo estratégico",
-    description: "Você deveria estar focado em decisões de negócio, não gerenciando campanhas, criativos e plataformas de anúncio."
+    title: "Você virou o gestor de marketing da sua própria empresa",
+    description: "Você deveria estar focado em decisões de negócio, não escolhendo anúncios, ajustando públicos e cuidando de plataformas. Você contratou pra resolver, não pra virar gerente."
   },
   {
-    title: "Volume sem qualificação",
-    description: "Chegam contatos, mas sua equipe desperdiça tempo com quem não tem perfil de compra. O problema não é gerar contato, é gerar o contato certo."
+    title: "Contato chegando, ninguém fechando",
+    description: "Chegam contatos, mas seu time comercial gasta tempo com quem nunca vai comprar. O problema não é falta de gente entrando. É que ninguém filtrou quem tem perfil pra comprar."
   }
 ];
 
@@ -64,7 +64,7 @@ export default function Dores() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.1  }}
             className="text-4xl md:text-5xl font-semibold tracking-[-1px] text-primary leading-[1.1]"
           >
-            Sinais de que sua operação de marketing está falhando
+            Reconhece algum destes no seu negócio?
           </motion.h2>
         </div>
 
@@ -80,12 +80,12 @@ export default function Dores() {
             <motion.div 
               key={index}
               variants={cardVariants}
-              className="bg-tertiary backdrop-blur-xl p-8 rounded-xl border border-white/5 hover:border-white/15 hover:-translate-y-1 transition-all duration-300 ease-out"
+              className="bg-tertiary backdrop-blur-xl p-8 rounded-xl border border-white/5 hover:border-white/15 hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col"
             >
               <h3 className="text-xl font-bold text-primary mb-4">
                 {pain.title}
               </h3>
-              <p className="text-body leading-[1.7] font-light text-sm md:text-base">
+              <p className="text-body leading-[1.7] font-light text-sm md:text-base flex-1">
                 {pain.description}
               </p>
             </motion.div>
