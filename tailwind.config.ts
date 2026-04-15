@@ -26,9 +26,9 @@ const config: Config = {
         'glow-red': '0 0 40px -10px rgba(236, 0, 0, 0.4)',
       },
       backgroundColor: {
-        primary: "#000000",
-        secondary: "#0A0A0A",
-        tertiary: "#111111",
+        primary: "#171717",
+        secondary: "#1C1C1C",
+        tertiary: "#222222",
       },
       textColor: {
         primary: "#FFFFFF",
