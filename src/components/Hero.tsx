@@ -43,7 +43,7 @@ export default function Hero() {
           variants={fadeUp}
           className="text-[#565656] text-[13px] font-semibold tracking-[3px] uppercase mb-8"
         >
-          Marketing digital para empresas que querem crescer de verdade
+          Performance Marketing
         </motion.span>
 
         {/* Título Principal */}
@@ -52,9 +52,9 @@ export default function Hero() {
           className="text-5xl md:text-7xl lg:text-[5.5rem] font-semibold tracking-[-2px] leading-[1.05] mb-8"
         >
           <span className="bg-gradient-to-b from-[#FFFFFF] to-[#E0E0E0] bg-clip-text text-transparent">
-            Seu negócio precisa de vendas.
+            Seu marketing precisa gerar receita.
           </span><br />
-          <span className="text-body">Não de curtidas.</span>
+          <span className="text-body">Não engajamento.</span>
         </motion.h1>
 
         {/* Parágrafo de Apoio */}
@@ -62,8 +62,7 @@ export default function Hero() {
           variants={fadeUp}
           className="text-lg md:text-xl text-body font-light leading-[1.7] max-w-2xl mb-12 "
         >
-          Criamos o sistema completo: tráfego pago, funis de venda e automação com IA 
-          para sua empresa vender todos os dias, sem depender de indicação.
+          Aqui na W4Digital, construímos toda a estrutura para trazer cliente novo: dos anúncios, passando pela qualificação, até o momento em que ele está pronto pra comprar.
         </motion.p>
 
         {/* CTAs */}
@@ -76,7 +75,7 @@ export default function Hero() {
             href="#formulario"
             className="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-primary transition-all duration-300 ease-out bg-cta rounded-full hover:bg-cta-hover hover:scale-105 shadow-2xl shadow-cta/20"
           >
-            Quero vender mais <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+            Solicitar diagnóstico <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
           </a>
           
           {/* Link secundário para âncora de dores */}
@@ -87,9 +86,9 @@ export default function Hero() {
             Veja como funciona ↓
           </a>
 
-          {/* Prova Social Kicker */}
-          <span className="text-xs text-secondary mt-8 tracking-wide uppercase font-semibold">
-            Mais de R$ 6 milhões já investidos em anúncios para nossos clientes
+          {/* Kicker de Posicionamento */}
+          <span className="text-sm text-secondary mt-8 tracking-normal font-light max-w-2xl">
+            20 anos vendendo. 11 com marketing digital. Não somos marqueteiros. Somos vendedores que colocaram dinheiro próprio em anúncios antes de cuidar do seu.
           </span>
         </motion.div>
 
