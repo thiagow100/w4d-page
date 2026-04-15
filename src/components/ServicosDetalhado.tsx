@@ -203,7 +203,7 @@ export default function ServicosDetalhado() {
         </div>
 
         {/* Content Panel */}
-        <div className="w-full bg-black/60 backdrop-blur-xl border border-white/5 rounded-2xl overflow-hidden">
+        <div className="w-full bg-tertiary backdrop-blur-xl border border-white/5 rounded-2xl overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={tab.id}
@@ -218,7 +218,7 @@ export default function ServicosDetalhado() {
                 <span className="text-cta text-[13px] font-semibold tracking-[3px] uppercase mb-4 block">
                   {tab.subtitle}
                 </span>
-                <p className="text-lg md:text-xl text-secondary font-light leading-[1.7] mb-10">
+                <p className="text-lg md:text-xl text-body font-light leading-[1.7] mb-10">
                   {tab.description}
                 </p>
                 <ul className="flex flex-col gap-4">
@@ -235,7 +235,7 @@ export default function ServicosDetalhado() {
                         strokeWidth={2.5}
                         className="text-cta mt-1 shrink-0"
                       />
-                      <span className="text-secondary font-light leading-[1.7] text-sm md:text-base">
+                      <span className="text-body font-light leading-[1.7] text-sm md:text-base">
                         {bullet}
                       </span>
                     </motion.li>

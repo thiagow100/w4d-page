@@ -75,7 +75,7 @@ export default function Solucao() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.2  }}
-          className="text-lg md:text-xl text-secondary font-light leading-[1.7] max-w-2xl mb-20 "
+          className="text-lg md:text-xl text-body font-light leading-[1.7] max-w-2xl mb-20 "
         >
           Não é só rodar anúncio. É um funil inteiro que funciona 24 horas: da primeira impressão até o fechamento.
         </motion.p>
@@ -92,13 +92,13 @@ export default function Solucao() {
             <motion.div 
               key={index}
               variants={cardVariants}
-              className="flex flex-col items-center text-center p-8 bg-black/60 backdrop-blur-xl border border-white/5 rounded-xl hover:border-white/15 hover:-translate-y-1 transition-all duration-300 ease-out"
+              className="flex flex-col items-center text-center p-8 bg-tertiary backdrop-blur-xl border border-white/5 rounded-xl hover:border-white/15 hover:-translate-y-1 transition-all duration-300 ease-out"
             >
               {pillar.icon}
               <h3 className="text-xl font-bold text-primary mb-4">
                 {pillar.title}
               </h3>
-              <p className="text-sm md:text-base text-secondary leading-[1.7] font-light">
+              <p className="text-sm md:text-base text-body leading-[1.7] font-light">
                 {pillar.description}
               </p>
             </motion.div>

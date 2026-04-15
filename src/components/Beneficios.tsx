@@ -85,7 +85,7 @@ export default function Beneficios() {
               className="flex flex-col items-start px-4 md:px-0"
             >
               {benefit.icon}
-              <p className="text-2xl md:text-3xl text-secondary font-light leading-[1.7]">
+              <p className="text-2xl md:text-3xl text-body font-light leading-[1.7]">
                 {benefit.text}
               </p>
             </motion.div>

@@ -112,7 +112,7 @@ export default function FormularioLead() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.2 }}
-            className="text-lg md:text-xl text-secondary font-light leading-[1.7] max-w-lg mx-auto lg:mx-0"
+            className="text-lg md:text-xl text-body font-light leading-[1.7] max-w-lg mx-auto lg:mx-0"
           >
             Preencha o formulário e receba um contato personalizado do nosso time.
           </motion.p>
@@ -134,7 +134,7 @@ export default function FormularioLead() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-semibold tracking-[-2px] text-primary mb-2">Solicitação Enviada!</h3>
-                <p className="text-secondary font-light leading-[1.7]">Nossa equipe entrará em contato em breve.</p>
+                <p className="text-body font-light leading-[1.7]">Nossa equipe entrará em contato em breve.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">

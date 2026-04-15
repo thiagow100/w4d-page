@@ -80,12 +80,12 @@ export default function Dores() {
             <motion.div 
               key={index}
               variants={cardVariants}
-              className="bg-black/60 backdrop-blur-xl p-8 rounded-xl border border-white/5 hover:border-white/15 hover:-translate-y-1 transition-all duration-300 ease-out"
+              className="bg-tertiary backdrop-blur-xl p-8 rounded-xl border border-white/5 hover:border-white/15 hover:-translate-y-1 transition-all duration-300 ease-out"
             >
               <h3 className="text-xl font-bold text-primary mb-4">
                 {pain.title}
               </h3>
-              <p className="text-secondary leading-[1.7] font-light text-sm md:text-base">
+              <p className="text-body leading-[1.7] font-light text-sm md:text-base">
                 {pain.description}
               </p>
             </motion.div>

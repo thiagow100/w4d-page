@@ -59,9 +59,10 @@ export default function AnimatedW4() {
           opacity,
           filter,
           scale,
-          // Fundo preto da imagem se funde com o body preto nativamente.
-          // mix-blend-mode: screen apaga o preto e preserva o vermelho — dupla garantia.
-          mixBlendMode: 'screen',
+          // lighten: mantém o pixel mais claro entre imagem e fundo (max por canal).
+          // Pixels escuros da imagem (<#171717) resultam no fundo — sem retângulo visível.
+          // Funciona sobre qualquer tom grafite, não depende de fundo #000000 puro.
+          mixBlendMode: 'lighten',
         }}
         className="
           w-[70vw] sm:w-[60vw] md:w-[55vw] lg:w-[45vw]

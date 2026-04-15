@@ -89,7 +89,7 @@ export default function Credibilidade() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: 0.2 }}
-              className="text-lg md:text-xl text-secondary leading-[1.7] font-light mb-8 max-w-xl "
+              className="text-lg md:text-xl text-body leading-[1.7] font-light mb-8 max-w-xl "
             >
               20 anos de experiência em vendas presenciais, sendo 14 no mercado imobiliário de Santa Catarina. 
               Mais de 10 anos em mídia paga, construindo funis e automações para empresas no Brasil e no exterior. 
@@ -138,7 +138,7 @@ export default function Credibilidade() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.5  }}
           className="mt-32 pt-12 border-t border-white/5 text-center"
         >
-          <p className="text-secondary text-lg max-w-3xl mx-auto font-light leading-relaxed">
+          <p className="text-body text-lg max-w-3xl mx-auto font-light leading-relaxed">
             A W4Digital conta com um time de especialistas em mídia paga, automação, funis e inteligência artificial, 
             operando diariamente na criação, otimização e escala de campanhas.
           </p>

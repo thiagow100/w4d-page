@@ -32,6 +32,7 @@ const config: Config = {
       },
       textColor: {
         primary: "#FFFFFF",
+        body: "#A1A1A1",
         secondary: "#565656",
       },
       colors: {

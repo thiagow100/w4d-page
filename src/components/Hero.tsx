@@ -54,13 +54,13 @@ export default function Hero() {
           <span className="bg-gradient-to-b from-[#FFFFFF] to-[#E0E0E0] bg-clip-text text-transparent">
             Seu negócio precisa de vendas.
           </span><br />
-          <span className="text-secondary">Não de curtidas.</span>
+          <span className="text-body">Não de curtidas.</span>
         </motion.h1>
 
         {/* Parágrafo de Apoio */}
         <motion.p 
           variants={fadeUp}
-          className="text-lg md:text-xl text-secondary font-light leading-[1.7] max-w-2xl mb-12 "
+          className="text-lg md:text-xl text-body font-light leading-[1.7] max-w-2xl mb-12 "
         >
           Criamos o sistema completo: tráfego pago, funis de venda e automação com IA 
           para sua empresa vender todos os dias, sem depender de indicação.

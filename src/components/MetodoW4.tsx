@@ -72,7 +72,7 @@ function PhaseItem({
       <div className={`w-full md:w-1/2 flex pl-24 md:pl-0 mt-8 md:mt-0 ${index % 2 === 0 ? 'md:order-2 md:justify-start md:pl-20' : 'md:justify-end md:pr-20'}`}>
         <motion.p 
           style={{ opacity: descOpacity, y: descY }}
-          className={`text-xl md:text-3xl text-secondary leading-[1.7] font-light  max-w-md ${index % 2 === 0 ? 'text-left' : 'md:text-right text-left'}`}
+          className={`text-xl md:text-3xl text-body leading-[1.7] font-light  max-w-md ${index % 2 === 0 ? 'text-left' : 'md:text-right text-left'}`}
         >
           {phase.description}
         </motion.p>

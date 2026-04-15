@@ -8,8 +8,8 @@ export default function Nav() {
 
   // Nav fica transparente no topo e ganha fundo de vidro ao scrollar
   // MotionValues passadas diretamente no style — Framer subscreve automaticamente
-  const bgOpacity = useTransform(scrollY, [0, 80], [0, 1]);
-  const borderOpacity = useTransform(scrollY, [0, 80], [0, 0.08]);
+  const bgOpacity = useTransform(scrollY, [0, 150], [0, 0.85]);
+  const borderOpacity = useTransform(scrollY, [0, 150], [0, 0.12]);
 
   const backgroundColor = useTransform(bgOpacity, (v) => `rgba(23,23,23,${v})`);
   const borderBottomColor = useTransform(borderOpacity, (v) => `rgba(255,255,255,${v})`);
