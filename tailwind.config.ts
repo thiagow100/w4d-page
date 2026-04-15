@@ -8,6 +8,23 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-geist-mono)', 'monospace'],
+      },
+      spacing: {
+        'section': '8rem',
+        'section-sm': '5rem',
+      },
+      borderRadius: {
+        'xl2': '1.25rem',
+        'xl3': '1.75rem',
+      },
+      boxShadow: {
+        'subtle': '0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 1px 3px 0 rgba(0, 0, 0, 0.2)',
+        'elevated': '0 10px 40px -10px rgba(0, 0, 0, 0.5)',
+        'glow-red': '0 0 40px -10px rgba(236, 0, 0, 0.4)',
+      },
       backgroundColor: {
         primary: "#000000",
         secondary: "#0A0A0A",
