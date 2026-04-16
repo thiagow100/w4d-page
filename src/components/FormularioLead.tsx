@@ -66,7 +66,7 @@ export default function FormularioLead() {
       setIsSuccess(true);
     } catch (err) {
       console.error(err);
-      setSubmitError("Ocorreu um erro ao enviar. Tente novamente mais tarde.");
+      setSubmitError("Não foi possível enviar o formulário. Tente novamente em instantes.");
     } finally {
       setIsSubmitting(false);
     }
@@ -96,7 +96,7 @@ export default function FormularioLead() {
             viewport={{ once: true }}
             className="text-[#565656] text-[13px] font-semibold tracking-[3px] uppercase mb-4 block"
           >
-            Pronto para vender mais?
+            O próximo passo
           </motion.span>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -105,17 +105,25 @@ export default function FormularioLead() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-1px] text-primary leading-[1.1] mb-8"
           >
-            Fale com um especialista da W4Digital
+            Se a W4Digital faz sentido para o seu negócio, vamos conversar.
           </motion.h2>
-          <motion.p 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.2 }}
-            className="text-lg md:text-xl text-body font-light leading-[1.7] max-w-lg mx-auto lg:mx-0"
+            className="flex flex-col gap-5 max-w-lg mx-auto lg:mx-0"
           >
-            Preencha o formulário e receba um contato personalizado do nosso time.
-          </motion.p>
+            <p className="text-lg md:text-xl text-body font-light leading-[1.7]">
+              Preencha o formulário. Nosso time lê o que você enviou antes de entrar em contato. A primeira conversa é uma análise da sua situação atual: o que está funcionando, o que não está e onde está o maior gap.
+            </p>
+            <p className="text-lg md:text-xl text-body font-light leading-[1.7]">
+              Sem proposta, sem compromisso. Se houver fit, apresentamos como podemos trabalhar juntos.
+            </p>
+            <p className="text-lg md:text-xl text-body font-light leading-[1.7]">
+              Não atendemos qualquer empresa. Se a sua situação não for para nós, dizemos isso na primeira conversa.
+            </p>
+          </motion.div>
         </div>
 
         <motion.div 
@@ -133,8 +141,8 @@ export default function FormularioLead() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-semibold tracking-[-2px] text-primary mb-2">Solicitação Enviada!</h3>
-                <p className="text-body font-light leading-[1.7]">Nossa equipe entrará em contato em breve.</p>
+                <h3 className="text-2xl font-semibold tracking-[-2px] text-primary mb-2">Solicitação recebida.</h3>
+                <p className="text-body font-light leading-[1.7]">Nosso time vai ler o que você enviou antes de entrar em contato. Você deve receber um retorno em até 1 dia útil, por WhatsApp ou ligação.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -184,12 +192,11 @@ export default function FormularioLead() {
                     className={`${getInputClass(!!segment && segment.length > 0, errors.segment)} appearance-none cursor-pointer bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:1.2em_1.2em] bg-[right_1rem_center] bg-no-repeat`}
                   >
                     <option value="" disabled hidden className="text-white/25">Selecione o segmento da empresa *</option>
-                    <option value="Imobiliário e construção" className="text-primary bg-secondary">Imobiliário e construção</option>
-                    <option value="Saúde e estética" className="text-primary bg-secondary">Saúde e estética</option>
-                    <option value="Comércio e varejo" className="text-primary bg-secondary">Comércio e varejo</option>
-                    <option value="Alimentação e franquias" className="text-primary bg-secondary">Alimentação e franquias</option>
+                    <option value="Imobiliário (incorporadora, imobiliária, corretor)" className="text-primary bg-secondary">Imobiliário (incorporadora, imobiliária, corretor)</option>
                     <option value="Educação e infoprodutos" className="text-primary bg-secondary">Educação e infoprodutos</option>
-                    <option value="Serviços profissionais" className="text-primary bg-secondary">Serviços profissionais</option>
+                    <option value="Serviços profissionais (advocacia, contabilidade, consultoria)" className="text-primary bg-secondary">Serviços profissionais (advocacia, contabilidade, consultoria)</option>
+                    <option value="Saúde (clínicas, consultórios, healthtech)" className="text-primary bg-secondary">Saúde (clínicas, consultórios, healthtech)</option>
+                    <option value="E-commerce e varejo" className="text-primary bg-secondary">E-commerce e varejo</option>
                     <option value="Outro" className="text-primary bg-secondary">Outro</option>
                   </select>
                   {errors.segment && <span className="text-cta text-xs mt-2 ml-1 block">{errors.segment.message}</span>}
@@ -224,13 +231,17 @@ export default function FormularioLead() {
                     >
                       {isSubmitting ? "Enviando..." : (
                         <>
-                          Quero vender mais <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                          Solicitar diagnóstico <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
                         </>
                       )}
                     </button>
                   </MagneticButton>
                 </div>
                 
+                <p className="text-xs text-secondary text-center font-light">
+                  Sem compromisso. Sem insistência.
+                </p>
+
                 {/* Spacer para não empurrar as coisas do form caso vire fixed */}
                 {isMobile && isFormInView && <div className="h-20 w-full" />}
 
