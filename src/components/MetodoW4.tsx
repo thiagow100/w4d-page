@@ -4,10 +4,10 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 
 const phases = [
-  { word: "WORK", description: "Entendemos seu negócio a fundo. Público, concorrência, oportunidades e metas." },
-  { word: "WAY",  description: "Construímos o caminho: canais, funil, criativos e automações sob medida." },
-  { word: "WIN",  description: "Seu negócio vendendo. Leads qualificados chegando, comercial fechando." },
-  { word: "WEALTH", description: "Otimização contínua, escala e receita previsível. Crescimento real." }
+  { word: "WORK", description: "Antes de ativar qualquer anúncio, mapeamos o negócio com você: modelo de precificação, ciclo de venda e objeções reais do seu cliente. Você compartilha o histórico comercial e o acesso às plataformas. Nós identificamos onde o marketing pode entrar para ampliar o que já funciona na sua operação. O que sai dessa fase é um diagnóstico acionável, não uma apresentação para aprovar em reunião." },
+  { word: "WAY",  description: "Com o diagnóstico em mãos, construímos a estrutura completa antes de qualquer investimento ir ao ar. Posicionamento, mensagens, páginas e critérios de qualificação, tudo baseado no que aprendemos sobre o seu ciclo de venda. Você revisa e valida cada decisão de posicionamento. Nada é ativado enquanto não reflete o que você conhece do seu cliente." },
+  { word: "WIN",  description: "Com a estrutura ativa, os anúncios entram no ar e os contatos passam a chegar ao processo de qualificação. Aqui na W4Digital, o acompanhamento é diário: o que está gerando resultado continua, o que não está é ajustado antes de o desperdício se acumular. Do seu lado, o time comercial entra em ação e registra o que funciona no fechamento. Essa troca de informação entre operação e comercial é o que mantém a operação se ajustando." },
+  { word: "WEALTH", description: "Quando os primeiros ciclos confirmam o que funciona, o foco deixa de ser testar e passa a ser ampliar. O custo para adquirir um cliente começa a se tornar conhecido, e as decisões de onde investir mais passam a ter base no que já funcionou, não em suposição. Aqui na W4Digital, expandimos a operação para novos canais e públicos com base no que foi validado, não com base em tendência de plataforma. Você toma decisões de investimento com referência concreta." }
 ];
 
 function PhaseItem({ 
@@ -105,7 +105,7 @@ export default function MetodoW4() {
             viewport={{ once: true, margin: "-100px" }}
             className="text-[#565656] text-[13px] font-semibold tracking-[3px] uppercase mb-6 block"
           >
-            Do diagnóstico aos resultados
+            Como trabalhamos
           </motion.span>
           
           <motion.h2 
@@ -115,7 +115,7 @@ export default function MetodoW4() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-6xl font-semibold tracking-[-1px] text-primary leading-[1.1] mb-6"
           >
-            Método W4: 4 fases para sua<br />empresa vender todos os dias
+            Método W4: a ordem em que construímos o seu marketing.
           </motion.h2>
 
           <motion.p 
@@ -125,7 +125,7 @@ export default function MetodoW4() {
             transition={{ delay: 0.2 }}
             className="text-cta text-sm md:text-lg tracking-widest uppercase font-bold"
           >
-            4 fases. 1 sistema. W4D.
+            4 fases. Na sequência em que funcionam.
           </motion.p>
         </div>
 
