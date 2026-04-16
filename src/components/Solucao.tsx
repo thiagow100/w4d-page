@@ -18,7 +18,7 @@ const cards = [
   },
   {
     title: "Time comercial só com cliente real",
-    description: "O contato que chega ao seu time não veio do nada. Veio de quem estava buscando o que você vende, no canal certo, com a mensagem certa. Seu vendedor sabe de onde veio, o que viu e por que chegou. Menos tempo explicando. Mais tempo fechando."
+    description: "O contato que chega ao seu time não veio do nada. Veio de quem estava buscando o que você vende, no canal certo, com a mensagem certa. Seu time comercial sabe de onde veio, o que viu e por que chegou. Menos tempo explicando. Mais tempo fechando."
   }
 ];
 
