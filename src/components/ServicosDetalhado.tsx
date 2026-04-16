@@ -40,52 +40,52 @@ const platforms = [
 
 const tabs = [
   {
-    id: 'trafego',
-    label: 'Tráfego Pago',
-    subtitle: 'Mídia Paga',
-    description: 'Gestão completa dos seus anúncios online no Google, Meta, YouTube, TikTok e LinkedIn.',
+    id: 'anuncios',
+    label: 'Gestão de Anúncios',
+    subtitle: 'Operação de Mídia',
+    description: 'Gestão completa dos seus anúncios no Google, Meta, YouTube, TikTok e LinkedIn. Quem opera aqui entende de venda. Não só de plataforma.',
     bullets: [
-      'Atraia compradores para seu funil de vendas',
-      'Abasteça seu comercial com oportunidades reais',
-      'Tenha previsibilidade e mensure o retorno do investimento',
+      'Segmentamos os anúncios para públicos com padrão de comportamento alinhado ao que você vende. Não para audiências amplas que apenas se parecem com seus clientes.',
+      'Distribuímos investimento entre plataformas com base em onde o seu tipo de cliente está decidindo. Não onde é mais barato anunciar.',
+      'Ajustamos campanhas continuamente com base no que está gerando retorno. Não no que está gerando clique.',
     ],
     visual: 'platforms',
   },
   {
-    id: 'funil',
-    label: 'Funil de Vendas',
-    subtitle: 'Conversão Estruturada',
-    description: 'Landing pages, sequências de e-mail e remarketing que transformam visitantes em compradores.',
+    id: 'conversao',
+    label: 'Estrutura de Conversão',
+    subtitle: 'Da visita ao contato',
+    description: 'Estruturamos as páginas de destino e os anúncios para quem visitou sem entrar em contato, com sequências de e-mail quando fazem sentido para o negócio. O objetivo é reduzir o volume de contatos sem perfil que chegam ao seu time comercial.',
     bullets: [
-      'Páginas otimizadas para conversão',
-      'Sequências automatizadas de nutrição',
-      'Remarketing inteligente para quem não converteu',
+      'Desenvolvemos páginas de destino alinhadas com o anúncio que trouxe o visitante, para que o que ele leu e o que ele vê continuem a mesma conversa.',
+      'Configuramos sequências de contato automáticas para quem demonstrou interesse mas ainda não agiu, sem exigir que o seu time comercial entre em contato com cada visitante individualmente.',
+      'Alcançamos de volta quem visitou sua página sem avançar, com anúncios segmentados pela objeção provável de cada perfil. Não com a mesma peça para todo mundo.',
     ],
-    visual: 'funnel',
+    visual: null,
   },
   {
-    id: 'automacao',
-    label: 'Automação com IA',
-    subtitle: 'Inteligência Artificial',
-    description: 'Chatbots, respostas automáticas e fluxos inteligentes que trabalham 24 horas por dia.',
+    id: 'qualificacao',
+    label: 'Qualificação e Resposta',
+    subtitle: 'Antes do Comercial',
+    description: 'Configuramos respostas e filtros automáticos para o primeiro contato, para que seu time comercial receba apenas quem já demonstrou interesse real. Sem triagem manual na sua agenda.',
     bullets: [
-      'Atendimento instantâneo via WhatsApp e e-mail',
-      'CRM integrado com qualificação automática',
-      'Fluxos que escalam sem aumentar equipe',
+      'Configuramos processos que respondem ao primeiro contato em segundos, qualificando o interesse antes que chegue à sua equipe, independentemente do horário.',
+      'Impedimos que contatos sem perfil ocupem o tempo do seu time comercial. Só avança quem passou pelos critérios de qualificação que definimos juntos.',
+      'Estruturamos os caminhos de resposta para que nenhum contato chegue sem resposta por falta de alguém disponível para atender.',
     ],
-    visual: 'ai',
+    visual: null,
   },
   {
-    id: 'otimizacao',
-    label: 'Otimização Contínua',
-    subtitle: 'Performance',
-    description: 'Monitoramento diário e ajustes baseados em dados reais para escalar resultados.',
+    id: 'monitoramento',
+    label: 'Monitoramento e Resultado',
+    subtitle: 'Acompanhamento Diário',
+    description: 'Monitoramos o desempenho dos anúncios e das páginas todos os dias, com foco em conversão real. Não em métricas de alcance ou visualização que não aparecem no seu faturamento.',
     bullets: [
-      'Dashboards em tempo real',
-      'Testes A/B constantes em criativos e páginas',
-      'Relatórios claros com ROI por canal',
+      'Consolidamos os dados de todas as plataformas em uma visão única, para que você saiba, a qualquer momento, quanto do investimento está gerando retorno.',
+      'Testamos variações de anúncios e páginas de forma contínua, descartando o que não converte e escalando o que está funcionando.',
+      'Separamos o resultado por canal nos relatórios, para que você identifique sem ambiguidade qual está gerando retorno e qual está apenas consumindo investimento.',
     ],
-    visual: 'performance',
+    visual: null,
   },
 ];
 
@@ -111,51 +111,6 @@ function PlatformsVisual() {
   );
 }
 
-// Visual genérico com etapas / nodes (para funnel, ai, performance)
-function GenericVisual({ type }: { type: string }) {
-  const configs: Record<string, { steps: string[]; color: string }> = {
-    funnel: {
-      steps: ['Visitante', 'Lead Qualificado', 'Oportunidade', 'Cliente'],
-      color: '#EC0000',
-    },
-    ai: {
-      steps: ['Mensagem recebida', 'IA qualifica', 'CRM atualizado', 'Comercial fecha'],
-      color: '#EC0000',
-    },
-    performance: {
-      steps: ['Dados coletados', 'Análise diária', 'Teste A/B', 'Escala o que funciona'],
-      color: '#EC0000',
-    },
-  };
-
-  const c = configs[type] || configs.funnel;
-
-  return (
-    <div className="flex flex-col gap-3 w-full">
-      {c.steps.map((step, i) => (
-        <div key={i} className="flex items-center gap-4">
-          <div
-            className="w-7 h-7 rounded-full border flex items-center justify-center shrink-0 text-xs font-bold"
-            style={{ borderColor: c.color, color: c.color }}
-          >
-            {i + 1}
-          </div>
-          <div className="flex-1 h-px bg-white/5 relative">
-            <motion.div
-              className="absolute inset-y-0 left-0 h-px"
-              style={{ background: c.color }}
-              initial={{ width: 0 }}
-              animate={{ width: '100%' }}
-              transition={{ duration: 0.8, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] as any }}
-            />
-          </div>
-          <span className="text-sm text-white/50 font-light">{step}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export default function ServicosDetalhado() {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -164,7 +119,7 @@ export default function ServicosDetalhado() {
   return (
     <section className="relative w-full py-section px-6 sm:px-12 lg:px-24 bg-secondary">
       <div className="max-w-6xl mx-auto flex flex-col items-center">
-        
+
         {/* Header */}
         <motion.span
           initial={{ opacity: 0, y: 10 }}
@@ -172,7 +127,7 @@ export default function ServicosDetalhado() {
           viewport={{ once: true }}
           className="text-[#565656] text-[13px] font-semibold tracking-[3px] uppercase mb-4 block"
         >
-          Como trabalhamos
+          O que entregamos
         </motion.span>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -181,8 +136,7 @@ export default function ServicosDetalhado() {
           transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
           className="text-4xl md:text-5xl font-semibold tracking-[-1px] text-primary leading-[1.1] mb-16 text-center"
         >
-          Cada serviço. Uma engrenagem.&nbsp;<br className="hidden md:block" />
-          Um sistema que vende.
+          Do anúncio à agenda do seu time comercial.
         </motion.h2>
 
         {/* Tab Bar */}
@@ -211,14 +165,14 @@ export default function ServicosDetalhado() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ type: 'spring' as any, stiffness: 60, damping: 25 }}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-0"
+              className={tab.visual === 'platforms' ? 'grid grid-cols-1 lg:grid-cols-2 gap-0' : ''}
             >
               {/* Lado Esquerdo: Copy */}
-              <div className="p-10 md:p-14 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-white/5">
+              <div className={`p-10 md:p-14 flex flex-col justify-center ${tab.visual === 'platforms' ? 'border-b lg:border-b-0 lg:border-r border-white/5' : ''}`}>
                 <span className="text-cta text-[13px] font-semibold tracking-[3px] uppercase mb-4 block">
                   {tab.subtitle}
                 </span>
-                <p className="text-lg md:text-xl text-body font-light leading-[1.7] mb-10">
+                <p className="text-lg md:text-xl text-body font-light leading-[1.7] mb-10 flex-1">
                   {tab.description}
                 </p>
                 <ul className="flex flex-col gap-4">
@@ -243,28 +197,45 @@ export default function ServicosDetalhado() {
                 </ul>
               </div>
 
-              {/* Lado Direito: Visual */}
-              <div className="p-10 md:p-14 flex items-center justify-center">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={`${tab.id}-visual`}
-                    initial={{ opacity: 0, scale: 0.96 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.96 }}
-                    transition={{ type: 'spring' as any, stiffness: 60, damping: 25, delay: 0.1 }}
-                    className="w-full"
-                  >
-                    {tab.visual === 'platforms' ? (
+              {/* Lado Direito: Visual (apenas Tab 1) */}
+              {tab.visual === 'platforms' && (
+                <div className="p-10 md:p-14 flex items-center justify-center">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={`${tab.id}-visual`}
+                      initial={{ opacity: 0, scale: 0.96 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.96 }}
+                      transition={{ type: 'spring' as any, stiffness: 60, damping: 25, delay: 0.1 }}
+                      className="w-full"
+                    >
                       <PlatformsVisual />
-                    ) : (
-                      <GenericVisual type={tab.visual} />
-                    )}
-                  </motion.div>
-                </AnimatePresence>
-              </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
         </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
+          className="mt-16 flex flex-col items-center gap-6 text-center"
+        >
+          <p className="text-base md:text-lg text-body font-light leading-[1.7] max-w-xl">
+            Se alguma dessas frentes resolve o que você está enfrentando agora, é isso que um diagnóstico identifica.
+          </p>
+          <a
+            href="#formulario"
+            className="group inline-flex items-center justify-center px-8 py-4 text-base font-bold text-primary transition-all duration-300 ease-out bg-cta rounded-full hover:bg-cta-hover hover:-translate-y-1 shadow-xl shadow-cta/20"
+          >
+            Solicitar diagnóstico <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </motion.div>
 
       </div>
     </section>
