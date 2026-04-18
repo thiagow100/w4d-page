@@ -45,7 +45,7 @@ export default function Nav() {
           href="#formulario"
           className="hidden md:inline-flex items-center gap-2 text-sm font-semibold text-primary border border-white/10 hover:border-cta hover:text-cta transition-all duration-300 ease-out px-5 py-2.5 rounded-full"
         >
-          Falar com especialista →
+          Solicitar diagnóstico →
         </a>
       </motion.div>
     </motion.header>
