@@ -139,6 +139,41 @@ export default function ServicosDetalhado() {
           Do anúncio à agenda do seu time comercial.
         </motion.h2>
 
+        {/* Faixa Método W4 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
+          className="w-full mb-12"
+        >
+          <span className="text-cta text-[11px] font-semibold tracking-[3px] uppercase block text-center mb-6">
+            Método W4
+          </span>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0">
+            {[
+              { word: "WORK", desc: "Diagnóstico antes de qualquer anúncio" },
+              { word: "WAY", desc: "Estrutura montada antes de investir" },
+              { word: "WIN", desc: "Operação ativa com ajuste diário" },
+              { word: "WEALTH", desc: "Escala baseada no que já funcionou" },
+            ].map((phase, i) => (
+              <div key={phase.word} className="flex items-center">
+                <div className="flex flex-col items-center text-center w-full px-4 py-4">
+                  <span className="text-lg md:text-xl font-bold text-primary tracking-tight mb-1">
+                    {phase.word}
+                  </span>
+                  <span className="text-sm text-body font-light">
+                    {phase.desc}
+                  </span>
+                </div>
+                {i < 3 && (
+                  <span className="hidden lg:block text-white/20 text-lg shrink-0">→</span>
+                )}
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Tab Bar */}
         <div className="flex flex-nowrap overflow-x-auto scrollbar-none gap-2 mb-12 w-full justify-start md:justify-center pb-1">
           {tabs.map((t, i) => (
