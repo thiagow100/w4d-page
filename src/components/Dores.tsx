@@ -5,19 +5,23 @@ import { motion } from 'framer-motion';
 const painPoints = [
   {
     title: "Mês bom, mês ruim, sem padrão",
-    description: "Em alguns meses a empresa vende bem. Em outros, o time comercial espera o telefone tocar. Crescimento que depende da sorte não é crescimento. É ciclo."
+    description: "Em alguns meses a empresa vende bem. Em outros, o time comercial espera o telefone tocar. Crescimento que depende da sorte não é crescimento. É ciclo.",
+    resolution: "Previsibilidade não vem de sorte. Vem de estrutura."
   },
   {
     title: "Anúncio rodando, retorno invisível",
-    description: "Você investe em anúncios, mas qual canal está trazendo cliente de verdade? Qual campanha está pagando o que custou? Sem rastreamento real, cada decisão de investimento é chute."
+    description: "Você investe em anúncios, mas qual canal está trazendo cliente de verdade? Qual campanha está pagando o que custou? Sem rastreamento real, cada decisão de investimento é chute.",
+    resolution: "É possível rastrear cada real até a venda. Falta a estrutura certa."
   },
   {
     title: "Você virou o gestor de marketing da sua própria empresa",
-    description: "Você deveria estar focado em decisões de negócio, não escolhendo anúncios, ajustando públicos e cuidando de plataformas. Você contratou para resolver, não para virar gerente."
+    description: "Você deveria estar focado em decisões de negócio, não escolhendo anúncios, ajustando públicos e cuidando de plataformas. Você contratou para resolver, não para virar gerente.",
+    resolution: null
   },
   {
     title: "Contato chegando, ninguém fechando",
-    description: "Chegam contatos, mas seu time comercial gasta tempo com quem nunca vai comprar. O problema não é falta de gente entrando. É que ninguém filtrou quem tem perfil para comprar."
+    description: "Chegam contatos, mas seu time comercial gasta tempo com quem nunca vai comprar. O problema não é falta de gente entrando. É que ninguém filtrou quem tem perfil para comprar.",
+    resolution: "O filtro precisa existir antes do seu time atender."
   }
 ];
 
@@ -88,6 +92,11 @@ export default function Dores() {
               <p className="text-body leading-[1.7] font-light text-sm md:text-base flex-1">
                 {pain.description}
               </p>
+              {pain.resolution && (
+                <p className="text-primary font-medium text-sm md:text-base mt-4">
+                  {pain.resolution}
+                </p>
+              )}
             </motion.div>
           ))}
         </motion.div>
