@@ -29,13 +29,13 @@ export default function Nav() {
         className="w-full px-6 sm:px-12 lg:px-24 py-4 flex items-center justify-between"
       >
         {/* Logo */}
-        <a href="#" aria-label="W4Digital — Voltar ao topo">
+        <a href="#" aria-label="W4Digital -- Voltar ao topo">
           <Image
             src="/images/W4D MARCA-16.png"
             alt="W4Digital"
             width={200}
             height={56}
-            className="h-12 w-auto object-contain"
+            className="h-12 md:h-14 w-auto object-contain logo-blend"
             priority
           />
         </a>
@@ -43,9 +43,11 @@ export default function Nav() {
         {/* CTA Direito */}
         <a
           href="#formulario"
-          className="hidden md:inline-flex items-center gap-2 text-sm font-semibold text-primary border border-white/10 hover:border-cta hover:text-cta transition-all duration-300 ease-out px-5 py-2.5 rounded-full"
+          className="inline-flex items-center gap-2 text-xs md:text-sm font-semibold text-primary border border-white/10 hover:border-cta hover:text-cta transition-all duration-300 ease-out px-3 py-2 md:px-5 md:py-2.5 rounded-full"
         >
-          Solicitar diagnóstico →
+          <span className="hidden sm:inline">Solicitar diagnóstico</span>
+          <span className="sm:hidden">Diagnóstico</span>
+          <span>&#8594;</span>
         </a>
       </motion.div>
     </motion.header>
