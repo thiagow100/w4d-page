@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check } from 'lucide-react';
 
@@ -89,6 +89,8 @@ const tabs = [
   },
 ];
 
+const AUTO_PLAY_INTERVAL = 8000;
+
 // Visual para o lado direito: Platforms Grid
 function PlatformsVisual() {
   return (
@@ -113,19 +115,57 @@ function PlatformsVisual() {
 
 export default function ServicosDetalhado() {
   const [activeTab, setActiveTab] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const goToNext = useCallback(() => {
+    setActiveTab(prev => (prev + 1) % tabs.length);
+    setProgress(0);
+  }, []);
+
+  // Auto-play com timer
+  useEffect(() => {
+    if (isPaused) return;
+
+    progressRef.current = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 100) return 100;
+        return prev + (100 / (AUTO_PLAY_INTERVAL / 50));
+      });
+    }, 50);
+
+    intervalRef.current = setInterval(() => {
+      goToNext();
+    }, AUTO_PLAY_INTERVAL);
+
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (progressRef.current) clearInterval(progressRef.current);
+    };
+  }, [isPaused, activeTab, goToNext]);
+
+  const handleTabClick = (index: number) => {
+    setActiveTab(index);
+    setProgress(0);
+    setIsPaused(true);
+    // Retoma auto-play após 20s de inatividade
+    setTimeout(() => setIsPaused(false), 20000);
+  };
 
   const tab = tabs[activeTab];
 
   return (
-    <section className="relative w-full py-section px-6 sm:px-12 lg:px-24 bg-secondary">
-      <div className="max-w-6xl mx-auto flex flex-col items-center">
+    <section className="relative w-full py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
+      <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center">
 
         {/* Header */}
         <motion.span
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-[#565656] text-[13px] font-semibold tracking-[3px] uppercase mb-4 block"
+          className="font-mono text-secondary text-[11px] tracking-[3px] uppercase mb-4 block"
         >
           O que entregamos
         </motion.span>
@@ -147,52 +187,73 @@ export default function ServicosDetalhado() {
           transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
           className="w-full mb-12"
         >
-          <span className="text-cta text-[11px] font-semibold tracking-[3px] uppercase block text-center mb-6">
+          <span className="font-mono text-cta text-[11px] tracking-[3px] uppercase block text-center mb-6">
             Método W4
           </span>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0">
             {[
-              { word: "WORK", desc: "Diagnóstico antes de qualquer anúncio" },
-              { word: "WAY", desc: "Estrutura montada antes de investir" },
-              { word: "WIN", desc: "Operação ativa com ajuste diário" },
-              { word: "WEALTH", desc: "Escala baseada no que já funcionou" },
+              { word: "WORK", sub: "base", desc: "Diagnóstico antes de qualquer anúncio" },
+              { word: "WAY", sub: "caminho", desc: "Estrutura montada antes de investir" },
+              { word: "WIN", sub: "resultado", desc: "Operação ativa com ajuste diário" },
+              { word: "WEALTH", sub: "escala", desc: "Escala baseada no que já funcionou" },
             ].map((phase, i) => (
               <div key={phase.word} className="flex items-center">
                 <div className="flex flex-col items-center text-center w-full px-4 py-4">
-                  <span className="text-lg md:text-xl font-bold text-primary tracking-tight mb-1">
+                  <span className="text-lg md:text-xl font-bold text-primary tracking-tight mb-0.5">
                     {phase.word}
                   </span>
-                  <span className="text-sm text-body font-light">
+                  <span className="font-mono text-[10px] text-secondary uppercase tracking-[1px] mb-1">
+                    {phase.sub}
+                  </span>
+                  <span className="text-sm text-body font-normal">
                     {phase.desc}
                   </span>
                 </div>
                 {i < 3 && (
-                  <span className="hidden lg:block text-white/20 text-lg shrink-0">→</span>
+                  <span className="hidden lg:block text-white/20 text-lg shrink-0">&#8594;</span>
                 )}
               </div>
             ))}
           </div>
         </motion.div>
 
-        {/* Tab Bar */}
-        <div className="flex flex-nowrap overflow-x-auto scrollbar-none gap-2 mb-12 w-full justify-start md:justify-center pb-1">
-          {tabs.map((t, i) => (
-            <button
-              key={t.id}
-              onClick={() => setActiveTab(i)}
-              className={`shrink-0 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 ease-out whitespace-nowrap ${
-                activeTab === i
-                  ? 'bg-cta text-white shadow-lg shadow-cta/20'
-                  : 'bg-transparent text-[#999] hover:text-white border border-white/5 hover:border-white/15'
-              }`}
-            >
-              {t.label}
-            </button>
-          ))}
+        {/* Tab Bar com indicador de "4 serviços" e progresso */}
+        <div className="w-full mb-12">
+          <div className="flex items-center justify-between mb-3">
+            <span className="font-mono text-[11px] text-secondary tracking-[2px] uppercase">
+              {String(activeTab + 1).padStart(2, '0')} / {String(tabs.length).padStart(2, '0')}
+            </span>
+            {!isPaused && (
+              <span className="font-mono text-[10px] text-secondary/60 tracking-wider uppercase">
+                auto
+              </span>
+            )}
+          </div>
+          <div className="flex flex-nowrap overflow-x-auto scrollbar-none gap-2 w-full justify-start md:justify-center pb-1">
+            {tabs.map((t, i) => (
+              <button
+                key={t.id}
+                onClick={() => handleTabClick(i)}
+                className={`shrink-0 px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ease-out whitespace-nowrap relative overflow-hidden ${
+                  activeTab === i
+                    ? 'bg-cta text-white shadow-lg shadow-cta/20'
+                    : 'bg-transparent text-[#999] hover:text-white border border-white/5 hover:border-white/15'
+                }`}
+              >
+                {activeTab === i && !isPaused && (
+                  <div
+                    className="absolute bottom-0 left-0 h-[2px] bg-white/30 transition-none"
+                    style={{ width: `${progress}%` }}
+                  />
+                )}
+                {t.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Content Panel */}
-        <div className="w-full bg-tertiary backdrop-blur-xl border border-white/5 rounded-2xl overflow-hidden">
+        <div className="w-full border-gradient bg-tertiary backdrop-blur-xl rounded-2xl overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={tab.id}
@@ -204,10 +265,10 @@ export default function ServicosDetalhado() {
             >
               {/* Lado Esquerdo: Copy */}
               <div className={`p-10 md:p-14 flex flex-col justify-center ${tab.visual === 'platforms' ? 'border-b lg:border-b-0 lg:border-r border-white/5' : ''}`}>
-                <span className="text-cta text-[13px] font-semibold tracking-[3px] uppercase mb-4 block">
+                <span className="font-mono text-cta text-[11px] tracking-[3px] uppercase mb-4 block">
                   {tab.subtitle}
                 </span>
-                <p className="text-lg md:text-xl text-body font-light leading-[1.7] mb-10 flex-1">
+                <p className="text-lg md:text-xl text-body font-normal leading-[1.7] mb-10 flex-1">
                   {tab.description}
                 </p>
                 <ul className="flex flex-col gap-4">
@@ -224,7 +285,7 @@ export default function ServicosDetalhado() {
                         strokeWidth={2.5}
                         className="text-cta mt-1 shrink-0"
                       />
-                      <span className="text-body font-light leading-[1.7] text-sm md:text-base">
+                      <span className="text-body font-normal leading-[1.7] text-sm md:text-base">
                         {bullet}
                       </span>
                     </motion.li>
@@ -261,14 +322,14 @@ export default function ServicosDetalhado() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
           className="mt-16 flex flex-col items-center gap-6 text-center"
         >
-          <p className="text-base md:text-lg text-body font-light leading-[1.7] max-w-xl">
+          <p className="text-base md:text-lg text-body font-normal leading-[1.7] max-w-xl">
             Se alguma dessas frentes resolve o que você está enfrentando agora, é isso que um diagnóstico identifica.
           </p>
           <a
             href="#formulario"
-            className="group inline-flex items-center justify-center px-8 py-4 text-base font-bold text-primary transition-all duration-300 ease-out bg-cta rounded-full hover:bg-cta-hover hover:-translate-y-1 shadow-xl shadow-cta/20"
+            className="group inline-flex items-center justify-center px-8 py-4 text-base font-bold text-primary transition-all duration-300 ease-out bg-cta rounded-full hover:bg-cta-hover hover:-translate-y-1 glow-cta"
           >
-            Solicitar diagnóstico <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+            Solicitar diagnóstico <span className="ml-2 group-hover:translate-x-1 transition-transform">&#8594;</span>
           </a>
         </motion.div>
 
