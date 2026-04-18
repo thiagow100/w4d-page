@@ -24,30 +24,21 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Contato por país */}
-        <div className="flex flex-col sm:flex-row gap-12 mb-16 text-center sm:text-left">
-          <div className="flex flex-col gap-1">
-            <span className="text-xs font-semibold text-secondary uppercase tracking-widest mb-1">EUA</span>
-            <a
-              href="tel:+16892638133"
-              className="text-primary hover:text-cta transition-colors duration-300 text-lg font-light tracking-wide"
-            >
-              +1 (689) 263-8133
-            </a>
-            <span className="text-secondary text-sm font-light">Orlando, Florida</span>
-          </div>
-
-          <div className="hidden sm:block w-px bg-white/5 self-stretch" />
-
-          <div className="flex flex-col gap-1">
-            <span className="text-xs font-semibold text-secondary uppercase tracking-widest mb-1">Brasil</span>
-            <a
-              href="mailto:sales@w4d.com.br"
-              className="text-primary hover:text-cta transition-colors duration-300 text-lg font-light tracking-wide"
-            >
-              sales@w4d.com.br
-            </a>
-          </div>
+        {/* Contato */}
+        <div className="flex flex-col items-center gap-2 mb-16 text-center">
+          <a
+            href="tel:+16892638133"
+            className="text-primary hover:text-cta transition-colors duration-300 text-lg font-light tracking-wide"
+          >
+            +1 (689) 263-8133
+          </a>
+          <a
+            href="mailto:sales@w4d.com.br"
+            className="text-primary hover:text-cta transition-colors duration-300 text-lg font-light tracking-wide"
+          >
+            sales@w4d.com.br
+          </a>
+          <span className="text-secondary text-sm font-light mt-1">Orlando, Florida. Palhoça, Brasil.</span>
         </div>
 
         {/* Sobre o fundador */}
