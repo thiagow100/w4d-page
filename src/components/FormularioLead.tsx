@@ -115,7 +115,10 @@ export default function FormularioLead() {
             className="flex flex-col gap-5 max-w-lg mx-auto lg:mx-0"
           >
             <p className="text-lg md:text-xl text-body font-light leading-[1.7]">
-              Preencha o formulário. Nosso time lê o que você enviou antes de entrar em contato. A primeira conversa é uma análise da sua situação atual: o que está funcionando, o que não está e onde está o maior gap.
+              Nosso time lê o que você enviou antes de entrar em contato. A primeira conversa é uma análise da sua situação atual: o que está funcionando, o que não está e onde está a maior oportunidade de melhoria.
+            </p>
+            <p className="text-lg md:text-xl text-body font-light leading-[1.7]">
+              Se avançarmos juntos: resultado abaixo do esperado, você sabe na mesma semana. Os números ficam abertos. Você decide onde investir. Nós executamos.
             </p>
             <p className="text-lg md:text-xl text-body font-light leading-[1.7]">
               Sem proposta, sem compromisso. Se houver fit, apresentamos como podemos trabalhar juntos.
