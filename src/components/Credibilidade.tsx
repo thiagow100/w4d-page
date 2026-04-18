@@ -97,7 +97,7 @@ export default function Credibilidade() {
             className="flex flex-col"
           >
             <LeaderPhoto
-              src="/images/thiago.jpeg"
+              src="/images/thiago.png"
               alt="Thiago Weirich"
               initials="TW"
             />
@@ -123,7 +123,7 @@ export default function Credibilidade() {
             className="flex flex-col"
           >
             <LeaderPhoto
-              src="/images/carlos.jpeg"
+              src="/images/carlos.png"
               alt="Carlos Murayama"
               initials="CM"
             />
