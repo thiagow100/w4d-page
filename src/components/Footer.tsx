@@ -14,11 +14,11 @@ export default function Footer() {
               alt="W4Digital"
               width={200}
               height={56}
-              className="h-12 w-auto object-contain"
+              className="h-12 w-auto object-contain logo-blend"
             />
           </div>
 
-          <p className="text-secondary text-base font-light max-w-xl leading-relaxed">
+          <p className="text-secondary text-base font-normal max-w-xl leading-relaxed">
             Aqui na W4Digital, trabalhamos com empresas que já entenderam que aquisição de clientes exige estrutura.
             Sede no Brasil e nos Estados Unidos. Atuação pelo mundo.
           </p>
@@ -28,22 +28,22 @@ export default function Footer() {
         <div className="flex flex-col items-center gap-2 mb-16 text-center">
           <a
             href="tel:+16892638133"
-            className="text-primary hover:text-cta transition-colors duration-300 text-lg font-light tracking-wide"
+            className="text-primary hover:text-cta transition-colors duration-300 text-lg font-normal tracking-wide"
           >
             +1 (689) 263-8133
           </a>
           <a
             href="mailto:sales@w4d.com.br"
-            className="text-primary hover:text-cta transition-colors duration-300 text-lg font-light tracking-wide"
+            className="text-primary hover:text-cta transition-colors duration-300 text-lg font-normal tracking-wide"
           >
             sales@w4d.com.br
           </a>
-          <span className="text-secondary text-sm font-light mt-1">Orlando, Florida. Palhoça, Brasil.</span>
+          <span className="font-mono text-secondary text-xs tracking-[1px] uppercase mt-1">Orlando, Florida &middot; Palhoça, Brasil</span>
         </div>
 
         {/* Sobre o fundador */}
         <div className="flex flex-col items-center gap-4 mb-16">
-          <span className="text-xs font-semibold text-secondary uppercase tracking-widest">Sobre o fundador</span>
+          <span className="font-mono text-[11px] text-secondary uppercase tracking-[2px]">Sobre o fundador</span>
           <div className="flex items-center gap-6">
             <a
               href="https://www.linkedin.com/in/thiagoweirich/"
@@ -53,7 +53,7 @@ export default function Footer() {
               className="flex items-center gap-2 text-secondary hover:text-primary transition-colors duration-300"
             >
               <Linkedin size={18} strokeWidth={1.5} />
-              <span className="text-sm font-light">Thiago Weirich</span>
+              <span className="text-sm font-normal">Thiago Weirich</span>
             </a>
             <a
               href="https://www.instagram.com/thiagoweirich/"
@@ -63,7 +63,7 @@ export default function Footer() {
               className="flex items-center gap-2 text-secondary hover:text-primary transition-colors duration-300"
             >
               <Instagram size={18} strokeWidth={1.5} />
-              <span className="text-sm font-light">@thiagoweirich</span>
+              <span className="text-sm font-normal">@thiagoweirich</span>
             </a>
           </div>
         </div>
@@ -71,14 +71,14 @@ export default function Footer() {
         {/* Legal e Copyright */}
         <div className="w-full flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 text-sm text-secondary gap-6">
           <div className="flex items-center gap-8">
-            <a href="#" className="hover:text-primary transition-colors">Política de Privacidade</a>
-            <a href="#" className="hover:text-primary transition-colors">Termos de Uso</a>
+            <a href="/privacidade" className="hover:text-primary transition-colors">Política de Privacidade</a>
+            <a href="/termos" className="hover:text-primary transition-colors">Termos de Uso</a>
           </div>
 
-          <div className="text-center md:text-right font-light">
+          <div className="text-center md:text-right font-normal">
             <p>W4D Negócios Digitais Ltda | CNPJ 49.383.275/0001-40</p>
             <p className="mt-1">W4Digital LLC | Orlando, FL</p>
-            <p className="mt-2">© 2026 W4Digital. Todos os direitos reservados.</p>
+            <p className="mt-2">&copy; 2026 W4Digital. Todos os direitos reservados.</p>
           </div>
         </div>
 
