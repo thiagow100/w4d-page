@@ -23,6 +23,55 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
+// Floating label input component
+function FloatingInput({
+  label,
+  error,
+  type = "text",
+  ...props
+}: {
+  label: string;
+  error?: any;
+  type?: string;
+} & React.InputHTMLAttributes<HTMLInputElement>) {
+  const [focused, setFocused] = useState(false);
+  const hasValue = Boolean(props.value && String(props.value).length > 0);
+  const isFloating = focused || hasValue;
+
+  return (
+    <div className="relative">
+      <input
+        {...props}
+        type={type}
+        onFocus={(e) => { setFocused(true); props.onFocus?.(e); }}
+        onBlur={(e) => { setFocused(false); props.onBlur?.(e); }}
+        placeholder=""
+        className={`w-full text-base text-primary pt-6 pb-2 px-4 rounded-lg outline-none transition-all duration-300 ease-out bg-white/5 border ${
+          error
+            ? 'border-error focus:border-error focus:ring-1 focus:ring-error'
+            : focused
+            ? 'border-focus-ring focus:ring-1 focus:ring-focus-ring bg-white/[0.03]'
+            : hasValue
+            ? 'border-white/10'
+            : 'border-transparent'
+        }`}
+      />
+      <label
+        className={`absolute left-4 transition-all duration-200 ease-out pointer-events-none ${
+          isFloating
+            ? 'top-2 text-[11px] font-mono tracking-wider uppercase'
+            : 'top-1/2 -translate-y-1/2 text-base font-normal'
+        } ${
+          error ? 'text-error' : focused ? 'text-focus-ring' : 'text-white/30'
+        }`}
+      >
+        {label}
+      </label>
+      {error && <span className="text-error text-xs mt-2 ml-1 block">{error.message}</span>}
+    </div>
+  );
+}
+
 export default function FormularioLead() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -49,10 +98,10 @@ export default function FormularioLead() {
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     setSubmitError("");
-    
+
     try {
       const { error } = await supabase.from('leads').insert([
-        { 
+        {
           full_name: data.fullName,
           phone: data.phone,
           email: data.email,
@@ -62,7 +111,7 @@ export default function FormularioLead() {
       ]);
 
       if (error) throw error;
-      
+
       setIsSuccess(true);
     } catch (err) {
       console.error(err);
@@ -72,33 +121,23 @@ export default function FormularioLead() {
     }
   };
 
-  const getInputClass = (hasValue: boolean, error: any) => {
-    const base = "w-full text-base text-primary p-4 rounded-lg outline-none transition-all duration-300 ease-out placeholder:text-white/25 placeholder:font-light";
-    let stateClasses = "bg-white/5 border border-transparent focus:bg-white/[0.03] focus:border-cta focus:ring-1 focus:ring-cta";
-    
-    if (error) {
-      stateClasses = "bg-white/5 border border-cta focus:bg-white/[0.03] focus:ring-1 focus:ring-cta";
-    } else if (hasValue) {
-      stateClasses = "bg-white/5 border border-white/10 focus:bg-white/[0.03] focus:border-cta focus:ring-1 focus:ring-cta";
-    }
-    
-    return `${base} ${stateClasses}`;
-  };
+  // Botão fixo quando formulário NÃO está visível (lógica invertida)
+  const showStickyButton = isMobile && !isFormInView;
 
   return (
-    <section ref={formSectionRef} id="formulario" className="relative w-full py-section px-6 sm:px-12 lg:px-24 bg-secondary">
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
-        
+    <section ref={formSectionRef} id="formulario" className="relative w-full py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
+      <div className="relative z-10 max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+
         <div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left">
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-[#565656] text-[13px] font-semibold tracking-[3px] uppercase mb-4 block"
+            className="font-mono text-secondary text-[11px] tracking-[3px] uppercase mb-4 block"
           >
             O próximo passo
           </motion.span>
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -114,29 +153,40 @@ export default function FormularioLead() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.2 }}
             className="flex flex-col gap-5 max-w-lg mx-auto lg:mx-0"
           >
-            <p className="text-lg md:text-xl text-body font-light leading-[1.7]">
+            <p className="text-lg md:text-xl text-body font-normal leading-[1.7]">
               Nosso time lê o que você enviou antes de entrar em contato. A primeira conversa é uma análise da sua situação atual: o que está funcionando, o que não está e onde está a maior oportunidade de melhoria.
             </p>
-            <p className="text-lg md:text-xl text-body font-light leading-[1.7]">
+            <p className="text-lg md:text-xl text-body font-normal leading-[1.7]">
               Se avançarmos juntos: resultado abaixo do esperado, você sabe na mesma semana. Os números ficam abertos. Você decide onde investir. Nós executamos.
             </p>
-            <p className="text-lg md:text-xl text-body font-light leading-[1.7]">
-              Sem proposta, sem compromisso. Se houver fit, apresentamos como podemos trabalhar juntos.
-            </p>
-            <p className="text-lg md:text-xl text-body font-light leading-[1.7]">
+
+            {/* Bloco explicando o diagnóstico */}
+            <div className="bg-white/[0.03] border border-white/5 rounded-xl p-5 mt-2">
+              <p className="font-mono text-[11px] text-cta uppercase tracking-[2px] mb-3">O que é o diagnóstico</p>
+              <p className="text-body text-base font-normal leading-relaxed">
+                Uma conversa de 30 minutos, por vídeo ou telefone, onde analisamos sua operação atual de marketing e identificamos a maior oportunidade de melhoria. Sem proposta comercial na primeira conversa.
+              </p>
+            </div>
+
+            <p className="text-base text-body font-normal leading-[1.7]">
               Não atendemos qualquer empresa. Se a sua situação não for para nós, dizemos isso na primeira conversa.
+            </p>
+
+            {/* Escassez genuína */}
+            <p className="font-mono text-[11px] text-secondary uppercase tracking-[2px] mt-2">
+              Atendemos no máximo 8 empresas por trimestre.
             </p>
           </motion.div>
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
           className="w-full lg:w-1/2"
         >
-          <div className="bg-secondary p-8 md:p-10 rounded-2xl border border-white/5 shadow-2xl shadow-cta/5 relative overflow-hidden">
+          <div className="border-gradient bg-secondary p-8 md:p-10 rounded-2xl shadow-2xl shadow-cta/5 relative overflow-hidden">
             {isSuccess ? (
               <div className="py-20 flex flex-col items-center text-center">
                 <div className="w-20 h-20 bg-cta/10 border border-cta rounded-full flex items-center justify-center mb-6">
@@ -145,108 +195,112 @@ export default function FormularioLead() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-semibold tracking-[-2px] text-primary mb-2">Solicitação recebida.</h3>
-                <p className="text-body font-light leading-[1.7]">Nosso time vai ler o que você enviou antes de entrar em contato. Você deve receber um retorno em até 1 dia útil, por WhatsApp ou ligação.</p>
+                <p className="text-body font-normal leading-[1.7]">Nosso time vai ler o que você enviou antes de entrar em contato. Você deve receber um retorno em até 1 dia útil, por WhatsApp ou ligação.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                
-                <div>
-                  <input 
-                    {...register("fullName")}
-                    placeholder="Nome completo *"
-                    className={getInputClass(!!fullName && fullName.length > 0, errors.fullName)}
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+
+                <FloatingInput
+                  label="Nome completo *"
+                  error={errors.fullName}
+                  {...register("fullName")}
+                  value={fullName || ""}
+                />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <FloatingInput
+                    label="WhatsApp / Telefone *"
+                    error={errors.phone}
+                    {...register("phone")}
+                    value={phone || ""}
                   />
-                  {errors.fullName && <span className="text-cta text-xs mt-2 ml-1 block">{errors.fullName.message}</span>}
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <input 
-                      {...register("phone")}
-                      placeholder="WhatsApp / Telefone *"
-                      className={getInputClass(!!phone && phone.length > 0, errors.phone)}
-                    />
-                    {errors.phone && <span className="text-cta text-xs mt-2 ml-1 block">{errors.phone.message}</span>}
-                  </div>
-                  <div>
-                    <input 
-                      {...register("email")}
-                      type="email"
-                      placeholder="E-mail profissional *"
-                      className={getInputClass(!!email && email.length > 0, errors.email)}
-                    />
-                    {errors.email && <span className="text-cta text-xs mt-2 ml-1 block">{errors.email.message}</span>}
-                  </div>
-                </div>
-
-                <div>
-                  <input 
-                    {...register("company")}
-                    placeholder="Nome da Empresa *"
-                    className={getInputClass(!!company && company.length > 0, errors.company)}
+                  <FloatingInput
+                    label="E-mail profissional *"
+                    type="email"
+                    error={errors.email}
+                    {...register("email")}
+                    value={email || ""}
                   />
-                  {errors.company && <span className="text-cta text-xs mt-2 ml-1 block">{errors.company.message}</span>}
                 </div>
 
+                <FloatingInput
+                  label="Nome da empresa *"
+                  error={errors.company}
+                  {...register("company")}
+                  value={company || ""}
+                />
+
                 <div>
-                  <select 
-                    {...register("segment")}
-                    defaultValue=""
-                    className={`${getInputClass(!!segment && segment.length > 0, errors.segment)} appearance-none cursor-pointer bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:1.2em_1.2em] bg-[right_1rem_center] bg-no-repeat`}
-                  >
-                    <option value="" disabled hidden className="text-white/25">Selecione o segmento da empresa *</option>
-                    <option value="Imobiliário (incorporadora, imobiliária, corretor)" className="text-primary bg-secondary">Imobiliário (incorporadora, imobiliária, corretor)</option>
-                    <option value="Educação e infoprodutos" className="text-primary bg-secondary">Educação e infoprodutos</option>
-                    <option value="Serviços profissionais (advocacia, contabilidade, consultoria)" className="text-primary bg-secondary">Serviços profissionais (advocacia, contabilidade, consultoria)</option>
-                    <option value="Saúde (clínicas, consultórios, healthtech)" className="text-primary bg-secondary">Saúde (clínicas, consultórios, healthtech)</option>
-                    <option value="E-commerce e varejo" className="text-primary bg-secondary">E-commerce e varejo</option>
-                    <option value="Outro" className="text-primary bg-secondary">Outro</option>
-                  </select>
-                  {errors.segment && <span className="text-cta text-xs mt-2 ml-1 block">{errors.segment.message}</span>}
+                  <div className="relative">
+                    <select
+                      {...register("segment")}
+                      defaultValue=""
+                      className={`w-full text-base text-primary pt-6 pb-2 px-4 rounded-lg outline-none transition-all duration-300 ease-out bg-white/5 border appearance-none cursor-pointer ${
+                        errors.segment
+                          ? 'border-error focus:border-error focus:ring-1 focus:ring-error'
+                          : segment && segment.length > 0
+                          ? 'border-white/10 focus:border-focus-ring focus:ring-1 focus:ring-focus-ring'
+                          : 'border-transparent focus:border-focus-ring focus:ring-1 focus:ring-focus-ring'
+                      } bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:1.2em_1.2em] bg-[right_1rem_center] bg-no-repeat`}
+                    >
+                      <option value="" disabled hidden className="text-white/25">Selecione o segmento da empresa *</option>
+                      <option value="Imobiliário (incorporadora, imobiliária, corretor)" className="text-primary bg-secondary">Imobiliário (incorporadora, imobiliária, corretor)</option>
+                      <option value="Educação e infoprodutos" className="text-primary bg-secondary">Educação e infoprodutos</option>
+                      <option value="Serviços profissionais (advocacia, contabilidade, consultoria)" className="text-primary bg-secondary">Serviços profissionais (advocacia, contabilidade, consultoria)</option>
+                      <option value="Saúde (clínicas, consultórios, healthtech)" className="text-primary bg-secondary">Saúde (clínicas, consultórios, healthtech)</option>
+                      <option value="E-commerce e varejo" className="text-primary bg-secondary">E-commerce e varejo</option>
+                      <option value="Outro" className="text-primary bg-secondary">Outro</option>
+                    </select>
+                    <label className={`absolute left-4 transition-all duration-200 ease-out pointer-events-none ${
+                      segment && segment.length > 0
+                        ? 'top-2 text-[11px] font-mono tracking-wider uppercase text-white/30'
+                        : 'top-1/2 -translate-y-1/2 text-base font-normal text-white/30'
+                    }`}>
+                      Segmento da empresa *
+                    </label>
+                  </div>
+                  {errors.segment && <span className="text-error text-xs mt-2 ml-1 block">{errors.segment.message}</span>}
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <input 
-                    type="checkbox" 
+                  <input
+                    type="checkbox"
                     id="lgpd"
                     {...register("lgpd")}
-                    className="mt-1 w-5 h-5 min-w-5 shrink-0 rounded border border-white/20 outline-none text-cta focus:ring-1 focus:ring-cta-hover bg-white/5 cursor-pointer accent-cta transition-colors duration-300 ease-out"
+                    className="mt-1 w-5 h-5 min-w-5 shrink-0 rounded border border-white/20 outline-none text-cta focus:ring-1 focus:ring-focus-ring bg-white/5 cursor-pointer accent-cta transition-colors duration-300 ease-out"
                   />
-                  <label htmlFor="lgpd" className="text-sm text-secondary cursor-pointer leading-[1.7] font-light">
-                    Li e concordo com a <a href="#" className="text-primary hover:text-cta transition-colors underline decoration-white/30">Política de Privacidade</a>
+                  <label htmlFor="lgpd" className="text-sm text-secondary cursor-pointer leading-[1.7] font-normal">
+                    Li e concordo com a <a href="/privacidade" className="text-primary hover:text-cta transition-colors underline decoration-white/30">Política de Privacidade</a>
                   </label>
                 </div>
-                {errors.lgpd && <span className="text-cta text-xs block -mt-3 ml-1">{errors.lgpd.message}</span>}
+                {errors.lgpd && <span className="text-error text-xs block -mt-3 ml-1">{errors.lgpd.message}</span>}
 
                 {submitError && (
-                  <div className="bg-cta/10 border border-cta text-cta p-3 rounded-lg text-sm text-center">
+                  <div className="bg-error/10 border border-error text-error p-3 rounded-lg text-sm text-center">
                     {submitError}
                   </div>
                 )}
 
-                {/* Wrapper Sticky Mobile & Magnetic Desktop */}
-                <div className={isMobile && isFormInView ? 'fixed bottom-0 left-0 right-0 z-50 bg-primary/90 backdrop-blur-xl border-t border-white/10 p-4 shadow-[0_-10px_30px_rgba(0,0,0,0.5)] flex justify-center' : 'w-full'}>
-                  <MagneticButton className={isMobile && isFormInView ? 'w-full max-w-lg' : 'w-full'}>
-                    <button 
+                {/* Botão estático quando formulário está visível */}
+                <div className="w-full">
+                  <MagneticButton className="w-full">
+                    <button
                       type="submit"
                       disabled={!isValid || isSubmitting}
-                      className="w-full group relative flex items-center justify-center px-8 py-4 mt-2 text-lg font-bold text-white transition-all duration-300 ease-out bg-cta rounded-xl disabled:bg-white/5 disabled:text-white/30 disabled:cursor-not-allowed hover:bg-cta-hover hover:-translate-y-1 shadow-xl shadow-cta/10"
+                      className="w-full group relative flex items-center justify-center px-8 py-4 mt-2 text-lg font-bold text-white transition-all duration-300 ease-out bg-cta rounded-xl disabled:bg-white/5 disabled:text-white/30 disabled:cursor-not-allowed hover:bg-cta-hover hover:-translate-y-1 glow-cta"
                     >
                       {isSubmitting ? "Enviando..." : (
                         <>
-                          Solicitar diagnóstico <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                          Solicitar diagnóstico <span className="ml-2 transition-transform group-hover:translate-x-1">&#8594;</span>
                         </>
                       )}
                     </button>
                   </MagneticButton>
                 </div>
-                
-                <p className="text-xs text-secondary text-center font-light">
+
+                <p className="text-xs text-secondary text-center font-normal">
                   Sem compromisso. Sem insistência.
                 </p>
-
-                {/* Spacer para não empurrar as coisas do form caso vire fixed */}
-                {isMobile && isFormInView && <div className="h-20 w-full" />}
 
               </form>
             )}
@@ -254,6 +308,18 @@ export default function FormularioLead() {
         </motion.div>
 
       </div>
+
+      {/* Botão fixo mobile quando formulário NÃO está na viewport */}
+      {showStickyButton && (
+        <div className="fixed bottom-0 left-0 right-0 z-50 bg-primary/90 backdrop-blur-xl border-t border-white/10 p-4 shadow-[0_-10px_30px_rgba(0,0,0,0.5)] flex justify-center">
+          <a
+            href="#formulario"
+            className="w-full max-w-lg inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-cta rounded-xl glow-cta"
+          >
+            Solicitar diagnóstico &#8594;
+          </a>
+        </div>
+      )}
     </section>
   );
 }
