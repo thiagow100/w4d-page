@@ -13,7 +13,7 @@ const config: Config = {
         mono: ['var(--font-geist-mono)', 'monospace'],
       },
       spacing: {
-        'section': '8rem',
+        'section': '6rem',
         'section-sm': '5rem',
       },
       borderRadius: {
@@ -33,11 +33,13 @@ const config: Config = {
       textColor: {
         primary: "#FFFFFF",
         body: "#A1A1A1",
-        secondary: "#565656",
+        secondary: "#737373",
       },
       colors: {
         cta: "#EC0000",
         "cta-hover": "#7A0000",
+        "focus-ring": "#3B82F6",
+        "error": "#EF4444",
       }
     },
   },
