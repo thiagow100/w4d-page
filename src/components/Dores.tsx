@@ -11,12 +11,12 @@ const painPoints = [
   {
     title: "Anúncio rodando, retorno invisível",
     description: "Você investe em anúncios, mas qual canal está trazendo cliente de verdade? Qual campanha está pagando o que custou? Sem rastreamento real, cada decisão de investimento é chute.",
-    resolution: "É possível rastrear cada real até a venda. Falta a estrutura certa."
+    resolution: "É possível saber qual canal está gerando retorno. Falta a estrutura certa."
   },
   {
     title: "Você virou o gestor de marketing da sua própria empresa",
     description: "Você deveria estar focado em decisões de negócio, não escolhendo anúncios, ajustando públicos e cuidando de plataformas. Você contratou para resolver, não para virar gerente.",
-    resolution: null
+    resolution: "Você deveria decidir, não operar. É para isso que existimos."
   },
   {
     title: "Contato chegando, ninguém fechando",
@@ -37,8 +37,8 @@ const containerVariants = {
 
 const cardVariants = {
   hidden: { opacity: 0, x: -50 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     x: 0,
     transition: { type: "spring" as any, stiffness: 60, damping: 25 }
   }
@@ -46,26 +46,26 @@ const cardVariants = {
 
 export default function Dores() {
   return (
-    <section id="dores" className="relative w-full py-section px-6 sm:px-12 lg:px-24 bg-secondary">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-16 md:gap-24">
-        
+    <section id="dores" className="relative w-full pt-16 pb-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
+      <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row gap-16 md:gap-24">
+
         {/* Lado Esquerdo - Textos */}
         <div className="md:w-1/3 flex flex-col justify-start">
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any  }}
-            className="text-[#565656] text-[13px] font-semibold tracking-[3px] uppercase mb-6"
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
+            className="font-mono text-secondary text-[11px] tracking-[3px] uppercase mb-6"
           >
             O crescimento travou?
           </motion.span>
-          
-          <motion.h2 
+
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.1  }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.1 }}
             className="text-4xl md:text-5xl font-semibold tracking-[-1px] text-primary leading-[1.1]"
           >
             Reconhece algum destes no seu negócio?
@@ -73,7 +73,7 @@ export default function Dores() {
         </div>
 
         {/* Lado Direito - Cards */}
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -81,21 +81,24 @@ export default function Dores() {
           className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6"
         >
           {painPoints.map((pain, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               variants={cardVariants}
-              className="bg-tertiary backdrop-blur-xl p-8 rounded-xl border border-white/5 hover:border-white/15 hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col"
+              className="border-gradient bg-tertiary backdrop-blur-xl p-8 rounded-xl hover:border-white/15 hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col h-full"
             >
-              <h3 className="text-xl font-bold text-primary mb-4">
+              <h3 className="text-xl font-semibold text-primary mb-4 tracking-tight">
                 {pain.title}
               </h3>
-              <p className="text-body leading-[1.7] font-light text-sm md:text-base flex-1">
+              <p className="text-body leading-[1.7] font-normal text-sm md:text-base flex-1">
                 {pain.description}
               </p>
               {pain.resolution && (
-                <p className="text-primary font-medium text-sm md:text-base mt-4">
-                  {pain.resolution}
-                </p>
+                <div className="pt-4 mt-4 border-t border-white/5">
+                  <p className="text-primary font-semibold text-sm md:text-base flex items-start gap-2">
+                    <span className="text-cta shrink-0">&#8594;</span>
+                    {pain.resolution}
+                  </p>
+                </div>
               )}
             </motion.div>
           ))}
