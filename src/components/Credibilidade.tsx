@@ -52,7 +52,7 @@ function LeaderPhoto({ src, alt, initials }: { src: string, alt: string, initial
   const [hasError, setHasError] = useState(false);
 
   return (
-    <div className="w-full relative aspect-[4/5] rounded-tl-3xl rounded-br-3xl overflow-hidden shadow-2xl border border-white/5 bg-secondary">
+    <div className="w-full relative aspect-[4/5] rounded-tl-3xl rounded-br-3xl overflow-hidden bg-secondary shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_25px_50px_-12px_rgba(0,0,0,0.45)]">
       <motion.div
         initial={{ height: "100%" }}
         whileInView={{ height: 0 }}

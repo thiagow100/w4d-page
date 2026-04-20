@@ -77,7 +77,7 @@ function PlatformsVisual() {
         <div
           key={p.name}
           title={p.name}
-          className="group flex flex-col items-center justify-center p-4 rounded-xl border border-white/5 bg-black/40 hover:border-cta/40 hover:bg-black/60 hover:scale-110 transition-all duration-300 ease-out w-full aspect-square shadow-md shadow-black/20"
+          className="group flex flex-col items-center justify-center p-4 rounded-xl shadow-border-dark bg-black/40 hover:shadow-[0_0_0_1px_rgba(236,0,0,0.35)] hover:bg-black/60 hover:scale-110 transition-all duration-300 ease-out w-full aspect-square"
         >
           {typeof p.icon === 'string' ? (
             <img
@@ -166,7 +166,7 @@ export default function ServicosDetalhado() {
                 '--mobile-top': `calc(5rem + ${index * 1.5}rem)`,
                 zIndex: index + 10,
               } as React.CSSProperties}
-              className="sticky top-[var(--mobile-top)] md:relative md:top-auto w-full h-auto min-h-[60vh] md:min-h-0 flex flex-col border-gradient bg-tertiary backdrop-blur-3xl rounded-2xl overflow-hidden p-6 sm:p-8 lg:p-12 shadow-[0_-15px_40px_rgba(0,0,0,0.7)] md:shadow-none"
+              className="sticky top-[var(--mobile-top)] md:relative md:top-auto w-full h-auto min-h-[60vh] md:min-h-0 flex flex-col shadow-stack-card bg-tertiary rounded-2xl overflow-hidden p-6 sm:p-8 lg:p-12"
             >
               <div className="mb-8">
                 <div className="mb-4">

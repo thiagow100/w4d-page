@@ -79,7 +79,7 @@ export default function Dores() {
             <motion.div
               key={index}
               variants={cardVariants}
-              className="border-gradient bg-tertiary backdrop-blur-xl p-8 rounded-xl hover:border-white/15 hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col h-full"
+              className="shadow-card-dark bg-tertiary p-8 rounded-xl hover:-translate-y-1 transition-transform duration-300 ease-out flex flex-col h-full"
             >
               <h3 className="text-xl font-semibold text-primary mb-4 tracking-[-0.03em]">
                 {pain.title}

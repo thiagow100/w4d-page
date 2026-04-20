@@ -148,7 +148,7 @@ export default function FormularioLead() {
             </p>
 
             {/* Bloco explicando o diagnóstico */}
-            <div className="bg-white/[0.03] border border-white/5 rounded-xl p-5 mt-2">
+            <div className="bg-white/[0.03] shadow-border-dark rounded-xl p-5 mt-2">
               <p className="font-mono text-[11px] text-cta uppercase tracking-[2px] mb-3">O que é o diagnóstico</p>
               <p className="text-body text-base font-normal leading-relaxed">
                 Uma conversa de 30 minutos, por vídeo ou telefone, onde analisamos sua operação atual de marketing e identificamos a maior oportunidade de melhoria. Sem proposta comercial na primeira conversa.
