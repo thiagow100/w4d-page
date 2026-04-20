@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { supabase } from '@/lib/supabase';
 import MagneticButton from '@/components/MagneticButton';
 
@@ -77,16 +77,6 @@ export default function FormularioLead() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
-  const formSectionRef = useRef<HTMLElement>(null);
-  const isFormInView = useInView(formSectionRef, { amount: 0.1 });
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -121,11 +111,8 @@ export default function FormularioLead() {
     }
   };
 
-  // Botão fixo quando formulário NÃO está visível (lógica invertida)
-  const showStickyButton = isMobile && !isFormInView;
-
   return (
-    <section ref={formSectionRef} id="formulario" className="relative w-full py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
+    <section id="formulario" className="relative w-full py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
 
         <div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left">
@@ -142,7 +129,7 @@ export default function FormularioLead() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-1px] text-primary leading-[1.1] mb-8"
+            className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.05em] text-primary leading-[1.1] mb-8"
           >
             Se a W4Digital faz sentido para o seu negócio, vamos conversar.
           </motion.h2>
@@ -194,7 +181,7 @@ export default function FormularioLead() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-semibold tracking-[-2px] text-primary mb-2">Solicitação recebida.</h3>
+                <h3 className="text-2xl font-semibold tracking-[-0.03em] text-primary mb-2">Solicitação recebida.</h3>
                 <p className="text-body font-normal leading-[1.7]">Nosso time vai ler o que você enviou antes de entrar em contato. Você deve receber um retorno em até 1 dia útil, por WhatsApp ou ligação.</p>
               </div>
             ) : (
@@ -309,17 +296,6 @@ export default function FormularioLead() {
 
       </div>
 
-      {/* Botão fixo mobile quando formulário NÃO está na viewport */}
-      {showStickyButton && (
-        <div className="fixed bottom-0 left-0 right-0 z-50 bg-primary/90 backdrop-blur-xl border-t border-white/10 p-4 shadow-[0_-10px_30px_rgba(0,0,0,0.5)] flex justify-center">
-          <a
-            href="#formulario"
-            className="w-full max-w-lg inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-cta rounded-xl glow-cta"
-          >
-            Solicitar diagnóstico &#8594;
-          </a>
-        </div>
-      )}
     </section>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Eyebrow from '@/components/Eyebrow';
 
 const painPoints = [
   {
@@ -46,27 +47,21 @@ const cardVariants = {
 
 export default function Dores() {
   return (
-    <section id="dores" className="relative w-full pt-16 pb-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
+    <section id="dores" className="relative w-full pt-section-sm pb-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row gap-16 md:gap-24">
 
         {/* Lado Esquerdo - Textos */}
         <div className="md:w-1/3 flex flex-col justify-start">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
-            className="font-mono text-secondary text-[11px] tracking-[3px] uppercase mb-6"
-          >
-            O crescimento travou?
-          </motion.span>
+          <div className="mb-6">
+            <Eyebrow>O crescimento travou?</Eyebrow>
+          </div>
 
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.1 }}
-            className="text-4xl md:text-5xl font-semibold tracking-[-1px] text-primary leading-[1.1]"
+            className="text-4xl md:text-5xl font-semibold tracking-[-0.05em] leading-[1.1] bg-gradient-to-b from-white to-[#B0B0B0] bg-clip-text text-transparent"
           >
             Reconhece algum destes no seu negócio?
           </motion.h2>
@@ -86,7 +81,7 @@ export default function Dores() {
               variants={cardVariants}
               className="border-gradient bg-tertiary backdrop-blur-xl p-8 rounded-xl hover:border-white/15 hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col h-full"
             >
-              <h3 className="text-xl font-semibold text-primary mb-4 tracking-tight">
+              <h3 className="text-xl font-semibold text-primary mb-4 tracking-[-0.03em]">
                 {pain.title}
               </h3>
               <p className="text-body leading-[1.7] font-normal text-sm md:text-base flex-1">

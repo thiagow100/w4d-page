@@ -24,10 +24,10 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative w-full min-h-[85vh] max-h-[900px] flex flex-col items-center justify-center px-6 sm:px-12 lg:px-24 overflow-hidden pt-24 pb-16">
+    <section className="relative w-full min-h-[70vh] flex flex-col items-center justify-start px-6 sm:px-12 lg:px-24 overflow-hidden pt-24 md:pt-40 pb-24">
 
       {/* Dot grid background hitech */}
-      <div className="absolute inset-0 dot-grid pointer-events-none z-0" />
+      <div className="absolute inset-0 dot-grid fade-bottom pointer-events-none z-0" />
 
       {/* Efeito Radial de Profundidade Premium */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] max-w-[800px] aspect-square bg-cta-hover opacity-[0.07] rounded-full blur-[140px] pointer-events-none z-0" />
@@ -43,25 +43,17 @@ export default function Hero() {
         {/* Kicker de Credibilidade - badge pill com destaque */}
         <motion.div
           variants={fadeUp}
-          className="mb-8 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.03]"
+          className="mb-8 px-4 md:px-5 py-2 md:py-2.5 rounded-full border border-white/10 bg-white/[0.03] max-w-[95vw]"
         >
-          <span className="font-mono text-[12px] md:text-[13px] text-body tracking-[2px] uppercase">
-            20 anos vendendo &middot; 11 com marketing digital &middot; Brasil &amp; EUA
+          <span className="font-mono text-[9.5px] sm:text-[11px] md:text-[13px] text-body tracking-[1px] md:tracking-[2px] uppercase whitespace-nowrap">
+            Performance Marketing &middot; Brasil &amp; EUA
           </span>
         </motion.div>
-
-        {/* Eyebrow técnico */}
-        <motion.span
-          variants={fadeUp}
-          className="font-mono text-[11px] text-secondary tracking-[3px] uppercase mb-6"
-        >
-          Performance Marketing
-        </motion.span>
 
         {/* Título Principal */}
         <motion.h1
           variants={fadeUp}
-          className="text-5xl md:text-7xl lg:text-[5.5rem] font-semibold tracking-[-2px] leading-[1.05] mb-8"
+          className="text-5xl md:text-7xl lg:text-[5.5rem] font-semibold tracking-[-0.06em] leading-[1.05] mb-8"
         >
           <span className="bg-gradient-to-b from-[#FFFFFF] to-[#E0E0E0] bg-clip-text text-transparent">
             Seu marketing precisa gerar receita.
@@ -90,13 +82,7 @@ export default function Hero() {
             Solicitar diagnóstico <span className="ml-2 group-hover:translate-x-1 transition-transform">&#8594;</span>
           </a>
 
-          {/* Link secundário */}
-          <a
-            href="#dores"
-            className="text-sm font-medium text-secondary hover:text-primary transition-colors duration-300"
-          >
-            Veja como funciona &#8595;
-          </a>
+
 
           {/* Kicker de posicionamento */}
           <span className="text-sm text-body mt-4 tracking-normal font-light max-w-2xl leading-relaxed">

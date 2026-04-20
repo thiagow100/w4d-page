@@ -3,6 +3,7 @@
 import { motion, useInView, animate } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
+import Eyebrow from '@/components/Eyebrow';
 
 const metrics = [
   { value: 20, suffix: "+", label: "anos vendendo", context: "Antes de ser agência, fomos o cliente", isStatic: false },
@@ -44,7 +45,7 @@ function Counter({ from = 0, to, suffix, duration = 2, isStatic = false }: { fro
     }
   }, [from, to, inView, duration, suffix, isStatic]);
 
-  return <span ref={nodeRef} className="text-5xl md:text-6xl lg:text-7xl font-semibold text-primary tracking-tighter" />;
+  return <span ref={nodeRef} className="text-5xl md:text-6xl lg:text-7xl font-semibold text-primary tracking-[-0.06em]" />;
 }
 
 function LeaderPhoto({ src, alt, initials }: { src: string, alt: string, initials: string }) {
@@ -98,14 +99,9 @@ export default function Credibilidade() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-12 lg:px-24">
 
         {/* Eyebrow */}
-        <motion.span
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          className="block font-mono text-secondary text-[11px] tracking-[3px] uppercase mb-16 text-center"
-        >
-          Quem está por trás do trabalho
-        </motion.span>
+        <div className="flex justify-center mb-16">
+          <Eyebrow>Quem está por trás do trabalho</Eyebrow>
+        </div>
 
         {/* 2 Líderes */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-12">
@@ -123,20 +119,21 @@ export default function Credibilidade() {
               alt="Thiago Weirich"
               initials="TW"
             />
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-primary leading-[1.1] mt-8 mb-2">
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.04em] text-primary leading-[1.1] mt-8 mb-2">
               Thiago Weirich
             </h2>
             <span className="font-mono text-secondary text-[11px] tracking-[2px] uppercase mb-4">
               Fundador e Head of Performance
             </span>
             <BioTimeline items={[
-              { year: "2005", text: "Começou a vender. Corretor de imóveis em Santa Catarina desde 2011." },
-              { year: "2015", text: "Aprendeu tráfego pago operando com dinheiro próprio, antes de recomendar para qualquer cliente." },
-              { year: "2020", text: "Criou a TW Broker para absorver a demanda. Montou processo comercial, folha de pagamento, meta e resultado." },
-              { year: "2023", text: "3.000+ profissionais formados pelo programa Corretor Que Vende. Fundou a W4Digital." },
+              { year: "2005", text: "Iniciou em vendas, validando-se como corretor de imóveis em Santa Catarina no ano de 2011." },
+              { year: "2015", text: "Aprendeu tráfego pago errando com dinheiro próprio antes de aplicar em clientes." },
+              { year: "2020", text: "Criou a TW Broker para atender à demanda. Montou a operação do zero, vendendo milhões em imóveis todos os anos." },
+              { year: "2023", text: "Criou o Corretor Que Vende, treinando mais de 3.000 profissionais do mercado imobiliário." },
+              { year: "Hoje", text: "Lidera a W4Digital aplicando essa exata máquina de vendas em negócios no Brasil e EUA." },
             ]} />
             <p className="text-primary font-semibold text-base mt-6 leading-relaxed">
-              A régua é a mesma de empresa própria: receita no caixa, todo mês.
+              "No fim do dia o marketing é apenas o meio. A nossa única régua de sucesso é quanto a sua empresa vende com recorrência."
             </p>
           </motion.div>
 
@@ -153,51 +150,54 @@ export default function Credibilidade() {
               alt="Carlos Murayama"
               initials="CM"
             />
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-primary leading-[1.1] mt-8 mb-2">
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.04em] text-primary leading-[1.1] mt-8 mb-2">
               Carlos Murayama
             </h2>
             <span className="font-mono text-secondary text-[11px] tracking-[2px] uppercase mb-4">
               Sócio e Head de Operação
             </span>
             <BioTimeline items={[
-              { year: "8 anos", text: "Operou hostel e bar: contratação, gestão de equipe, fluxo de caixa e resultado para entregar todo mês." },
-              { year: "7 anos", text: "Atua com tráfego pago e performance para negócios locais." },
-              { year: "2 anos", text: "Expandiu para lançamentos imobiliários. Entende o que está em jogo quando uma campanha não entrega." },
-              { year: "Hoje", text: "Lidera a equipe de mídia. Garante que o planejado na proposta é o que chega ao resultado." },
+              { year: "2011", text: "Operou hostel e bar por 8 anos. Sentiu na pele a gestão, contratação e pressão pelo faturamento." },
+              { year: "2019", text: "Iniciou atuação dedicada a tráfego pago e performance com foco rigoroso em negócios locais." },
+              { year: "2022", text: "Consolidou sua operação gerindo múltiplas contas de nichos variados, com foco absoluto em métricas de ROI e conversão direta." },
+              { year: "2024", text: "Expandiu sua esteira com aprofundamento estratégico focado em lançamentos imobiliários." },
+              { year: "Hoje", text: "Lidera o time de operação da W4Digital, garantindo que o planejado chegue ao resultado combinado." },
             ]} />
             <p className="text-primary font-semibold text-base mt-6 leading-relaxed">
-              Já foi o dono de empresa esperando o resultado. Sabe o peso.
+              "Estratégias no papel não pagam contas. Meu fardo é fazer a mídia colocar boas oportunidades na sua mesa todos os dias."
             </p>
           </motion.div>
 
         </div>
 
-        {/* Marcas - Logo Grid */}
+        {/* Marcas - Marquee horizontal infinito */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
-          className="mt-24 flex flex-col items-center"
+          className="mt-24 flex flex-col items-center w-full"
         >
-          <span className="font-mono text-secondary text-[11px] tracking-[3px] uppercase mb-10">
-            Com quem já trabalhamos
-          </span>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-6 md:gap-8 w-full max-w-4xl">
-            {brands.map((brand) => (
-              <div
-                key={brand.name}
-                className="flex items-center justify-center p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:border-white/10 transition-all duration-300"
-              >
-                <Image
-                  src={brand.logo}
-                  alt={brand.name}
-                  width={120}
-                  height={40}
-                  className="h-8 w-auto object-contain opacity-40 hover:opacity-80 transition-opacity duration-300"
-                />
-              </div>
-            ))}
+          <Eyebrow className="mb-10">Com quem já trabalhamos</Eyebrow>
+
+          <div className="marquee-mask marquee-pause w-full overflow-hidden">
+            <div className="marquee-track gap-16 md:gap-24 py-2">
+              {[...brands, ...brands].map((brand, i) => (
+                <div
+                  key={`${brand.name}-${i}`}
+                  className="shrink-0 flex items-center justify-center"
+                  aria-hidden={i >= brands.length}
+                >
+                  <Image
+                    src={brand.logo}
+                    alt={i < brands.length ? brand.name : ''}
+                    width={140}
+                    height={48}
+                    className="h-8 md:h-10 w-auto object-contain opacity-40 hover:opacity-100 brightness-0 invert transition-opacity duration-300"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
 

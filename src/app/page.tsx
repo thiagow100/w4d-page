@@ -4,15 +4,11 @@ import ServicosDetalhado from "@/components/ServicosDetalhado";
 import Credibilidade from "@/components/Credibilidade";
 import FormularioLead from "@/components/FormularioLead";
 import Footer from "@/components/Footer";
-import AnimatedW4 from "@/components/AnimatedW4";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between w-full overflow-hidden bg-transparent selection:bg-cta selection:text-white relative">
-      {/* Elemento flutuante de design. Controla seu próprio z-index */}
-      <AnimatedW4 />
-      
-      {/* O conteúdo das seções roda acima do AnimatedW4, usando z-20 para passar por cima das fases iniciais do Wzinho */}
+    <main className="flex min-h-screen flex-col items-center justify-between w-full bg-transparent selection:bg-cta selection:text-white relative">
+      {/* O conteúdo das seções usa z-20 nativamente */}
       <div className="w-full relative z-20 flex flex-col">
         <Hero />
         <Dores />

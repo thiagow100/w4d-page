@@ -22,32 +22,33 @@ export default function Nav() {
         style={{
           backgroundColor,
           backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
           borderBottomWidth: '1px',
           borderBottomStyle: 'solid',
           borderBottomColor,
         }}
-        className="w-full px-6 sm:px-12 lg:px-24 py-4 flex items-center justify-between"
+        className="w-full px-6 sm:px-12 lg:px-24 py-4 flex items-center justify-between gap-4"
       >
         {/* Logo */}
-        <a href="#" aria-label="W4Digital -- Voltar ao topo">
+        <a href="#" aria-label="W4Digital — Voltar ao topo" className="shrink-0">
           <Image
-            src="/images/W4D MARCA-16.png"
+            src="/images/logo-w4d-cropped.png"
             alt="W4Digital"
-            width={200}
-            height={56}
-            className="h-12 md:h-14 w-auto object-contain logo-blend"
+            width={736}
+            height={139}
+            className="h-8 md:h-10 w-auto object-contain"
             priority
           />
         </a>
 
-        {/* CTA Direito */}
+        {/* CTA */}
         <a
           href="#formulario"
-          className="inline-flex items-center gap-2 text-xs md:text-sm font-semibold text-primary border border-white/10 hover:border-cta hover:text-cta transition-all duration-300 ease-out px-3 py-2 md:px-5 md:py-2.5 rounded-full"
+          className="group inline-flex items-center justify-center shrink-0 px-4 md:px-5 py-2 md:py-2.5 text-xs md:text-sm font-semibold text-primary bg-cta rounded-full hover:bg-cta-hover transition-colors duration-300 ease-out tracking-[-0.01em] whitespace-nowrap"
         >
           <span className="hidden sm:inline">Solicitar diagnóstico</span>
           <span className="sm:hidden">Diagnóstico</span>
-          <span>&#8594;</span>
+          <span className="ml-1.5 transition-transform duration-300 ease-out group-hover:translate-x-0.5">&#8594;</span>
         </a>
       </motion.div>
     </motion.header>
