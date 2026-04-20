@@ -128,7 +128,7 @@ export default function ServicosDetalhado() {
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0">
             {[
-              { word: "WORK", sub: "base", desc: "Diagnóstico antes de qualquer anúncio" },
+              { word: "WORK", sub: "base", desc: "Diagnóstico do negócio" },
               { word: "WAY", sub: "caminho", desc: "Estrutura montada antes de investir" },
               { word: "WIN", sub: "resultado", desc: "Operação ativa com ajuste diário" },
               { word: "WEALTH", sub: "escala", desc: "Escala baseada no que já funcionou" },
