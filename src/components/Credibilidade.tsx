@@ -22,30 +22,27 @@ const brands = [
 ];
 
 function Counter({ from = 0, to, suffix, duration = 2, isStatic = false }: { from?: number, to: number, suffix: string, duration?: number, isStatic?: boolean }) {
-  const nodeRef = useRef<HTMLSpanElement>(null);
-  const inView = useInView(nodeRef, { once: true, margin: "-50px" });
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const [display, setDisplay] = useState<string>(() =>
+    isStatic ? suffix : `${from}${suffix}`
+  );
 
   useEffect(() => {
-    if (isStatic) {
-      if (nodeRef.current) nodeRef.current.textContent = suffix;
-      return;
-    }
-    if (inView && nodeRef.current) {
-      const controls = animate(from, to, {
-        duration,
-        ease: [0.16, 1, 0.3, 1] as any,
-        onUpdate(value) {
-          if (nodeRef.current) {
-            const hasFloat = to % 1 !== 0;
-            nodeRef.current.textContent = (hasFloat ? value.toFixed(1).replace('.', ',') : Math.round(value)) + suffix;
-          }
-        }
-      });
-      return () => controls.stop();
-    }
-  }, [from, to, inView, duration, suffix, isStatic]);
+    if (isStatic) return;
+    if (!inView) return;
+    const controls = animate(from, to, {
+      duration,
+      ease: [0.16, 1, 0.3, 1] as any,
+      onUpdate(value) {
+        const hasFloat = to % 1 !== 0;
+        setDisplay((hasFloat ? value.toFixed(1).replace('.', ',') : Math.round(value)) + suffix);
+      }
+    });
+    return () => controls.stop();
+  }, [inView, from, to, duration, suffix, isStatic]);
 
-  return <span ref={nodeRef} className="text-5xl md:text-6xl lg:text-7xl font-semibold text-primary tracking-[-0.06em]" />;
+  return <span ref={ref} className="text-5xl md:text-6xl lg:text-7xl font-semibold text-primary tracking-[-0.06em]">{display}</span>;
 }
 
 function LeaderPhoto({ src, alt, initials }: { src: string, alt: string, initials: string }) {
@@ -53,25 +50,18 @@ function LeaderPhoto({ src, alt, initials }: { src: string, alt: string, initial
 
   return (
     <div className="w-full relative aspect-[4/5] rounded-tl-3xl rounded-br-3xl overflow-hidden bg-secondary shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_25px_50px_-12px_rgba(0,0,0,0.45)]">
-      <motion.div
-        initial={{ height: "100%" }}
-        whileInView={{ height: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 1, ease: "easeInOut" }}
-        className="absolute inset-0 bg-cta z-20 origin-top"
-      />
-      <div className="absolute inset-0 z-10 flex items-center justify-center">
-        {hasError ? (
+      {hasError ? (
+        <div className="absolute inset-0 flex items-center justify-center">
           <span className="text-5xl font-semibold text-secondary/40 tracking-tight">{initials}</span>
-        ) : (
-          <img
-            src={src}
-            alt={alt}
-            onError={() => setHasError(true)}
-            className="absolute inset-0 w-full h-full object-cover object-top opacity-95 hover:opacity-100 transition-opacity duration-700"
-          />
-        )}
-      </div>
+        </div>
+      ) : (
+        <img
+          src={src}
+          alt={alt}
+          onError={() => setHasError(true)}
+          className="absolute inset-0 w-full h-full object-cover object-top opacity-95 hover:opacity-100 transition-opacity duration-700"
+        />
+      )}
     </div>
   );
 }

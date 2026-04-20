@@ -111,14 +111,8 @@ export default function ServicosDetalhado() {
           Do anúncio à agenda do seu time comercial.
         </motion.h2>
 
-        {/* Faixa Método W4 */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
-          className="w-full mb-20 lg:mb-24"
-        >
+        {/* Faixa Método W4 — render estatico (sem motion wrapper externo) */}
+        <div className="w-full mb-20 lg:mb-24">
           <div className="flex justify-center mb-6">
             <Eyebrow accent>Método W4</Eyebrow>
           </div>
@@ -147,7 +141,7 @@ export default function ServicosDetalhado() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Plataformas — bloco destacado, acima dos servicos */}
         <motion.div
@@ -155,7 +149,7 @@ export default function ServicosDetalhado() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
-          className="w-full mb-20 lg:mb-24 flex flex-col items-center"
+          className="w-full mb-12 lg:mb-14 flex flex-col items-center"
         >
           <div className="mb-8">
             <Eyebrow>Operamos onde seu cliente decide</Eyebrow>
