@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between w-full bg-transparent selection:bg-cta selection:text-white relative">
+    <main className="flex min-h-screen flex-col items-center justify-between w-full bg-transparent relative">
       {/* O conteúdo das seções usa z-20 nativamente */}
       <div className="w-full relative z-20 flex flex-col">
         <Hero />

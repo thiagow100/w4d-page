@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${GeistSans.variable} ${GeistMono.variable} scroll-smooth`}>
-      <body className="font-sans bg-primary text-primary selection:bg-cta selection:text-primary antialiased">
+      <body className="font-sans bg-primary text-primary antialiased">
         <Nav />
         <div className="relative z-10 flex flex-col min-h-screen">
           {children}

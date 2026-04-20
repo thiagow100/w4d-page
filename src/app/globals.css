@@ -11,6 +11,16 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Selection: vermelho W4D translucido (nao vermelho solido — causa contraste agressivo sobre dark) */
+::selection {
+  background-color: rgba(236, 0, 0, 0.15);
+  color: #FFFFFF;
+}
+::-moz-selection {
+  background-color: rgba(236, 0, 0, 0.15);
+  color: #FFFFFF;
+}
+
 /* Utilitários globais */
 .glass-effect {
   background: rgba(10, 10, 10, 0.7);
