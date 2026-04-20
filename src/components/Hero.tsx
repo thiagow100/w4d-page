@@ -26,11 +26,39 @@ export default function Hero() {
   return (
     <section className="relative w-full min-h-[70vh] flex flex-col items-center justify-start px-6 sm:px-12 lg:px-24 overflow-hidden pt-24 md:pt-40 pb-24">
 
-      {/* Dot grid background hitech */}
-      <div className="absolute inset-0 dot-grid fade-bottom pointer-events-none z-0" />
+      {/* Horizon Fade: grid com mask elíptico a partir do topo */}
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-50 pointer-events-none z-0
+          bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)]
+          bg-[size:6rem_5rem]
+          [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_60%,transparent_100%)]"
+      />
 
-      {/* Efeito Radial de Profundidade Premium */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] max-w-[800px] aspect-square bg-cta-hover opacity-[0.07] rounded-full blur-[140px] pointer-events-none z-0" />
+      {/* Horizon Fade: esfera de horizonte no rodapé do hero, rim vinho sutil */}
+      <div
+        aria-hidden
+        className="absolute left-1/2 top-[calc(100%-150px)] lg:top-[calc(100%-220px)]
+          h-[600px] w-[140%] lg:h-[750px] -translate-x-1/2 rounded-[100%]
+          bg-[radial-gradient(closest-side,#0a0a0a_80%,rgba(122,0,0,0.10)_94%,transparent_100%)]
+          pointer-events-none z-0"
+      />
+
+      {/* Aurora Base: glow amplo vinho, reforça transição para Dores */}
+      <div
+        aria-hidden
+        className="absolute bottom-0 left-0 right-0 h-[420px] pointer-events-none z-0
+          bg-gradient-to-t from-cta-hover/20 via-cta-hover/10 to-transparent
+          rounded-t-full opacity-60 blur-3xl"
+      />
+
+      {/* Aurora Base: segundo layer concentrado no centro */}
+      <div
+        aria-hidden
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[60%] h-[280px] pointer-events-none z-0
+          bg-gradient-to-t from-cta/10 via-cta-hover/10 to-transparent
+          rounded-t-full opacity-50 blur-2xl"
+      />
 
       {/* Container Principal */}
       <motion.div
