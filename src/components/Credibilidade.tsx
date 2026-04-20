@@ -68,7 +68,7 @@ function LeaderPhoto({ src, alt, initials }: { src: string, alt: string, initial
             src={src}
             alt={alt}
             onError={() => setHasError(true)}
-            className="absolute inset-0 w-full h-full object-cover object-top grayscale md:grayscale hover:grayscale-0 opacity-90 hover:opacity-100 brightness-110 hover:brightness-100 transition-all duration-700"
+            className="absolute inset-0 w-full h-full object-cover object-top opacity-95 hover:opacity-100 transition-opacity duration-700"
           />
         )}
       </div>
