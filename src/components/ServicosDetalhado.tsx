@@ -29,7 +29,6 @@ const services = [
       'Distribuímos investimento entre plataformas com base em onde o seu tipo de cliente está decidindo. Não onde é mais barato anunciar.',
       'Ajustamos campanhas continuamente com base no que está gerando retorno. Não no que está gerando clique.',
     ],
-    visual: 'platforms',
   },
   {
     id: 'conversao',
@@ -41,7 +40,6 @@ const services = [
       'Configuramos sequências de contato automáticas para quem demonstrou interesse mas ainda não agiu, sem exigir que o seu time comercial entre em contato com cada visitante individualmente.',
       'Alcançamos de volta quem visitou sua página sem avançar, com anúncios segmentados pela objeção provável de cada perfil. Não com a mesma peça para todo mundo.',
     ],
-    visual: null,
   },
   {
     id: 'qualificacao',
@@ -53,7 +51,6 @@ const services = [
       'Impedimos que contatos sem perfil ocupem o tempo do seu time comercial. Só avança quem passou pelos critérios de qualificação que definimos juntos.',
       'Estruturamos os caminhos de resposta para que nenhum contato chegue sem resposta por falta de alguém disponível para atender.',
     ],
-    visual: null,
   },
   {
     id: 'monitoramento',
@@ -65,14 +62,13 @@ const services = [
       'Testamos variações de anúncios e páginas de forma contínua, descartando o que não converte e escalando o que está funcionando.',
       'Separamos o resultado por canal nos relatórios, para que você identifique sem ambiguidade qual está gerando retorno e qual está apenas consumindo investimento.',
     ],
-    visual: null,
   },
 ];
 
-// Visual para o lado direito: Platforms Grid
+// Grid de plataformas — bloco destacado entre Metodo W4 e servicos
 function PlatformsVisual() {
   return (
-    <div className="grid grid-cols-3 gap-4 place-items-center w-full max-w-md mx-auto">
+    <div className="grid grid-cols-3 md:grid-cols-6 gap-4 md:gap-5 place-items-center w-full max-w-4xl mx-auto">
       {platforms.map((p) => (
         <div
           key={p.name}
@@ -83,10 +79,10 @@ function PlatformsVisual() {
             <img
               src={p.icon}
               alt={p.name}
-              className="w-12 h-12 md:w-14 md:h-14 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 pointer-events-none"
+              className="w-10 h-10 md:w-12 md:h-12 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 pointer-events-none"
             />
           ) : (
-            <div className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center drop-shadow-md group-hover:scale-110 transition-transform duration-300 pointer-events-none text-white">
+            <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center drop-shadow-md group-hover:scale-110 transition-transform duration-300 pointer-events-none text-white">
               {p.icon}
             </div>
           )}
@@ -153,6 +149,20 @@ export default function ServicosDetalhado() {
           </div>
         </motion.div>
 
+        {/* Plataformas — bloco destacado, acima dos servicos */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
+          className="w-full mb-20 lg:mb-24 flex flex-col items-center"
+        >
+          <div className="mb-8">
+            <Eyebrow>Operamos onde seu cliente decide</Eyebrow>
+          </div>
+          <PlatformsVisual />
+        </motion.div>
+
         {/* Content Blocks - Sticky Stack Mobile, 2 Columns Desktop */}
         <div className="w-full flex flex-col md:grid md:grid-cols-2 gap-8 lg:gap-12 relative">
           {services.map((service, index) => (
@@ -194,13 +204,6 @@ export default function ServicosDetalhado() {
                   </li>
                 ))}
               </ul>
-
-              {/* Se o card tiver visual, renderizar aqui na base do card */}
-              {service.visual === 'platforms' && (
-                <div className="pt-8 mt-auto border-t border-white/5">
-                  <PlatformsVisual />
-                </div>
-              )}
             </motion.div>
           ))}
         </div>
