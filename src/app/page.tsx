@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import Dores from "@/components/Dores";
 import ServicosDetalhado from "@/components/ServicosDetalhado";
 import Credibilidade from "@/components/Credibilidade";
+import FAQ from "@/components/FAQ";
 import FormularioLead from "@/components/FormularioLead";
 import Footer from "@/components/Footer";
 
@@ -14,6 +15,7 @@ export default function Home() {
         <Dores />
         <ServicosDetalhado />
         <Credibilidade />
+        <FAQ />
         <FormularioLead />
         <Footer />
       </div>

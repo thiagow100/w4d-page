@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 @config "../../tailwind.config.ts";
 
 :root {
@@ -48,9 +49,21 @@ body {
   background-size: 32px 32px;
 }
 
-/* Glow effect para CTAs */
+/* Glow CTA — refinado: menos blur, inner shadow pra simular "peça fundida" em vez de neon */
 .glow-cta {
-  box-shadow: 0 0 30px -5px rgba(236, 0, 0, 0.25), 0 0 60px -10px rgba(236, 0, 0, 0.1);
+  box-shadow:
+    0 0 0 1px rgba(255, 90, 90, 0.25) inset,
+    0 1px 0 0 rgba(255, 140, 140, 0.15) inset,
+    0 8px 20px -8px rgba(236, 0, 0, 0.35),
+    0 0 24px -12px rgba(236, 0, 0, 0.4);
+  transition: box-shadow 0.2s ease-out, transform 0.15s ease-out;
+}
+.glow-cta:hover {
+  box-shadow:
+    0 0 0 1px rgba(255, 90, 90, 0.35) inset,
+    0 1px 0 0 rgba(255, 140, 140, 0.2) inset,
+    0 10px 24px -6px rgba(236, 0, 0, 0.45),
+    0 0 32px -10px rgba(236, 0, 0, 0.5);
 }
 
 /* Shadow-as-border dark (equivalente Vercel invertido pra #171717) */

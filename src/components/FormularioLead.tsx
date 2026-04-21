@@ -59,7 +59,7 @@ function FloatingInput({
       <label
         className={`absolute left-4 transition-all duration-200 ease-out pointer-events-none ${
           isFloating
-            ? 'top-2 text-[11px] font-mono tracking-wider uppercase'
+            ? 'top-2 text-xs font-mono tracking-[0.12em] uppercase'
             : 'top-1/2 -translate-y-1/2 text-base font-normal'
         } ${
           error ? 'text-error' : focused ? 'text-focus-ring' : 'text-white/30'
@@ -116,11 +116,25 @@ export default function FormularioLead() {
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
 
         <div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left">
+          {/* Eyebrow com index 05 + escassez. Badge visível só no mobile/desktop igual */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2.5 mb-5 self-center lg:self-start px-4 py-2 rounded-full border border-cta/30 bg-cta/[0.06]"
+          >
+            <span className="font-mono text-xs text-cta/60 tracking-[0.18em] uppercase">05</span>
+            <span className="text-cta/30" aria-hidden>/</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-cta animate-pulse" />
+            <span className="font-mono text-xs text-cta tracking-[0.18em] uppercase">
+              8 empresas por trimestre
+            </span>
+          </motion.div>
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-mono text-secondary text-[11px] tracking-[3px] uppercase mb-4 block"
+            className="font-mono text-body text-xs tracking-[0.22em] uppercase mb-5 block"
           >
             O próximo passo
           </motion.span>
@@ -129,7 +143,7 @@ export default function FormularioLead() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.05em] text-primary leading-[1.1] mb-8"
+            className="text-4xl md:text-5xl lg:text-[3.5rem] font-semibold tracking-[-0.05em] text-white/95 leading-[1.08] mb-10 text-balance"
           >
             Se a W4Digital faz sentido para o seu negócio, vamos conversar.
           </motion.h2>
@@ -138,7 +152,7 @@ export default function FormularioLead() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.2 }}
-            className="flex flex-col gap-5 max-w-lg mx-auto lg:mx-0"
+            className="flex flex-col gap-6 max-w-lg mx-auto lg:mx-0"
           >
             <p className="text-lg md:text-xl text-body font-normal leading-[1.7]">
               Nosso time lê o que você enviou antes de entrar em contato. A primeira conversa é uma análise da sua situação atual: o que está funcionando, o que não está e onde está a maior oportunidade de melhoria.
@@ -147,20 +161,17 @@ export default function FormularioLead() {
               Se avançarmos juntos: resultado abaixo do esperado, você sabe na mesma semana. Os números ficam abertos. Você decide onde investir. Nós executamos.
             </p>
 
-            {/* Bloco explicando o diagnóstico */}
-            <div className="bg-white/[0.03] shadow-border-dark rounded-xl p-5 mt-2">
-              <p className="font-mono text-[11px] text-cta uppercase tracking-[2px] mb-3">O que é o diagnóstico</p>
-              <p className="text-body text-base font-normal leading-relaxed">
-                Uma conversa de 30 minutos, por vídeo ou telefone, onde analisamos sua operação atual de marketing e identificamos a maior oportunidade de melhoria. Sem proposta comercial na primeira conversa.
-              </p>
-            </div>
+            {/* Diagnóstico — parágrafo integrado, sem card vermelho */}
+            <p className="text-base md:text-lg text-body font-normal leading-[1.75] border-l-2 border-white/10 pl-5">
+              <strong className="text-primary font-medium">O diagnóstico</strong> é uma conversa de 30 minutos, por vídeo ou telefone, em que analisamos sua operação atual de marketing e identificamos a maior oportunidade de melhoria. Sem proposta comercial na primeira conversa.
+            </p>
 
             <p className="text-base text-body font-normal leading-[1.7]">
               Não atendemos qualquer empresa. Se a sua situação não for para nós, dizemos isso na primeira conversa.
             </p>
 
             {/* Escassez genuína */}
-            <p className="font-mono text-[11px] text-secondary uppercase tracking-[2px] mt-2">
+            <p className="font-mono text-xs text-body tracking-[0.22em] uppercase mt-1">
               Atendemos no máximo 8 empresas por trimestre.
             </p>
           </motion.div>
@@ -219,10 +230,19 @@ export default function FormularioLead() {
 
                 <div>
                   <div className="relative">
+                    {/* Label fixo no topo — sem sobreposição com valor escolhido */}
+                    <label className={`absolute left-4 top-2 text-xs font-mono tracking-[0.12em] uppercase pointer-events-none transition-colors duration-200 ease-out z-10 ${
+                      errors.segment ? 'text-error' : 'text-white/50'
+                    }`}>
+                      Segmento da empresa *
+                    </label>
                     <select
                       {...register("segment")}
                       defaultValue=""
-                      className={`w-full text-base text-primary pt-6 pb-2 px-4 rounded-lg outline-none transition-all duration-300 ease-out bg-white/5 border appearance-none cursor-pointer ${
+                      aria-label="Segmento da empresa"
+                      className={`w-full text-base pt-7 pb-3 px-4 rounded-lg outline-none transition-all duration-300 ease-out bg-white/5 border appearance-none cursor-pointer ${
+                        segment && segment.length > 0 ? 'text-primary' : 'text-white/40'
+                      } ${
                         errors.segment
                           ? 'border-error focus:border-error focus:ring-1 focus:ring-error'
                           : segment && segment.length > 0
@@ -230,7 +250,7 @@ export default function FormularioLead() {
                           : 'border-transparent focus:border-focus-ring focus:ring-1 focus:ring-focus-ring'
                       } bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:1.2em_1.2em] bg-[right_1rem_center] bg-no-repeat`}
                     >
-                      <option value="" disabled hidden className="text-white/25">Selecione o segmento da empresa *</option>
+                      <option value="" disabled>Selecione uma opção</option>
                       <option value="Imobiliário (incorporadora, imobiliária, corretor)" className="text-primary bg-secondary">Imobiliário (incorporadora, imobiliária, corretor)</option>
                       <option value="Educação e infoprodutos" className="text-primary bg-secondary">Educação e infoprodutos</option>
                       <option value="Serviços profissionais (advocacia, contabilidade, consultoria)" className="text-primary bg-secondary">Serviços profissionais (advocacia, contabilidade, consultoria)</option>
@@ -238,13 +258,6 @@ export default function FormularioLead() {
                       <option value="E-commerce e varejo" className="text-primary bg-secondary">E-commerce e varejo</option>
                       <option value="Outro" className="text-primary bg-secondary">Outro</option>
                     </select>
-                    <label className={`absolute left-4 transition-all duration-200 ease-out pointer-events-none ${
-                      segment && segment.length > 0
-                        ? 'top-2 text-[11px] font-mono tracking-wider uppercase text-white/30'
-                        : 'top-1/2 -translate-y-1/2 text-base font-normal text-white/30'
-                    }`}>
-                      Segmento da empresa *
-                    </label>
                   </div>
                   {errors.segment && <span className="text-error text-xs mt-2 ml-1 block">{errors.segment.message}</span>}
                 </div>
@@ -274,7 +287,7 @@ export default function FormularioLead() {
                     <button
                       type="submit"
                       disabled={!isValid || isSubmitting}
-                      className="w-full group relative flex items-center justify-center px-8 py-4 mt-2 text-lg font-bold text-white transition-all duration-300 ease-out bg-cta rounded-xl disabled:bg-white/5 disabled:text-white/30 disabled:cursor-not-allowed hover:bg-cta-hover hover:-translate-y-1 glow-cta"
+                      className="w-full group relative flex items-center justify-center px-8 py-4 mt-2 text-base md:text-lg font-semibold text-white transition-all duration-300 ease-out bg-cta rounded-full disabled:bg-white/5 disabled:text-white/30 disabled:cursor-not-allowed hover:bg-cta-hover active:scale-[0.98] glow-cta"
                     >
                       {isSubmitting ? "Enviando..." : (
                         <>

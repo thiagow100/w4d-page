@@ -8,56 +8,79 @@ export default function Hero() {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.3
+        staggerChildren: 0.1,
+        delayChildren: 0.2
       }
     }
   };
 
   const fadeUp = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 16 },
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }
+      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as any }
     }
   };
 
   return (
-    <section className="relative w-full min-h-[70vh] flex flex-col items-center justify-start px-6 sm:px-12 lg:px-24 overflow-hidden pt-24 md:pt-40 pb-24">
+    <section className="relative w-full min-h-[88dvh] flex flex-col items-center justify-center px-6 sm:px-12 lg:px-24 overflow-hidden pt-32 md:pt-40 pb-28">
 
-      {/* Horizon Fade: grid com mask elíptico a partir do topo */}
+      {/* Dot-grid com mask radial — base atmosférica */}
       <div
         aria-hidden
-        className="absolute inset-0 opacity-50 pointer-events-none z-0
-          bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)]
+        className="absolute inset-0 opacity-60 pointer-events-none z-0
+          bg-[linear-gradient(to_right,rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.035)_1px,transparent_1px)]
           bg-[size:6rem_5rem]
-          [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_60%,transparent_100%)]"
+          [mask-image:radial-gradient(ellipse_70%_55%_at_50%_30%,#000_55%,transparent_100%)]"
       />
 
-      {/* Horizon Fade: esfera de horizonte no rodapé do hero, rim vinho sutil */}
+      {/* Linha-arquitetura horizontal — meridiano sutil, assinatura Vercel/Linear */}
       <div
         aria-hidden
-        className="absolute left-1/2 top-[calc(100%-150px)] lg:top-[calc(100%-220px)]
-          h-[600px] w-[140%] lg:h-[750px] -translate-x-1/2 rounded-[100%]
-          bg-[radial-gradient(closest-side,#0a0a0a_80%,rgba(122,0,0,0.10)_94%,transparent_100%)]
-          pointer-events-none z-0"
+        className="absolute top-[62%] left-0 right-0 h-px pointer-events-none z-0
+          bg-[linear-gradient(to_right,transparent_0%,rgba(255,255,255,0.08)_30%,rgba(236,0,0,0.35)_50%,rgba(255,255,255,0.08)_70%,transparent_100%)]"
       />
 
-      {/* Aurora Base: glow amplo vinho, reforça transição para Dores */}
-      <div
+      {/* Anchor BR-EUA: SVG line-art minimalista, dois pontos e arco conectando */}
+      <svg
         aria-hidden
-        className="absolute bottom-0 left-0 right-0 h-[420px] pointer-events-none z-0
-          bg-gradient-to-t from-cta-hover/20 via-cta-hover/10 to-transparent
-          rounded-t-full opacity-60 blur-3xl"
-      />
+        className="absolute top-[55%] left-1/2 -translate-x-1/2 w-[min(720px,90vw)] h-[120px] pointer-events-none z-0 opacity-[0.18]"
+        viewBox="0 0 720 120"
+        fill="none"
+      >
+        <defs>
+          <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.4" />
+            <stop offset="50%" stopColor="#EC0000" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0.4" />
+          </linearGradient>
+        </defs>
+        {/* Arco BR → EUA */}
+        <motion.path
+          d="M 140 90 Q 360 -10, 580 90"
+          stroke="url(#arcGrad)"
+          strokeWidth="1"
+          strokeDasharray="4 6"
+          fill="none"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
+        />
+        {/* Pin Brasil (esquerda-baixo) */}
+        <circle cx="140" cy="90" r="3" fill="#EC0000" />
+        <circle cx="140" cy="90" r="8" fill="none" stroke="rgba(236,0,0,0.35)" strokeWidth="0.8" />
+        {/* Pin EUA (direita-baixo) */}
+        <circle cx="580" cy="90" r="3" fill="#EC0000" />
+        <circle cx="580" cy="90" r="8" fill="none" stroke="rgba(236,0,0,0.35)" strokeWidth="0.8" />
+      </svg>
 
-      {/* Aurora Base: segundo layer concentrado no centro */}
+      {/* Glow vinho diluído na base — transição pra Dores, ainda mais discreto */}
       <div
         aria-hidden
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[60%] h-[280px] pointer-events-none z-0
-          bg-gradient-to-t from-cta/10 via-cta-hover/10 to-transparent
-          rounded-t-full opacity-50 blur-2xl"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-[220px] pointer-events-none z-0
+          bg-gradient-to-t from-cta-hover/[0.08] via-cta-hover/[0.025] to-transparent
+          blur-3xl opacity-70"
       />
 
       {/* Container Principal */}
@@ -68,31 +91,30 @@ export default function Hero() {
         className="z-10 w-full max-w-5xl flex flex-col items-center text-center"
       >
 
-        {/* Kicker de Credibilidade - badge pill com destaque */}
+        {/* Kicker de Credibilidade */}
         <motion.div
           variants={fadeUp}
-          className="mb-8 px-4 md:px-5 py-2 md:py-2.5 rounded-full border border-white/10 bg-white/[0.03] max-w-[95vw]"
+          className="mb-10 px-4 py-2 rounded-full border border-white/10 bg-white/[0.03]"
         >
-          <span className="font-mono text-[9.5px] sm:text-[11px] md:text-[13px] text-body tracking-[1px] md:tracking-[2px] uppercase whitespace-nowrap">
+          <span className="font-mono text-xs md:text-sm text-body tracking-[0.12em] uppercase">
             Performance Marketing &middot; Brasil &amp; EUA
           </span>
         </motion.div>
 
-        {/* Título Principal */}
+        {/* Título Principal — hierarquia por cor, não por gradiente */}
         <motion.h1
           variants={fadeUp}
-          className="text-5xl md:text-7xl lg:text-[5.5rem] font-semibold tracking-[-0.06em] leading-[1.05] mb-8"
+          className="text-5xl md:text-7xl lg:text-[5.25rem] font-semibold tracking-[-0.055em] leading-[1.04] mb-8 text-balance"
         >
-          <span className="bg-gradient-to-b from-[#FFFFFF] to-[#E0E0E0] bg-clip-text text-transparent">
-            Seu marketing precisa gerar receita.
-          </span><br />
-          <span className="bg-gradient-to-b from-[#B0B0B0] to-[#808080] bg-clip-text text-transparent">Não engajamento.</span>
+          <span className="text-white/95">Seu marketing precisa gerar receita.</span>
+          <br />
+          <span className="text-body">Não engajamento.</span>
         </motion.h1>
 
         {/* Parágrafo de Apoio */}
         <motion.p
           variants={fadeUp}
-          className="text-lg md:text-xl text-body font-normal leading-[1.7] max-w-2xl mb-12"
+          className="text-lg md:text-xl text-body font-normal leading-[1.7] max-w-2xl mb-12 text-pretty"
         >
           Aqui na W4Digital, construímos toda a estrutura para trazer cliente novo: dos anúncios, passando pela qualificação, até o momento em que ele está pronto para comprar.
         </motion.p>
@@ -100,20 +122,30 @@ export default function Hero() {
         {/* CTAs */}
         <motion.div
           variants={fadeUp}
-          className="flex flex-col items-center gap-6"
+          className="flex flex-col items-center gap-5"
         >
-          {/* Botão Principal */}
-          <a
-            href="#formulario"
-            className="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-primary transition-all duration-300 ease-out bg-cta rounded-full hover:bg-cta-hover hover:scale-105 glow-cta"
-          >
-            Solicitar diagnóstico <span className="ml-2 group-hover:translate-x-1 transition-transform">&#8594;</span>
-          </a>
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+            {/* Botão Principal — glow refinado (inner border + sombra tintada) */}
+            <a
+              href="#formulario"
+              className="group inline-flex items-center justify-center px-9 py-4 text-base font-semibold text-primary transition-colors duration-200 ease-out bg-cta rounded-full hover:bg-cta-hover active:scale-[0.98] glow-cta"
+            >
+              Solicitar diagnóstico
+              <span className="ml-2 transition-transform duration-200 ease-out group-hover:translate-x-1">&#8594;</span>
+            </a>
 
-
+            {/* CTA secundário — link discreto, touch-target 44×44 mínimo */}
+            <a
+              href="#servicos"
+              className="group inline-flex items-center gap-1.5 px-3 py-3 text-sm font-medium text-body hover:text-primary transition-colors duration-200"
+            >
+              Ver como trabalhamos
+              <span className="transition-transform duration-200 group-hover:translate-x-0.5">&#8594;</span>
+            </a>
+          </div>
 
           {/* Kicker de posicionamento */}
-          <span className="text-sm text-body mt-4 tracking-normal font-light max-w-2xl leading-relaxed">
+          <span className="text-sm text-body/80 mt-3 font-light max-w-2xl leading-relaxed">
             Não somos marqueteiros. Somos vendedores que colocaram dinheiro próprio em anúncios antes de cuidar do seu.
           </span>
         </motion.div>

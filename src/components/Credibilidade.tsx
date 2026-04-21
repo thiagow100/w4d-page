@@ -9,7 +9,7 @@ const metrics = [
   { value: 20, suffix: "+", label: "anos vendendo", context: "Antes de ser agência, fomos o cliente", isStatic: false },
   { value: 11, suffix: "+", label: "anos no digital", context: "Tráfego pago com dinheiro próprio", isStatic: false },
   { value: 3000, suffix: "+", label: "alunos pelo mundo", context: "Método validado em escala", isStatic: false },
-  { value: 0, suffix: "BR+EUA", label: "onde operamos", context: "Operação dos dois lados", isStatic: true },
+  { value: 0, suffix: "BR · EUA", label: "onde operamos", context: "Operação dos dois lados", isStatic: true },
 ];
 
 const brands = [
@@ -42,7 +42,11 @@ function Counter({ from = 0, to, suffix, duration = 2, isStatic = false }: { fro
     return () => controls.stop();
   }, [inView, from, to, duration, suffix, isStatic]);
 
-  return <span ref={ref} className="text-5xl md:text-6xl lg:text-7xl font-semibold text-primary tracking-[-0.06em]">{display}</span>;
+  const sizeClass = isStatic
+    ? "text-3xl md:text-4xl"
+    : "text-4xl md:text-5xl";
+
+  return <span ref={ref} className={`${sizeClass} font-semibold text-primary tracking-[-0.04em]`}>{display}</span>;
 }
 
 function LeaderPhoto({ src, alt, initials }: { src: string, alt: string, initials: string }) {
@@ -66,20 +70,6 @@ function LeaderPhoto({ src, alt, initials }: { src: string, alt: string, initial
   );
 }
 
-// Timeline de marcos para bio scan-friendly
-function BioTimeline({ items }: { items: { year: string, text: string }[] }) {
-  return (
-    <div className="flex flex-col gap-4 mt-6">
-      {items.map((item, i) => (
-        <div key={i} className="flex gap-4 items-start">
-          <span className="font-mono text-cta text-xs tracking-wider shrink-0 mt-0.5 w-10">{item.year}</span>
-          <p className="text-body text-base font-normal leading-relaxed">{item.text}</p>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export default function Credibilidade() {
   return (
     <section className="relative w-full py-section overflow-hidden bg-secondary noise-overlay">
@@ -90,7 +80,7 @@ export default function Credibilidade() {
 
         {/* Eyebrow */}
         <div className="flex justify-center mb-16">
-          <Eyebrow>Quem está por trás do trabalho</Eyebrow>
+          <Eyebrow index="03">Quem está por trás do trabalho</Eyebrow>
         </div>
 
         {/* 2 Líderes */}
@@ -112,18 +102,26 @@ export default function Credibilidade() {
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.04em] text-primary leading-[1.1] mt-8 mb-2">
               Thiago Weirich
             </h2>
-            <span className="font-mono text-secondary text-[11px] tracking-[2px] uppercase mb-4">
+            <span className="font-mono text-secondary text-xs tracking-[0.18em] uppercase mb-5">
               Fundador e Head of Performance
             </span>
-            <BioTimeline items={[
-              { year: "2005", text: "Iniciou em vendas, validando-se como corretor de imóveis em Santa Catarina no ano de 2011." },
-              { year: "2015", text: "Aprendeu tráfego pago errando com dinheiro próprio antes de aplicar em clientes." },
-              { year: "2020", text: "Criou a TW Broker para atender à demanda. Montou a operação do zero, vendendo milhões em imóveis todos os anos." },
-              { year: "2023", text: "Criou o Corretor Que Vende, treinando mais de 3.000 profissionais do mercado imobiliário." },
-              { year: "Hoje", text: "Lidera a W4Digital aplicando essa exata máquina de vendas em negócios no Brasil e EUA." },
-            ]} />
-            <p className="text-primary font-semibold text-base mt-6 leading-relaxed">
-              "No fim do dia o marketing é apenas o meio. A nossa única régua de sucesso é quanto a sua empresa vende com recorrência."
+            {/* Year-chips — âncora visual scan-friendly, não substitui a prosa */}
+            <div className="flex flex-wrap gap-2 mb-5">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
+                <span className="text-cta">●</span> 2005 · Vendas
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
+                <span className="text-cta">●</span> 2020 · TW Broker
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
+                <span className="text-cta">●</span> Hoje · W4Digital
+              </span>
+            </div>
+            <p className="text-body text-base md:text-lg font-normal leading-[1.75] max-w-[60ch]">
+              Thiago começou em vendas em 2005 e validou-se como corretor de imóveis em Santa Catarina a partir de 2011. Em 2015, passou a aprender tráfego pago errando com dinheiro do próprio bolso, antes de aplicar em qualquer cliente. Em 2020 fundou a TW Broker, operação que vende milhões em imóveis todos os anos. Em 2023 criou o Corretor Que Vende, treinando mais de três mil profissionais do mercado imobiliário. Hoje, lidera a W4Digital aplicando essa mesma máquina de vendas em negócios no Brasil e nos Estados Unidos.
+            </p>
+            <p className="text-primary font-medium text-base md:text-lg mt-6 leading-relaxed max-w-[60ch] border-l-2 border-cta/40 pl-4">
+              No fim do dia o marketing é apenas o meio. A nossa única régua de sucesso é quanto a sua empresa vende com recorrência.
             </p>
           </motion.div>
 
@@ -143,18 +141,26 @@ export default function Credibilidade() {
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.04em] text-primary leading-[1.1] mt-8 mb-2">
               Carlos Murayama
             </h2>
-            <span className="font-mono text-secondary text-[11px] tracking-[2px] uppercase mb-4">
+            <span className="font-mono text-secondary text-xs tracking-[0.18em] uppercase mb-5">
               Sócio e Head de Operação
             </span>
-            <BioTimeline items={[
-              { year: "2011", text: "Operou hostel e bar por 8 anos. Sentiu na pele a gestão, contratação e pressão pelo faturamento." },
-              { year: "2019", text: "Iniciou atuação dedicada a tráfego pago e performance com foco rigoroso em negócios locais." },
-              { year: "2022", text: "Consolidou sua operação gerindo múltiplas contas de nichos variados, com foco absoluto em métricas de ROI e conversão direta." },
-              { year: "2024", text: "Expandiu sua esteira com aprofundamento estratégico focado em lançamentos imobiliários." },
-              { year: "Hoje", text: "Lidera o time de operação da W4Digital, garantindo que o planejado chegue ao resultado combinado." },
-            ]} />
-            <p className="text-primary font-semibold text-base mt-6 leading-relaxed">
-              "Estratégias no papel não pagam contas. Meu fardo é fazer a mídia colocar boas oportunidades na sua mesa todos os dias."
+            {/* Year-chips — âncora visual scan-friendly, não substitui a prosa */}
+            <div className="flex flex-wrap gap-2 mb-5">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
+                <span className="text-cta">●</span> 2011 · Gestão
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
+                <span className="text-cta">●</span> 2019 · Tráfego
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
+                <span className="text-cta">●</span> Hoje · W4Digital
+              </span>
+            </div>
+            <p className="text-body text-base md:text-lg font-normal leading-[1.75] max-w-[60ch]">
+              Carlos operou hostel e bar por oito anos a partir de 2011, sentindo na pele a gestão, a contratação e a pressão pelo faturamento. Em 2019 passou a se dedicar exclusivamente a tráfego pago e performance, com foco rigoroso em negócios locais. Em 2022 consolidou sua operação gerindo múltiplas contas de nichos variados, com métricas de ROI e conversão direta como régua. Em 2024 aprofundou a esteira em lançamentos imobiliários. Hoje, lidera o time de operação da W4Digital, garantindo que o planejado chegue ao resultado combinado.
+            </p>
+            <p className="text-primary font-medium text-base md:text-lg mt-6 leading-relaxed max-w-[60ch] border-l-2 border-cta/40 pl-4">
+              Estratégias no papel não pagam contas. Meu fardo é fazer a mídia colocar boas oportunidades na sua mesa todos os dias.
             </p>
           </motion.div>
 
@@ -191,8 +197,8 @@ export default function Credibilidade() {
           </div>
         </motion.div>
 
-        {/* Métricas (Counters) */}
-        <div className="w-full mt-24 grid grid-cols-2 lg:grid-cols-4 gap-12 text-center md:text-left">
+        {/* Métricas (Counters) — ratio controlado, sem salto 8x */}
+        <div className="w-full mt-24 grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 text-center md:text-left">
           {metrics.map((metric, index) => (
             <motion.div
               key={index}
@@ -202,13 +208,13 @@ export default function Credibilidade() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: index * 0.1 }}
               className="flex flex-col items-center md:items-start"
             >
-              <div className="flex text-primary mb-2 items-baseline">
+              <div className="flex text-primary mb-3 items-baseline">
                 <Counter to={metric.value} suffix={metric.suffix} isStatic={metric.isStatic} />
               </div>
-              <span className="font-mono text-[11px] text-secondary tracking-[2px] uppercase mb-1">
+              <span className="font-mono text-xs text-body tracking-[0.18em] uppercase mb-1.5">
                 {metric.label}
               </span>
-              <span className="text-body text-xs font-normal">
+              <span className="text-secondary text-sm font-normal leading-snug">
                 {metric.context}
               </span>
             </motion.div>

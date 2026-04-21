@@ -26,8 +26,9 @@ export default function Nav() {
           borderBottomWidth: '1px',
           borderBottomStyle: 'solid',
           borderBottomColor,
+          paddingTop: 'max(1rem, env(safe-area-inset-top))',
         }}
-        className="w-full px-6 sm:px-12 lg:px-24 py-4 flex items-center justify-between gap-4"
+        className="w-full px-6 sm:px-12 lg:px-24 pb-4 flex items-center justify-between gap-4"
       >
         {/* Logo */}
         <a href="#" aria-label="W4Digital — Voltar ao topo" className="shrink-0">
@@ -40,6 +41,34 @@ export default function Nav() {
             priority
           />
         </a>
+
+        {/* Âncoras de seção — md+ */}
+        <nav className="hidden md:flex items-center gap-2" aria-label="Navegação principal">
+          <a
+            href="#servicos"
+            className="px-3 py-2 text-sm font-medium text-body hover:text-primary transition-colors duration-200"
+          >
+            Serviços
+          </a>
+          <a
+            href="#metodo"
+            className="px-3 py-2 text-sm font-medium text-body hover:text-primary transition-colors duration-200"
+          >
+            Método
+          </a>
+          <a
+            href="#dores"
+            className="px-3 py-2 text-sm font-medium text-body hover:text-primary transition-colors duration-200"
+          >
+            Diagnóstico
+          </a>
+          <a
+            href="#faq"
+            className="px-3 py-2 text-sm font-medium text-body hover:text-primary transition-colors duration-200"
+          >
+            FAQ
+          </a>
+        </nav>
 
         {/* CTA */}
         <a
