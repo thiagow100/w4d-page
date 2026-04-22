@@ -88,26 +88,25 @@ export default function Hero() {
         variants={staggerContainer}
         initial="hidden"
         animate="show"
-        className="z-10 w-full max-w-5xl flex flex-col items-center text-center"
+        className="z-10 w-full max-w-6xl flex flex-col items-start text-left"
       >
 
         {/* Kicker de Credibilidade */}
         <motion.div
           variants={fadeUp}
-          className="mb-10 px-4 py-2 rounded-full border border-white/10 bg-white/[0.03]"
+          className="mb-8"
         >
-          <span className="font-mono text-xs md:text-sm text-body tracking-[0.12em] uppercase">
-            Performance Marketing &middot; Brasil &amp; EUA
+          <span className="font-mono text-xs md:text-sm text-secondary tracking-[0.12em] uppercase">
+            Performance Marketing &bull; Brasil &amp; USA
           </span>
         </motion.div>
 
         {/* Título Principal — hierarquia por cor, não por gradiente */}
         <motion.h1
           variants={fadeUp}
-          className="text-5xl md:text-7xl lg:text-[5.25rem] font-semibold tracking-[-0.055em] leading-[1.04] mb-8 text-balance"
+          className="text-5xl md:text-7xl lg:text-[5.5rem] font-semibold tracking-[-0.055em] leading-[1.04] mb-8 text-balance"
         >
-          <span className="text-white/95">Seu marketing precisa gerar receita.</span>
-          <br />
+          <span className="text-white/95">Seu marketing precisa gerar<br className="hidden md:block" /> receita. </span>
           <span className="text-body">Não engajamento.</span>
         </motion.h1>
 
@@ -122,25 +121,16 @@ export default function Hero() {
         {/* CTAs */}
         <motion.div
           variants={fadeUp}
-          className="flex flex-col items-center gap-5"
+          className="flex flex-col items-start gap-5"
         >
-          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+          <div className="flex flex-col items-start">
             {/* Botão Principal — glow refinado (inner border + sombra tintada) */}
             <a
               href="#formulario"
               className="group inline-flex items-center justify-center px-9 py-4 text-base font-semibold text-primary transition-colors duration-200 ease-out bg-cta rounded-full hover:bg-cta-hover active:scale-[0.98] glow-cta"
             >
-              Solicitar diagnóstico
+              Solicitar proposta
               <span className="ml-2 transition-transform duration-200 ease-out group-hover:translate-x-1">&#8594;</span>
-            </a>
-
-            {/* CTA secundário — link discreto, touch-target 44×44 mínimo */}
-            <a
-              href="#servicos"
-              className="group inline-flex items-center gap-1.5 px-3 py-3 text-sm font-medium text-body hover:text-primary transition-colors duration-200"
-            >
-              Ver como trabalhamos
-              <span className="transition-transform duration-200 group-hover:translate-x-0.5">&#8594;</span>
             </a>
           </div>
 

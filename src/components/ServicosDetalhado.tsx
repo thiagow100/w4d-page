@@ -24,51 +24,51 @@ const services = [
     id: 'anuncios',
     label: 'Gestão de Anúncios',
     subtitle: 'Operação de Mídia',
-    description: 'Gestão completa dos seus anúncios no Google, Meta, YouTube, TikTok e LinkedIn. Quem opera aqui entende de venda. Não só de plataforma.',
+    description: 'Gestão completa dos seus anúncios nas principais plataformas do mercado. Nossa equipe não apenas aperta botões de tráfego, mas opera com inteligência comercial focada em venda.',
     bullets: [
-      'Segmentamos os anúncios para públicos com padrão de comportamento alinhado ao que você vende. Não para audiências amplas que apenas se parecem com seus clientes.',
-      'Distribuímos investimento entre plataformas com base em onde o seu tipo de cliente está decidindo. Não onde é mais barato anunciar.',
-      'Ajustamos campanhas continuamente com base no que está gerando retorno. Não no que está gerando clique.',
+      'Segmentamos os anúncios para públicos com real intenção de compra, ignorando métricas de vaidade e audiências amplas que só parecem com clientes.',
+      'Distribuímos o investimento entre os canais baseados na jornada de decisão do seu perfil ideal, não apenas onde o custo do clique está mais barato.',
+      'Ajustamos campanhas diariamente com foco absoluto no que está gerando receita, cortando sem piedade tudo aquilo que só gera visualização e clique.',
     ],
   },
   {
     id: 'conversao',
     label: 'Estrutura de Conversão',
-    subtitle: 'Da visita ao contato',
-    description: 'Estruturamos as páginas de destino e os anúncios para quem visitou sem entrar em contato, com sequências de e-mail quando fazem sentido para o negócio. O objetivo é reduzir o volume de contatos sem perfil que chegam ao seu time comercial.',
+    subtitle: 'Da Visita ao Contato',
+    description: 'Desenhamos páginas de destino e fluxos de automação de alto nível para visitantes que não compraram de primeira. O foco é filtrar curiosos e reter potenciais compradores reais.',
     bullets: [
-      'Desenvolvemos páginas de destino alinhadas com o anúncio que trouxe o visitante, para que o que ele leu e o que ele vê continuem a mesma conversa.',
-      'Configuramos sequências de contato automáticas para quem demonstrou interesse mas ainda não agiu, sem exigir que o seu time comercial entre em contato com cada visitante individualmente.',
-      'Alcançamos de volta quem visitou sua página sem avançar, com anúncios segmentados pela objeção provável de cada perfil. Não com a mesma peça para todo mundo.',
+      'Construímos landing pages que conversam diretamente com a promessa do anúncio, mantendo a coerência visual e textual que faz o visitante converter.',
+      'Configuramos sequências de recuperação automática para quem demonstrou interesse, aquecendo o lead antes mesmo do seu time comercial falar com ele.',
+      'Impactamos novamente quem saiu da página através de remarketing segmentado, quebrando objeções específicas de cada perfil de forma quase invisível.',
     ],
   },
   {
     id: 'qualificacao',
-    label: 'Qualificação e Resposta',
+    label: 'Qualificação e Filtros',
     subtitle: 'Antes do Comercial',
-    description: 'Configuramos respostas e filtros automáticos para o primeiro contato, para que seu time comercial receba apenas quem já demonstrou interesse real. Sem triagem manual na sua agenda.',
+    description: 'Implementamos respostas imediatas e filtros automáticos para todo contato novo. O objetivo é que a sua equipe converse apenas com quem tem bolso e interesse real de compra.',
     bullets: [
-      'Configuramos processos que respondem ao primeiro contato em segundos, qualificando o interesse antes que chegue à sua equipe, independentemente do horário.',
-      'Impedimos que contatos sem perfil ocupem o tempo do seu time comercial. Só avança quem passou pelos critérios de qualificação que definimos juntos.',
-      'Estruturamos os caminhos de resposta para que nenhum contato chegue sem resposta por falta de alguém disponível para atender.',
+      'Automatizamos a primeira interação em poucos segundos, captando dados vitais e medindo o nível de urgência do lead independentemente do seu horário.',
+      'Blindamos o tempo valioso da sua equipe comercial, barrando curiosos e permitindo que apenas perfis pré-aprovados nos critérios avancem de fase.',
+      'Mapeamos todas as rotas possíveis de atendimento para garantir que nenhuma oportunidade real seja perdida por demora ou falta de alguém disponível.',
     ],
   },
   {
     id: 'monitoramento',
-    label: 'Monitoramento e Resultado',
+    label: 'Monitoramento Exato',
     subtitle: 'Acompanhamento Diário',
-    description: 'Monitoramos o desempenho dos anúncios e das páginas todos os dias, com foco em conversão real. Não em métricas de alcance ou visualização que não aparecem no seu faturamento.',
+    description: 'Acompanhamos a performance da estrutura diariamente, priorizando conversão sólida. Ignoramos métricas superficiais que inflam relatórios mas não aparecem na sua conta bancária.',
     bullets: [
-      'Consolidamos os dados de todas as plataformas em uma visão única, para que você saiba, a qualquer momento, quanto do investimento está gerando retorno.',
-      'Testamos variações de anúncios e páginas de forma contínua, descartando o que não converte e escalando o que está funcionando.',
-      'Separamos o resultado por canal nos relatórios, para que você identifique sem ambiguidade qual está gerando retorno e qual está apenas consumindo investimento.',
+      'Centralizamos as informações de todas as fontes em um único painel, mostrando de forma cristalina de onde está vindo cada centavo do seu retorno real.',
+      'Executamos testes constantes de variações criativas e textuais, descartando peças que não convertem e injetando mais verba naquelas que dão lucro.',
+      'Isolamos o resultado por canal de aquisição, para que não exista dúvida sobre qual plataforma está tracionando a venda e qual está apenas gastando.',
     ],
   },
 ];
 
-// Método W4 — 4 fases com linha vermelha scroll-drawn conectando em desktop
+// Método W4D — fases com linha vermelha scroll-drawn conectando em desktop
 const PHASES = [
-  { word: "WORK", sub: "base", desc: "Diagnóstico do negócio" },
+  { word: "WORK", sub: "base", desc: "Diagnóstico da sua operação atual" },
   { word: "WAY", sub: "caminho", desc: "Estrutura montada antes de investir" },
   { word: "WIN", sub: "resultado", desc: "Operação ativa com ajuste diário" },
   { word: "WEALTH", sub: "escala", desc: "Escala baseada no que já funcionou" },
@@ -87,7 +87,7 @@ function PhaseDot({ progress, threshold }: { progress: any, threshold: number })
   );
 }
 
-function MetodoW4() {
+function MetodoW4D() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -99,7 +99,7 @@ function MetodoW4() {
   return (
     <div id="metodo" ref={sectionRef} className="w-full mb-24 lg:mb-28 relative">
       <div className="flex justify-center mb-12">
-        <Eyebrow accent>Método W4</Eyebrow>
+        <Eyebrow accent>Método W4D</Eyebrow>
       </div>
 
       <div className="relative">
@@ -195,8 +195,8 @@ export default function ServicosDetalhado() {
           Do anúncio à agenda do seu time comercial.
         </motion.h2>
 
-        {/* Faixa Método W4 — linha scroll-drawn vermelha conecta as 4 fases */}
-        <MetodoW4 />
+        {/* Faixa Método W4D — linha scroll-drawn vermelha conecta as fases */}
+        <MetodoW4D />
 
 
         {/* Plataformas — logos soltos, sem tile escuro */}
@@ -208,7 +208,7 @@ export default function ServicosDetalhado() {
           className="w-full mb-24 lg:mb-28 flex flex-col items-center"
         >
           <div className="mb-10">
-            <Eyebrow>Operamos onde seu cliente decide</Eyebrow>
+            <Eyebrow>Operamos onde seu cliente está</Eyebrow>
           </div>
           <PlatformsVisual />
         </motion.div>
@@ -268,13 +268,13 @@ export default function ServicosDetalhado() {
           className="mt-24 flex flex-col items-center gap-6 text-center"
         >
           <p className="text-base md:text-lg text-body font-normal leading-[1.7] max-w-xl">
-            Se alguma dessas frentes resolve o que você está enfrentando agora, é isso que um diagnóstico identifica.
+            Se alguma dessas frentes resolve o que você está enfrentando agora, é hora de estruturarmos isso na sua operação.
           </p>
           <a
             href="#formulario"
             className="group inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-primary transition-colors duration-200 ease-out bg-cta rounded-full hover:bg-cta-hover active:scale-[0.98] glow-cta"
           >
-            Solicitar diagnóstico
+            Solicitar proposta
             <span className="ml-2 transition-transform duration-200 ease-out group-hover:translate-x-1">&#8594;</span>
           </a>
         </motion.div>

@@ -11,11 +11,7 @@ const faqs = [
   },
   {
     q: 'Quanto tempo até eu ver resultado?',
-    a: 'As primeiras 2 a 4 semanas são de diagnóstico e estrutura — rastreamento, páginas de destino, qualificação, integrações. A partir da semana 5, entra operação ativa com ajuste diário. Resultado comercial mensurável começa entre o segundo e terceiro mês. Quem promete "explodir em 30 dias" está te vendendo sorte.',
-  },
-  {
-    q: 'Por que só 8 empresas por trimestre?',
-    a: 'Quem recebe o briefing é quem opera a conta. Sem franquia, sem repasse, sem júnior. Essa densidade de atenção só cabe em 8 operações simultâneas. É a régua que protege o resultado de quem já entrou.',
+    a: 'As primeiras 2 a 4 semanas são de planejamento e estrutura — rastreamento, páginas de destino, qualificação, integrações. A partir da semana 5, entra operação ativa com ajuste diário. Resultado comercial mensurável começa entre o segundo e terceiro mês. Quem promete "explodir em 30 dias" está te vendendo sorte.',
   },
   {
     q: 'Vocês atendem empresa fora do Brasil e dos EUA?',
@@ -26,8 +22,8 @@ const faqs = [
     a: 'Você sabe na mesma semana. Os números ficam abertos. Revemos a estratégia, ajustamos o que não está respondendo, ou terminamos o contrato sem atrito. Não existe cláusula de amarração.',
   },
   {
-    q: 'O que é o diagnóstico e custa quanto?',
-    a: 'Uma conversa de 30 minutos, por vídeo ou telefone, onde analisamos sua operação atual e identificamos a maior oportunidade de melhoria. Sem custo e sem proposta comercial na primeira conversa. Se fizer sentido pros dois lados, marcamos a próxima.',
+    q: 'Como funciona a elaboração da proposta?',
+    a: 'Primeiro, temos uma conversa de 30 minutos, por vídeo ou telefone, onde analisamos sua operação atual e identificamos oportunidades de melhoria. Sem compromisso na primeira conversa. Se fizer sentido pros dois lados, desenhamos e enviamos uma proposta comercial sob medida.',
   },
 ];
 
@@ -84,7 +80,7 @@ export default function FAQ() {
         {/* Coluna esquerda — título (sticky em desktop) */}
         <div className="md:w-1/3 md:sticky md:top-28 md:self-start flex flex-col">
           <div className="mb-6">
-            <Eyebrow index="04">Dúvidas frequentes</Eyebrow>
+            <Eyebrow index="05">Dúvidas frequentes</Eyebrow>
           </div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -93,7 +89,7 @@ export default function FAQ() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.1 }}
             className="text-4xl md:text-5xl font-semibold tracking-[-0.05em] leading-[1.1] text-white/95 text-balance"
           >
-            As perguntas que todo C-level faz antes de contratar.
+            As perguntas que todo dono de empresa faz antes de contratar.
           </motion.h2>
           <p className="mt-6 text-body text-base md:text-lg font-normal leading-[1.7] max-w-md">
             Se a sua não estiver aqui, é só perguntar no próprio formulário. Respondemos antes da primeira conversa.

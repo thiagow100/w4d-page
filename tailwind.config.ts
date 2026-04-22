@@ -24,6 +24,22 @@ const config: Config = {
         'subtle': '0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 1px 3px 0 rgba(0, 0, 0, 0.2)',
         'elevated': '0 10px 40px -10px rgba(0, 0, 0, 0.5)',
         'glow-red': '0 0 40px -10px rgba(236, 0, 0, 0.4)',
+        'glow-white': '0 0 20px -5px rgba(255, 255, 255, 0.1)',
+      },
+      animation: {
+        'shine': 'shine 3s linear infinite',
+        'beam': 'beam 2s linear infinite',
+      },
+      keyframes: {
+        shine: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+        beam: {
+          '0%': { transform: 'translateY(-100%)', opacity: '0' },
+          '50%': { opacity: '0.3' },
+          '100%': { transform: 'translateY(100%)', opacity: '0' },
+        },
       },
       backgroundColor: {
         primary: "#171717",

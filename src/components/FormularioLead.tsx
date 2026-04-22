@@ -116,18 +116,18 @@ export default function FormularioLead() {
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
 
         <div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left">
-          {/* Eyebrow com index 05 + escassez. Badge visível só no mobile/desktop igual */}
+          {/* Eyebrow com index 05 + call to action. Badge visível só no mobile/desktop igual */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="inline-flex items-center gap-2.5 mb-5 self-center lg:self-start px-4 py-2 rounded-full border border-cta/30 bg-cta/[0.06]"
           >
-            <span className="font-mono text-xs text-cta/60 tracking-[0.18em] uppercase">05</span>
+            <span className="font-mono text-xs text-cta/60 tracking-[0.18em] uppercase">04</span>
             <span className="text-cta/30" aria-hidden>/</span>
             <span className="w-1.5 h-1.5 rounded-full bg-cta animate-pulse" />
             <span className="font-mono text-xs text-cta tracking-[0.18em] uppercase">
-              8 empresas por trimestre
+              SOLICITAR PROPOSTA
             </span>
           </motion.div>
           <motion.span
@@ -145,7 +145,7 @@ export default function FormularioLead() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-[3.5rem] font-semibold tracking-[-0.05em] text-white/95 leading-[1.08] mb-10 text-balance"
           >
-            Se a W4Digital faz sentido para o seu negócio, vamos conversar.
+            Se o modelo da W4D faz sentido para a sua empresa, vamos conversar.
           </motion.h2>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -155,24 +155,15 @@ export default function FormularioLead() {
             className="flex flex-col gap-6 max-w-lg mx-auto lg:mx-0"
           >
             <p className="text-lg md:text-xl text-body font-normal leading-[1.7]">
-              Nosso time lê o que você enviou antes de entrar em contato. A primeira conversa é uma análise da sua situação atual: o que está funcionando, o que não está e onde está a maior oportunidade de melhoria.
-            </p>
-            <p className="text-lg md:text-xl text-body font-normal leading-[1.7]">
-              Se avançarmos juntos: resultado abaixo do esperado, você sabe na mesma semana. Os números ficam abertos. Você decide onde investir. Nós executamos.
+              Preencha o formulário. Nossa equipe fará uma pesquisa inicial sobre o seu negócio antes de agendar a primeira ligação.
             </p>
 
-            {/* Diagnóstico — parágrafo integrado, sem card vermelho */}
-            <p className="text-base md:text-lg text-body font-normal leading-[1.75] border-l-2 border-white/10 pl-5">
-              <strong className="text-primary font-medium">O diagnóstico</strong> é uma conversa de 30 minutos, por vídeo ou telefone, em que analisamos sua operação atual de marketing e identificamos a maior oportunidade de melhoria. Sem proposta comercial na primeira conversa.
+            <p className="text-base md:text-lg text-body font-normal leading-[1.75] border-l-2 border-cta/40 pl-5">
+              <strong className="text-primary font-medium">A primeira conversa:</strong> Faremos uma reunião rápida de alinhamento. Se entendermos que podemos gerar resultados reais para o seu modelo de negócio, desenhamos uma proposta comercial sob medida para a sua operação.
             </p>
 
             <p className="text-base text-body font-normal leading-[1.7]">
-              Não atendemos qualquer empresa. Se a sua situação não for para nós, dizemos isso na primeira conversa.
-            </p>
-
-            {/* Escassez genuína */}
-            <p className="font-mono text-xs text-body tracking-[0.22em] uppercase mt-1">
-              Atendemos no máximo 8 empresas por trimestre.
+              Não fechamos contratos a qualquer custo. Se a sua empresa ainda não estiver no momento ideal para aplicar o nosso método, nós te diremos isso logo de cara.
             </p>
           </motion.div>
         </div>
@@ -291,7 +282,7 @@ export default function FormularioLead() {
                     >
                       {isSubmitting ? "Enviando..." : (
                         <>
-                          Solicitar diagnóstico <span className="ml-2 transition-transform group-hover:translate-x-1">&#8594;</span>
+                          Solicitar proposta <span className="ml-2 transition-transform group-hover:translate-x-1">&#8594;</span>
                         </>
                       )}
                     </button>

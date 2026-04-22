@@ -13,24 +13,20 @@ type EyebrowProps = {
 
 export default function Eyebrow({ children, className = '', accent = false, index }: EyebrowProps) {
   return (
-    <motion.span
+    <motion.div
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as any }}
-      className={`inline-flex items-center gap-2.5 px-4 py-2 rounded-full border font-mono text-xs tracking-[0.18em] uppercase whitespace-nowrap ${
-        accent
-          ? 'border-cta/30 bg-cta/[0.06] text-cta'
-          : 'border-white/10 bg-white/[0.03] text-body'
-      } ${className}`}
+      className={`inline-flex items-center gap-2.5 font-mono text-xs md:text-sm tracking-[0.18em] uppercase whitespace-nowrap ${className}`}
     >
       {index && (
         <>
-          <span className={accent ? 'text-cta/60' : 'text-body/50'}>{index}</span>
-          <span className={accent ? 'text-cta/30' : 'text-body/20'} aria-hidden>/</span>
+          <span className="text-cta font-bold">{index}</span>
+          <span className="text-secondary" aria-hidden>&bull;</span>
         </>
       )}
-      <span>{children}</span>
-    </motion.span>
+      <span className={accent ? 'text-cta' : 'text-secondary'}>{children}</span>
+    </motion.div>
   );
 }

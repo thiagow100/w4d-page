@@ -8,8 +8,8 @@ import Eyebrow from '@/components/Eyebrow';
 const metrics = [
   { value: 20, suffix: "+", label: "anos vendendo", context: "Antes de ser agência, fomos o cliente", isStatic: false },
   { value: 11, suffix: "+", label: "anos no digital", context: "Tráfego pago com dinheiro próprio", isStatic: false },
-  { value: 3000, suffix: "+", label: "alunos pelo mundo", context: "Método validado em escala", isStatic: false },
-  { value: 0, suffix: "BR · EUA", label: "onde operamos", context: "Operação dos dois lados", isStatic: true },
+  { value: 3000, suffix: "+", label: "alunos pelo mundo", context: "Método validado em escala global", isStatic: false },
+  { value: 0, suffix: "BR · USA", label: "onde operamos", context: "Operação ativa no Brasil e nos EUA", isStatic: true },
 ];
 
 const brands = [
@@ -42,9 +42,7 @@ function Counter({ from = 0, to, suffix, duration = 2, isStatic = false }: { fro
     return () => controls.stop();
   }, [inView, from, to, duration, suffix, isStatic]);
 
-  const sizeClass = isStatic
-    ? "text-3xl md:text-4xl"
-    : "text-4xl md:text-5xl";
+  const sizeClass = "text-4xl md:text-5xl";
 
   return <span ref={ref} className={`${sizeClass} font-semibold text-primary tracking-[-0.04em]`}>{display}</span>;
 }
@@ -114,11 +112,11 @@ export default function Credibilidade() {
                 <span className="text-cta">●</span> 2020 · TW Broker
               </span>
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
-                <span className="text-cta">●</span> Hoje · W4Digital
+                <span className="text-cta">●</span> Hoje · W4D
               </span>
             </div>
             <p className="text-body text-base md:text-lg font-normal leading-[1.75] max-w-[60ch]">
-              Thiago começou em vendas em 2005 e validou-se como corretor de imóveis em Santa Catarina a partir de 2011. Em 2015, passou a aprender tráfego pago errando com dinheiro do próprio bolso, antes de aplicar em qualquer cliente. Em 2020 fundou a TW Broker, operação que vende milhões em imóveis todos os anos. Em 2023 criou o Corretor Que Vende, treinando mais de três mil profissionais do mercado imobiliário. Hoje, lidera a W4Digital aplicando essa mesma máquina de vendas em negócios no Brasil e nos Estados Unidos.
+              Thiago começou em vendas em 2005 e consolidou-se como corretor de imóveis em Santa Catarina a partir de 2011. Em 2015, passou a estudar tráfego pago errando com dinheiro do próprio bolso, quando o Facebook era mato. Em 2020 fundou a TW Broker, operação que vendeu milhões em imóveis todos os anos. Em 2023 criou o Corretor Que Vende, treinando mais de três mil profissionais do mercado imobiliário. Hoje, lidera a W4D aplicando essa mesma máquina de vendas no Brasil e Estados Unidos, focado em performance de conversão, escala e previsibilidade.
             </p>
             <p className="text-primary font-medium text-base md:text-lg mt-6 leading-relaxed max-w-[60ch] border-l-2 border-cta/40 pl-4">
               No fim do dia o marketing é apenas o meio. A nossa única régua de sucesso é quanto a sua empresa vende com recorrência.
@@ -153,14 +151,14 @@ export default function Credibilidade() {
                 <span className="text-cta">●</span> 2019 · Tráfego
               </span>
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
-                <span className="text-cta">●</span> Hoje · W4Digital
+                <span className="text-cta">●</span> Hoje · W4D
               </span>
             </div>
             <p className="text-body text-base md:text-lg font-normal leading-[1.75] max-w-[60ch]">
-              Carlos operou hostel e bar por oito anos a partir de 2011, sentindo na pele a gestão, a contratação e a pressão pelo faturamento. Em 2019 passou a se dedicar exclusivamente a tráfego pago e performance, com foco rigoroso em negócios locais. Em 2022 consolidou sua operação gerindo múltiplas contas de nichos variados, com métricas de ROI e conversão direta como régua. Em 2024 aprofundou a esteira em lançamentos imobiliários. Hoje, lidera o time de operação da W4Digital, garantindo que o planejado chegue ao resultado combinado.
+              Carlos operou hostel e bar por oito anos a partir de 2011, sentindo na pele a gestão, a contratação e a pressão pelo faturamento. Em 2019 passou a se dedicar exclusivamente a tráfego pago e performance, com foco rigoroso em negócios locais. Em 2022 consolidou sua operação gerindo múltiplas contas de nichos variados, com métricas de ROI e conversão direta como régua. Em 2024 aprofundou a esteira em lançamentos imobiliários. Hoje, lidera o time de operação da W4D, garantindo que o faturamento projetado chegue no resultado comercial.
             </p>
             <p className="text-primary font-medium text-base md:text-lg mt-6 leading-relaxed max-w-[60ch] border-l-2 border-cta/40 pl-4">
-              Estratégias no papel não pagam contas. Meu fardo é fazer a mídia colocar boas oportunidades na sua mesa todos os dias.
+              Estratégias no papel não pagam contas. Meu trabalho é fazer a mídia colocar boas oportunidades na sua mesa todos os dias.
             </p>
           </motion.div>
 
@@ -230,7 +228,7 @@ export default function Credibilidade() {
           className="mt-24 pt-12 border-t border-white/5 text-center"
         >
           <p className="text-body text-lg max-w-3xl mx-auto font-normal leading-relaxed">
-            A W4Digital opera com um time reduzido de especialistas: gestores de tráfego, automação, IA e design. Quem recebe o briefing é quem opera a conta. Não há franquia, não há repasse e não há camada intermediária entre o diagnóstico e a entrega.
+            A W4D opera com um time reduzido de especialistas: gestores de tráfego, automação, IA e design. Quem recebe o briefing é quem opera a conta. Não há franquia, não há repasse e não há camada intermediária entre o diagnóstico e a entrega.
           </p>
         </motion.div>
 
