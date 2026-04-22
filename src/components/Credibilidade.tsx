@@ -8,7 +8,7 @@ import Eyebrow from '@/components/Eyebrow';
 const metrics = [
   { value: 20, suffix: "+", label: "anos vendendo", context: "Antes de ser agência, fomos o cliente", isStatic: false },
   { value: 11, suffix: "+", label: "anos no digital", context: "Tráfego pago com dinheiro próprio", isStatic: false },
-  { value: 3000, suffix: "+", label: "alunos pelo mundo", context: "Método validado em escala global", isStatic: false },
+  { value: 3000, suffix: "+", label: "alunos pelo mundo", context: "Método validado em operações pelo mundo", isStatic: false },
   { value: 0, suffix: "BR · USA", label: "onde operamos", context: "Operação ativa no Brasil e nos EUA", isStatic: true },
 ];
 
@@ -116,7 +116,7 @@ export default function Credibilidade() {
               </span>
             </div>
             <p className="text-body text-base md:text-lg font-normal leading-[1.75] max-w-[60ch]">
-              Thiago começou em vendas em 2005 e consolidou-se como corretor de imóveis em Santa Catarina a partir de 2011. Em 2015, passou a estudar tráfego pago errando com dinheiro do próprio bolso, quando o Facebook era mato. Em 2020 fundou a TW Broker, operação que vendeu milhões em imóveis todos os anos. Em 2023 criou o Corretor Que Vende, treinando mais de três mil profissionais do mercado imobiliário. Hoje, lidera a W4D aplicando essa mesma máquina de vendas no Brasil e Estados Unidos, focado em performance de conversão, escala e previsibilidade.
+              Thiago começou em vendas em 2005 e consolidou-se como corretor de imóveis em Santa Catarina a partir de 2011. Em 2015, passou a estudar tráfego pago errando com dinheiro do próprio bolso, quando o Facebook era mato. Em 2020 fundou a TW Broker, operação que vendeu milhões em imóveis todos os anos. Em 2023 criou o Corretor Que Vende, treinando mais de três mil profissionais do mercado imobiliário. Hoje, lidera a W4D aplicando esse mesmo sistema comercial no Brasil e Estados Unidos, focado em performance de conversão, volume e previsibilidade.
             </p>
             <p className="text-primary font-medium text-base md:text-lg mt-6 leading-relaxed max-w-[60ch] border-l-2 border-cta/40 pl-4">
               No fim do dia o marketing é apenas o meio. A nossa única régua de sucesso é quanto a sua empresa vende com recorrência.
@@ -228,7 +228,7 @@ export default function Credibilidade() {
           className="mt-24 pt-12 border-t border-white/5 text-center"
         >
           <p className="text-body text-lg max-w-3xl mx-auto font-normal leading-relaxed">
-            A W4D opera com um time reduzido de especialistas: gestores de tráfego, automação, IA e design. Quem recebe o briefing é quem opera a conta. Não há franquia, não há repasse e não há camada intermediária entre o diagnóstico e a entrega.
+            A W4D opera com um núcleo de especialistas: gestores de tráfego, automação e IA, designers, web designers e editores de vídeo. Quem recebe o briefing é quem opera a conta. Não há franquia, não há repasse e não há camada intermediária entre o diagnóstico e a entrega.
           </p>
         </motion.div>
 

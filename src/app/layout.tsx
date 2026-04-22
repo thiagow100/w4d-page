@@ -7,7 +7,7 @@ import SmoothScroll from '@/components/SmoothScroll';
 
 export const metadata: Metadata = {
   title: 'W4Digital | Marketing Digital de Performance',
-  description: 'Tráfego pago, funis de venda e automação com IA para sua empresa vender todos os dias.',
+  description: 'Estrutura completa de aquisição: anúncios, páginas de conversão e qualificação comercial para empresas que precisam vender com previsibilidade.',
 };
 
 export default function RootLayout({

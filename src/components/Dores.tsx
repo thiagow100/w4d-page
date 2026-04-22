@@ -21,7 +21,7 @@ const painPoints = [
   },
   {
     title: "Contato chegando, ninguém fechando",
-    description: "Chegam leads todos os dias, mas seu time gasta tempo com quem nunca vai comprar. O problema não é falta de demanda, é a total ausência de um filtro de qualificação.",
+    description: "Chegam contatos todos os dias, mas seu time gasta tempo com quem nunca vai comprar. O problema não é falta de demanda, é a total ausência de um filtro de qualificação.",
     resolution: "O filtro de perfil deve atuar antes do time comercial."
   }
 ];
@@ -76,7 +76,7 @@ export default function Dores() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.2 }}
               className="text-body text-lg md:text-xl font-normal leading-[1.7] max-w-lg"
             >
-              Quatro sintomas recorrentes em empresas que batem em um teto invisível. Se você se vê em algum deles, não é acaso — é arquitetura.
+              Quatro sintomas recorrentes em empresas que batem em um teto invisível. Se você se vê em algum deles, não é acaso. É arquitetura.
             </motion.p>
           </div>
         </div>

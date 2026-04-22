@@ -19,7 +19,7 @@ Se `pwd` retornar caminho diferente, pare e avise. As skills só funcionam se o 
 ## Nome da marca
 - **W4Digital** → nome oficial. Usar em: títulos, footer, contexto formal, primeira menção em qualquer seção
 - **W4D** → abreviação aceita. Usar em: contextos visuais (logos, ícones), URLs, hashtags, segunda menção em diante
-- **Método W4** → nome próprio do método. Usar sempre assim, nunca traduzir, nunca abreviar
+- **Método W4D** → nome próprio do método. Usar sempre assim, nunca traduzir, nunca abreviar
 - Nunca "W4 Digital" (separado)
 
 ## Público-alvo
@@ -37,7 +37,7 @@ Brasileiros empresários com empresa nos EUA. Sofisticado, ocupado, desconfiado.
 **Por que não #000000:** Preto puro #000000 proibido — Geist Sans foi desenhada pra #171717. Sobre preto puro causa halation.
 
 ## Regra de cor
-- Vermelho aparece APENAS em CTAs, linha de progresso do Método W4, bordas de focus e hover
+- Vermelho aparece APENAS em CTAs, linha de progresso do Método W4D, bordas de focus e hover
 - Fundo é 95% grafite escuro. Sem fundos coloridos.
 
 ## Fontes oficiais

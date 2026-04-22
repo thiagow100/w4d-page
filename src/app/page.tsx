@@ -15,8 +15,8 @@ export default function Home() {
         <Dores />
         <ServicosDetalhado />
         <Credibilidade />
-        <FormularioLead />
         <FAQ />
+        <FormularioLead />
         <Footer />
       </div>
     </main>

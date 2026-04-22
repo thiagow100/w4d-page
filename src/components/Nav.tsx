@@ -21,7 +21,7 @@ export default function Nav() {
     <>
       {/* HEADER ABSOLUTO NO TOPO (Some ao rolar a página) */}
       <header className="absolute top-0 left-0 right-0 z-50 w-full px-6 sm:px-12 lg:px-24 py-8 flex items-center justify-between gap-4 pointer-events-auto">
-        <a href="#" aria-label="W4D — Voltar ao topo" className="shrink-0">
+        <a href="#" aria-label="Voltar ao topo" className="shrink-0">
           <Image
             src="/images/logo-w4d-only.png"
             alt="W4D"
@@ -48,7 +48,7 @@ export default function Nav() {
         className="fixed top-0 left-0 right-0 z-50 pointer-events-auto bg-[#171717]/85 backdrop-blur-[20px] border-b border-white/10"
       >
         <div className="w-full px-6 sm:px-12 lg:px-24 py-3 flex items-center justify-between gap-4">
-          <a href="#" aria-label="W4D — Voltar ao topo" className="shrink-0">
+          <a href="#" aria-label="Voltar ao topo" className="shrink-0">
             <Image
               src="/images/logo-w4d-only.png"
               alt="W4D"

@@ -7,7 +7,7 @@ import Eyebrow from '@/components/Eyebrow';
 const faqs = [
   {
     q: 'Quanto tempo até eu ver resultado?',
-    a: 'As primeiras 2 a 4 semanas são de planejamento e estrutura — rastreamento, páginas de destino, qualificação, integrações. A partir da semana 5, entra operação ativa com ajuste diário. Resultado comercial mensurável começa entre o segundo e terceiro mês. Quem promete "explodir em 30 dias" está te vendendo sorte.',
+    a: 'As primeiras 2 a 4 semanas são de planejamento e estrutura: rastreamento, páginas de destino, qualificação, integrações. A partir da semana 5, entra operação ativa com ajuste diário. Resultado comercial mensurável começa entre o segundo e terceiro mês. Quem promete "explodir em 30 dias" está te vendendo sorte.',
   },
   {
     q: 'O que acontece se o resultado vier abaixo do esperado?',
@@ -15,11 +15,11 @@ const faqs = [
   },
   {
     q: 'Por que não contratar um gestor de tráfego interno ao invés da W4D?',
-    a: 'Um gestor aperta botões e sobe campanhas. Para escalar, você precisa de engenharia de dados, automação, copy e design focado em conversão. Nós entregamos a solução de performance marketing completa pelo custo de um único funcionário sênior.',
+    a: 'Um gestor aperta botões e sobe campanhas. Para crescer com previsibilidade, você precisa de engenharia de dados, orquestração, copy e design focado em conversão. Nós entregamos a solução de performance marketing completa pelo custo de um único funcionário sênior.',
   },
   {
     q: 'Quais projetos vocês NÃO aceitam?',
-    a: 'Não operamos negócios que ainda não validaram seu produto ou serviço no mercado. Nossa especialidade é plugar nossa máquina de vendas em empresas que já tracionam, mas precisam de escala, previsibilidade e volume de leads.',
+    a: 'Não operamos negócios que ainda não validaram seu produto ou serviço no mercado. Nossa especialidade é instalar nosso sistema comercial em empresas que já tracionam, mas precisam de volume, previsibilidade e novos contatos qualificados.',
   },
   {
     q: 'Vocês atendem empresa fora do Brasil e dos EUA?',

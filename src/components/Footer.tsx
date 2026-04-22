@@ -9,7 +9,7 @@ export default function Footer() {
         {/* Assinatura de marca e CTA Final */}
         <div className="mb-12 md:mb-16 w-full flex flex-col items-start">
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.05em] text-white/95 leading-[1.1]">
-            Performance marketing com régua de receita.
+            Marketing medido pelo que vende.
           </h2>
           <a
             href="#formulario"

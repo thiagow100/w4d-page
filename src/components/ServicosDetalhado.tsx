@@ -38,7 +38,7 @@ const services = [
     description: 'Desenhamos páginas de destino e fluxos de automação de alto nível para visitantes que não compraram de primeira. O foco é filtrar curiosos e reter potenciais compradores reais.',
     bullets: [
       'Construímos landing pages que conversam diretamente com a promessa do anúncio, mantendo a coerência visual e textual que faz o visitante converter.',
-      'Configuramos sequências de recuperação automática para quem demonstrou interesse, aquecendo o lead antes mesmo do seu time comercial falar com ele.',
+      'Configuramos sequências de recuperação automática para quem demonstrou interesse, aquecendo o contato antes mesmo do seu time comercial falar com ele.',
       'Impactamos novamente quem saiu da página através de remarketing segmentado, quebrando objeções específicas de cada perfil de forma quase invisível.',
     ],
   },
@@ -48,7 +48,7 @@ const services = [
     subtitle: 'Antes do Comercial',
     description: 'Implementamos respostas imediatas e filtros automáticos para todo contato novo. O objetivo é que a sua equipe converse apenas com quem tem bolso e interesse real de compra.',
     bullets: [
-      'Automatizamos a primeira interação em poucos segundos, captando dados vitais e medindo o nível de urgência do lead independentemente do seu horário.',
+      'Automatizamos a primeira interação em poucos segundos, captando dados vitais e medindo o nível de urgência do contato independentemente do seu horário.',
       'Blindamos o tempo valioso da sua equipe comercial, barrando curiosos e permitindo que apenas perfis pré-aprovados nos critérios avancem de fase.',
       'Mapeamos todas as rotas possíveis de atendimento para garantir que nenhuma oportunidade real seja perdida por demora ou falta de alguém disponível.',
     ],
@@ -71,7 +71,7 @@ const PHASES = [
   { word: "WORK", sub: "base", desc: "Diagnóstico da sua operação atual" },
   { word: "WAY", sub: "caminho", desc: "Estrutura montada antes de investir" },
   { word: "WIN", sub: "resultado", desc: "Operação ativa com ajuste diário" },
-  { word: "WEALTH", sub: "escala", desc: "Escala baseada no que já funcionou" },
+  { word: "WEALTH", sub: "crescimento", desc: "Crescimento baseado no que já funcionou" },
 ] as const;
 
 // Um dot por fase — hooks em nível superior (Rules of Hooks respeitadas)
