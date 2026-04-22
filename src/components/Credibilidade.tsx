@@ -51,7 +51,9 @@ function LeaderPhoto({ src, alt, initials, imgClassName = "object-cover object-t
   const [hasError, setHasError] = useState(false);
 
   return (
-    <div className="w-full relative aspect-[4/5] rounded-tl-3xl rounded-br-3xl overflow-hidden bg-secondary shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_25px_50px_-12px_rgba(0,0,0,0.45)]">
+    <div className="w-full relative aspect-[4/5] rounded-tl-3xl rounded-br-3xl overflow-hidden bg-[#111] shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_25px_50px_-12px_rgba(0,0,0,0.45)]">
+      {/* Background de Estúdio (Radial Gradient) */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,_#2a2a2a_0%,_#111111_100%)]" />
       {hasError ? (
         <div className="absolute inset-0 flex items-center justify-center">
           <span className="text-5xl font-semibold text-secondary/40 tracking-tight">{initials}</span>
