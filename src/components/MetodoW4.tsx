@@ -94,7 +94,7 @@ export default function MetodoW4() {
   const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section className="relative w-full py-section px-6 sm:px-12 lg:px-24">
+    <section id="metodo" className="relative w-full py-section px-6 sm:px-12 lg:px-24">
       <div className="max-w-6xl mx-auto flex flex-col items-center">
         
         {/* Headers */}

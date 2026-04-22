@@ -34,7 +34,6 @@ export default function Nav() {
         <nav className="hidden md:flex items-center gap-2" aria-label="Navegação principal">
           <a href="#servicos" className="px-3 py-2 text-sm font-medium text-body hover:text-primary transition-colors duration-200">Serviços</a>
           <a href="#metodo" className="px-3 py-2 text-sm font-medium text-body hover:text-primary transition-colors duration-200">Método</a>
-          <a href="#dores" className="px-3 py-2 text-sm font-medium text-body hover:text-primary transition-colors duration-200">Diagnóstico</a>
           <a href="#faq" className="px-3 py-2 text-sm font-medium text-body hover:text-primary transition-colors duration-200">FAQ</a>
         </nav>
         {/* Placeholder vazio apenas para manter a logo na esquerda e links centralizados/alinhados */}
@@ -62,7 +61,6 @@ export default function Nav() {
           <nav className="hidden md:flex items-center gap-2" aria-label="Navegação principal">
             <a href="#servicos" className="px-3 py-2 text-sm font-medium text-body hover:text-primary transition-colors duration-200">Serviços</a>
             <a href="#metodo" className="px-3 py-2 text-sm font-medium text-body hover:text-primary transition-colors duration-200">Método</a>
-            <a href="#dores" className="px-3 py-2 text-sm font-medium text-body hover:text-primary transition-colors duration-200">Diagnóstico</a>
             <a href="#faq" className="px-3 py-2 text-sm font-medium text-body hover:text-primary transition-colors duration-200">FAQ</a>
           </nav>
 

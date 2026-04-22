@@ -6,24 +6,24 @@ import Eyebrow from '@/components/Eyebrow';
 
 const faqs = [
   {
-    q: 'Qual o investimento mínimo em mídia pra trabalhar com vocês?',
-    a: 'Trabalhamos com empresas que investem a partir de US$ 10 mil por mês em mídia paga. Abaixo disso, os dados não maturam rápido o suficiente pra justificar a estrutura que montamos. Não é política. É matemática.',
-  },
-  {
     q: 'Quanto tempo até eu ver resultado?',
     a: 'As primeiras 2 a 4 semanas são de planejamento e estrutura — rastreamento, páginas de destino, qualificação, integrações. A partir da semana 5, entra operação ativa com ajuste diário. Resultado comercial mensurável começa entre o segundo e terceiro mês. Quem promete "explodir em 30 dias" está te vendendo sorte.',
   },
   {
-    q: 'Vocês atendem empresa fora do Brasil e dos EUA?',
-    a: 'Operamos com empresas brasileiras no Brasil, brasileiras com sede nos EUA e empresas americanas. Para outras regiões, avaliamos caso a caso — depende do fuso, do idioma da operação comercial e da estrutura fiscal envolvida.',
-  },
-  {
     q: 'O que acontece se o resultado vier abaixo do esperado?',
-    a: 'Você sabe na mesma semana. Os números ficam abertos. Revemos a estratégia, ajustamos o que não está respondendo, ou terminamos o contrato sem atrito. Não existe cláusula de amarração.',
+    a: 'Nosso contrato mínimo de implementação é de 3 meses. Esse é o tempo necessário para a estrutura maturar. A regra é clara: se você acompanhar o nosso passo a passo e executar a sua parte comercial dentro do que foi combinado, o resultado da sua empresa crescerá junto com a nossa operação. O jogo é de parceria e transparência diária.',
   },
   {
-    q: 'Como funciona a elaboração da proposta?',
-    a: 'Primeiro, temos uma conversa de 30 minutos, por vídeo ou telefone, onde analisamos sua operação atual e identificamos oportunidades de melhoria. Sem compromisso na primeira conversa. Se fizer sentido pros dois lados, desenhamos e enviamos uma proposta comercial sob medida.',
+    q: 'Por que não contratar um gestor de tráfego interno ao invés da W4D?',
+    a: 'Um gestor aperta botões e sobe campanhas. Para escalar, você precisa de engenharia de dados, automação, copy e design focado em conversão. Nós entregamos a solução de performance marketing completa pelo custo de um único funcionário sênior.',
+  },
+  {
+    q: 'Quais projetos vocês NÃO aceitam?',
+    a: 'Não operamos negócios que ainda não validaram seu produto ou serviço no mercado. Nossa especialidade é plugar nossa máquina de vendas em empresas que já tracionam, mas precisam de escala, previsibilidade e volume de leads.',
+  },
+  {
+    q: 'Vocês atendem empresa fora do Brasil e dos EUA?',
+    a: 'Nosso foco de expansão é a América do Norte e o Brasil. Para operações na Europa ou Ásia, avaliamos o modelo de negócio e a complexidade do fuso horário antes de assumir a conta.',
   },
 ];
 
@@ -74,11 +74,11 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative w-full py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
-      <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row gap-10 md:gap-24">
+    <section id="faq" className="relative w-full py-section px-6 sm:px-12 lg:px-24 bg-primary">
+      <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
 
-        {/* Coluna esquerda — título (sticky em desktop) */}
-        <div className="md:w-1/3 md:sticky md:top-28 md:self-start flex flex-col">
+        {/* Topo Centralizado */}
+        <div className="flex flex-col items-center text-center mb-16 md:mb-20">
           <div className="mb-6">
             <Eyebrow index="05">Dúvidas frequentes</Eyebrow>
           </div>
@@ -87,17 +87,17 @@ export default function FAQ() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.1 }}
-            className="text-4xl md:text-5xl font-semibold tracking-[-0.05em] leading-[1.1] text-white/95 text-balance"
+            className="text-4xl md:text-5xl font-semibold tracking-[-0.05em] leading-[1.1] text-white/95 text-balance max-w-2xl"
           >
             As perguntas que todo dono de empresa faz antes de contratar.
           </motion.h2>
-          <p className="mt-6 text-body text-base md:text-lg font-normal leading-[1.7] max-w-md">
+          <p className="mt-6 text-body text-base md:text-lg font-normal leading-[1.7] max-w-xl">
             Se a sua não estiver aqui, é só perguntar no próprio formulário. Respondemos antes da primeira conversa.
           </p>
         </div>
 
-        {/* Coluna direita — acordeão */}
-        <div className="md:w-2/3 flex flex-col">
+        {/* Acordeão Centralizado */}
+        <div className="w-full flex flex-col">
           {faqs.map((item, i) => (
             <FAQItem
               key={i}

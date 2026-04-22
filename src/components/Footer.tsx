@@ -4,7 +4,7 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 export default function Footer() {
   return (
     <footer className="relative w-full bg-primary pt-16 md:pt-24 pb-8 px-6 sm:px-12 lg:px-24 border-t border-white/5">
-      <div className="max-w-6xl mx-auto flex flex-col">
+      <div className="max-w-5xl mx-auto flex flex-col">
 
         {/* Assinatura de marca */}
         <div className="mb-16 md:mb-20 max-w-3xl">
@@ -68,17 +68,30 @@ export default function Footer() {
 
         {/* Copyright + Slogan */}
         <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <div className="flex items-center gap-5">
-            <Image
-              src="/images/logo-w4d-only.png"
-              alt="W4D"
-              width={120}
-              height={35}
-              className="h-6 md:h-7 w-auto object-contain opacity-90"
-            />
-            <span className="font-mono text-[11px] md:text-xs text-secondary tracking-[0.12em] lowercase">
-              © 2026 · all rights reserved
-            </span>
+          <div className="flex flex-col md:flex-row md:items-center gap-5">
+            <a href="#" aria-label="Voltar ao topo" className="shrink-0 hover:opacity-70 transition-opacity duration-200">
+              <Image
+                src="/images/logo-w4d-only.png"
+                alt="W4D"
+                width={120}
+                height={35}
+                className="h-6 md:h-7 w-auto object-contain opacity-90"
+              />
+            </a>
+            <div className="flex items-center gap-4">
+              <span className="font-mono text-[11px] md:text-xs text-secondary tracking-[0.12em] lowercase">
+                © 2026 · all rights reserved
+              </span>
+              <span className="text-white/10 hidden md:block">|</span>
+              <div className="flex items-center gap-4">
+                <a href="/privacidade" className="font-mono text-[11px] md:text-xs text-secondary hover:text-primary transition-colors duration-200 tracking-[0.12em] lowercase">
+                  política de privacidade
+                </a>
+                <a href="/termos" className="font-mono text-[11px] md:text-xs text-secondary hover:text-primary transition-colors duration-200 tracking-[0.12em] lowercase">
+                  termos de uso
+                </a>
+              </div>
+            </div>
           </div>
           <span className="font-mono text-[11px] md:text-xs text-secondary tracking-[0.12em] uppercase">
             BUILT WITH DISCIPLINE, NOT HYPE.

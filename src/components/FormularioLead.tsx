@@ -113,7 +113,7 @@ export default function FormularioLead() {
 
   return (
     <section id="formulario" className="relative w-full py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
-      <div className="relative z-10 max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+      <div className="relative z-10 max-w-5xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
 
         <div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left">
           {/* Eyebrow com index 05 + call to action. Badge visível só no mobile/desktop igual */}
@@ -230,6 +230,7 @@ export default function FormularioLead() {
                     <select
                       {...register("segment")}
                       defaultValue=""
+                      style={{ colorScheme: 'dark' }}
                       aria-label="Segmento da empresa"
                       className={`w-full text-base pt-7 pb-3 px-4 rounded-lg outline-none transition-all duration-300 ease-out bg-white/5 border appearance-none cursor-pointer ${
                         segment && segment.length > 0 ? 'text-primary' : 'text-white/40'
@@ -290,7 +291,7 @@ export default function FormularioLead() {
                 </div>
 
                 <p className="text-xs text-secondary text-center font-normal">
-                  Sem compromisso. Sem insistência.
+                  Suas informações são estritamente confidenciais.
                 </p>
 
               </form>
