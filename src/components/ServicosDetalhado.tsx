@@ -97,7 +97,7 @@ function MetodoW4D() {
   const dotProgress = useTransform(scrollYProgress, [0, 0.33, 0.66, 1], [0, 1, 2, 3]);
 
   return (
-    <div ref={sectionRef} className="w-full mb-24 lg:mb-28 relative">
+    <div ref={sectionRef} id="metodo" className="w-full mb-24 lg:mb-28 relative scroll-mt-24">
       <div className="flex justify-center mb-12">
         <Eyebrow accent>Método W4D</Eyebrow>
       </div>

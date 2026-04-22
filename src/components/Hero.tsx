@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import MagneticButton from '@/components/MagneticButton';
 
 export default function Hero() {
   const staggerContainer = {
@@ -124,14 +125,16 @@ export default function Hero() {
           className="flex flex-col items-start gap-5"
         >
           <div className="flex flex-col items-start">
-            {/* Botão Principal — glow refinado (inner border + sombra tintada) */}
-            <a
-              href="#formulario"
-              className="group inline-flex items-center justify-center px-9 py-4 text-base font-semibold text-primary transition-colors duration-200 ease-out bg-cta rounded-full hover:bg-cta-hover active:scale-[0.98] glow-cta"
-            >
-              Solicitar proposta
-              <span className="ml-2 transition-transform duration-200 ease-out group-hover:translate-x-1">&#8594;</span>
-            </a>
+            {/* Botão Principal — glow refinado + tracking magnético no hover desktop */}
+            <MagneticButton>
+              <a
+                href="#formulario"
+                className="group inline-flex items-center justify-center px-9 py-4 text-base font-semibold text-primary transition-colors duration-200 ease-out bg-cta rounded-full hover:bg-cta-hover active:scale-[0.98] glow-cta"
+              >
+                Solicitar proposta
+                <span className="ml-2 transition-transform duration-200 ease-out group-hover:translate-x-1">&#8594;</span>
+              </a>
+            </MagneticButton>
           </div>
 
           {/* Kicker de posicionamento */}

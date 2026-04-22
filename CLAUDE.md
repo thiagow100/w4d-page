@@ -108,7 +108,7 @@ Página será multilíngue (PT/EN/ES) com rotas separadas (/pt, /en, /es). Imple
 - Usar #000000 como fundo (causa halation com Geist Sans)
 - Remover seções sem autorização
 - Usar fontes genéricas (Inter, Roboto, Arial)
-- Adicionar parallax exagerado, partículas ou animações em loop
+- Adicionar parallax exagerado ou partículas
 - Adicionar botão flutuante de WhatsApp
 - Fazer deploy sem testar o formulário
 - Alterar a estrutura de pastas sem autorização

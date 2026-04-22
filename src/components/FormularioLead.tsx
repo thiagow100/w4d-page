@@ -6,7 +6,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { motion } from 'framer-motion';
 import { supabase } from '@/lib/supabase';
-import MagneticButton from '@/components/MagneticButton';
 
 const formSchema = z.object({
   fullName: z.string().trim().refine(val => val.split(' ').length >= 2, {
@@ -72,6 +71,73 @@ function FloatingInput({
   );
 }
 
+// Floating label select — comportamento idêntico ao FloatingInput
+function FloatingSelect({
+  label,
+  error,
+  options,
+  ...props
+}: {
+  label: string;
+  error?: any;
+  options: { value: string; label: string }[];
+} & React.SelectHTMLAttributes<HTMLSelectElement>) {
+  const [focused, setFocused] = useState(false);
+  const hasValue = Boolean(props.value && String(props.value).length > 0);
+  const isFloating = focused || hasValue;
+
+  return (
+    <div className="relative">
+      <select
+        {...props}
+        onFocus={(e) => { setFocused(true); props.onFocus?.(e); }}
+        onBlur={(e) => { setFocused(false); props.onBlur?.(e); }}
+        style={{ colorScheme: 'dark' }}
+        aria-label={label}
+        className={`w-full text-base pt-6 pb-2 px-4 rounded-lg outline-none transition-all duration-300 ease-out bg-white/5 border appearance-none cursor-pointer ${
+          hasValue ? 'text-primary' : 'text-transparent'
+        } ${
+          error
+            ? 'border-error focus:border-error focus:ring-1 focus:ring-error'
+            : focused
+            ? 'border-focus-ring focus:ring-1 focus:ring-focus-ring bg-white/[0.03]'
+            : hasValue
+            ? 'border-white/10'
+            : 'border-transparent'
+        } bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:1.2em_1.2em] bg-[right_1rem_center] bg-no-repeat`}
+      >
+        <option value="" disabled></option>
+        {options.map((opt) => (
+          <option key={opt.value} value={opt.value} className="text-primary bg-secondary">
+            {opt.label}
+          </option>
+        ))}
+      </select>
+      <label
+        className={`absolute left-4 transition-all duration-200 ease-out pointer-events-none ${
+          isFloating
+            ? 'top-2 text-xs font-mono tracking-[0.12em] uppercase'
+            : 'top-1/2 -translate-y-1/2 text-base font-normal'
+        } ${
+          error ? 'text-error' : focused ? 'text-focus-ring' : 'text-white/30'
+        }`}
+      >
+        {label}
+      </label>
+      {error && <span className="text-error text-xs mt-2 ml-1 block">{error.message}</span>}
+    </div>
+  );
+}
+
+const segmentOptions = [
+  { value: "Imobiliário (incorporadora, imobiliária, corretor)", label: "Imobiliário (incorporadora, imobiliária, corretor)" },
+  { value: "Educação e infoprodutos", label: "Educação e infoprodutos" },
+  { value: "Serviços profissionais (advocacia, contabilidade, consultoria)", label: "Serviços profissionais (advocacia, contabilidade, consultoria)" },
+  { value: "Saúde (clínicas, consultórios, healthtech)", label: "Saúde (clínicas, consultórios, healthtech)" },
+  { value: "E-commerce e varejo", label: "E-commerce e varejo" },
+  { value: "Outro", label: "Outro" },
+];
+
 export default function FormularioLead() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -123,7 +189,7 @@ export default function FormularioLead() {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2.5 mb-5 self-center lg:self-start px-4 py-2 rounded-full border border-cta/30 bg-cta/[0.06]"
           >
-            <span className="font-mono text-xs text-cta/60 tracking-[0.18em] uppercase">04</span>
+            <span className="font-mono text-xs text-cta/60 tracking-[0.18em] uppercase">05</span>
             <span className="text-cta/30" aria-hidden>/</span>
             <span className="w-1.5 h-1.5 rounded-full bg-cta animate-pulse" />
             <span className="font-mono text-xs text-cta tracking-[0.18em] uppercase">
@@ -219,40 +285,13 @@ export default function FormularioLead() {
                   value={company || ""}
                 />
 
-                <div>
-                  <div className="relative">
-                    {/* Label fixo no topo — sem sobreposição com valor escolhido */}
-                    <label className={`absolute left-4 top-2 text-xs font-mono tracking-[0.12em] uppercase pointer-events-none transition-colors duration-200 ease-out z-10 ${
-                      errors.segment ? 'text-error' : 'text-white/50'
-                    }`}>
-                      Segmento da empresa *
-                    </label>
-                    <select
-                      {...register("segment")}
-                      defaultValue=""
-                      style={{ colorScheme: 'dark' }}
-                      aria-label="Segmento da empresa"
-                      className={`w-full text-base pt-7 pb-3 px-4 rounded-lg outline-none transition-all duration-300 ease-out bg-white/5 border appearance-none cursor-pointer ${
-                        segment && segment.length > 0 ? 'text-primary' : 'text-white/40'
-                      } ${
-                        errors.segment
-                          ? 'border-error focus:border-error focus:ring-1 focus:ring-error'
-                          : segment && segment.length > 0
-                          ? 'border-white/10 focus:border-focus-ring focus:ring-1 focus:ring-focus-ring'
-                          : 'border-transparent focus:border-focus-ring focus:ring-1 focus:ring-focus-ring'
-                      } bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:1.2em_1.2em] bg-[right_1rem_center] bg-no-repeat`}
-                    >
-                      <option value="" disabled>Selecione uma opção</option>
-                      <option value="Imobiliário (incorporadora, imobiliária, corretor)" className="text-primary bg-secondary">Imobiliário (incorporadora, imobiliária, corretor)</option>
-                      <option value="Educação e infoprodutos" className="text-primary bg-secondary">Educação e infoprodutos</option>
-                      <option value="Serviços profissionais (advocacia, contabilidade, consultoria)" className="text-primary bg-secondary">Serviços profissionais (advocacia, contabilidade, consultoria)</option>
-                      <option value="Saúde (clínicas, consultórios, healthtech)" className="text-primary bg-secondary">Saúde (clínicas, consultórios, healthtech)</option>
-                      <option value="E-commerce e varejo" className="text-primary bg-secondary">E-commerce e varejo</option>
-                      <option value="Outro" className="text-primary bg-secondary">Outro</option>
-                    </select>
-                  </div>
-                  {errors.segment && <span className="text-error text-xs mt-2 ml-1 block">{errors.segment.message}</span>}
-                </div>
+                <FloatingSelect
+                  label="Segmento da empresa *"
+                  error={errors.segment}
+                  options={segmentOptions}
+                  {...register("segment")}
+                  value={segment || ""}
+                />
 
                 <div className="flex items-start gap-4">
                   <input
@@ -273,22 +312,17 @@ export default function FormularioLead() {
                   </div>
                 )}
 
-                {/* Botão estático quando formulário está visível */}
-                <div className="w-full">
-                  <MagneticButton className="w-full">
-                    <button
-                      type="submit"
-                      disabled={!isValid || isSubmitting}
-                      className="w-full group relative flex items-center justify-center px-8 py-4 mt-2 text-base md:text-lg font-semibold text-white transition-all duration-300 ease-out bg-cta rounded-full disabled:bg-white/5 disabled:text-white/30 disabled:cursor-not-allowed hover:bg-cta-hover active:scale-[0.98] glow-cta"
-                    >
-                      {isSubmitting ? "Enviando..." : (
-                        <>
-                          Solicitar proposta <span className="ml-2 transition-transform group-hover:translate-x-1">&#8594;</span>
-                        </>
-                      )}
-                    </button>
-                  </MagneticButton>
-                </div>
+                <button
+                  type="submit"
+                  disabled={!isValid || isSubmitting}
+                  className="w-full group relative flex items-center justify-center px-8 py-4 mt-2 text-base md:text-lg font-semibold text-white transition-all duration-300 ease-out bg-cta rounded-full disabled:bg-white/5 disabled:text-white/30 disabled:cursor-not-allowed hover:bg-cta-hover active:scale-[0.98] glow-cta"
+                >
+                  {isSubmitting ? "Enviando..." : (
+                    <>
+                      Solicitar proposta <span className="ml-2 transition-transform group-hover:translate-x-1">&#8594;</span>
+                    </>
+                  )}
+                </button>
 
                 <p className="text-xs text-secondary text-center font-normal">
                   Suas informações são estritamente confidenciais.

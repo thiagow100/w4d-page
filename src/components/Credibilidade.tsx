@@ -47,7 +47,7 @@ function Counter({ from = 0, to, suffix, duration = 2, isStatic = false }: { fro
   return <span ref={ref} className={`${sizeClass} font-semibold text-primary tracking-[-0.04em]`}>{display}</span>;
 }
 
-function LeaderPhoto({ src, alt, initials }: { src: string, alt: string, initials: string }) {
+function LeaderPhoto({ src, alt, initials, imgClassName = "object-cover object-top" }: { src: string, alt: string, initials: string, imgClassName?: string }) {
   const [hasError, setHasError] = useState(false);
 
   return (
@@ -61,7 +61,7 @@ function LeaderPhoto({ src, alt, initials }: { src: string, alt: string, initial
           src={src}
           alt={alt}
           onError={() => setHasError(true)}
-          className="absolute inset-0 w-full h-full object-cover object-top opacity-95 hover:opacity-100 transition-opacity duration-700"
+          className={`absolute inset-0 w-full h-full opacity-95 hover:opacity-100 transition-opacity duration-700 ${imgClassName}`}
         />
       )}
     </div>
@@ -70,7 +70,7 @@ function LeaderPhoto({ src, alt, initials }: { src: string, alt: string, initial
 
 export default function Credibilidade() {
   return (
-    <section className="relative w-full py-section overflow-hidden bg-secondary noise-overlay">
+    <section id="quem-somos" className="relative w-full py-section overflow-hidden bg-secondary noise-overlay scroll-mt-24">
       {/* Fundo Gradiente */}
       <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-tertiary to-transparent z-0 opacity-80" />
 
@@ -93,7 +93,7 @@ export default function Credibilidade() {
             className="flex flex-col"
           >
             <LeaderPhoto
-              src="/images/thiago.png"
+              src="/images/thiago2.png"
               alt="Thiago Weirich"
               initials="TW"
             />

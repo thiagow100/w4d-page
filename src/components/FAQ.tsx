@@ -80,7 +80,7 @@ export default function FAQ() {
         {/* Topo Centralizado */}
         <div className="flex flex-col items-center text-center mb-16 md:mb-20">
           <div className="mb-6">
-            <Eyebrow index="05">Dúvidas frequentes</Eyebrow>
+            <Eyebrow index="04">Dúvidas frequentes</Eyebrow>
           </div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
