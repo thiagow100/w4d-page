@@ -3,21 +3,25 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="relative w-full bg-primary pt-16 md:pt-24 pb-8 px-6 sm:px-12 lg:px-24 border-t border-white/5">
-      <div className="max-w-5xl mx-auto flex flex-col">
+    <footer className="relative w-full overflow-hidden bg-primary pt-16 md:pt-24 pb-8 px-6 sm:px-12 lg:px-24 border-t border-white/5">
+      <div className="max-w-5xl mx-auto flex flex-col relative z-10">
 
-        {/* Assinatura de marca */}
-        <div className="mb-16 md:mb-20 max-w-3xl">
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.05em] text-white/95 leading-[1.1] text-balance">
+        {/* Assinatura de marca e CTA Final */}
+        <div className="mb-12 md:mb-16 w-full flex flex-col items-start">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.05em] text-white/95 leading-[1.1]">
             Performance marketing com régua de receita.
           </h2>
-          <p className="mt-6 text-base md:text-lg text-body font-normal leading-[1.7] max-w-2xl">
-            Estrutura, operação e acompanhamento diário. Sem camada intermediária entre o diagnóstico e a entrega.
-          </p>
+          <a
+            href="#formulario"
+            className="mt-10 group inline-flex items-center justify-center px-9 py-4 text-base font-semibold text-primary transition-colors duration-200 ease-out bg-cta rounded-full hover:bg-cta-hover active:scale-[0.98] glow-cta"
+          >
+            Solicitar proposta
+            <span className="ml-2 transition-transform duration-200 ease-out group-hover:translate-x-1">&#8594;</span>
+          </a>
         </div>
 
         {/* 3 colunas: Contato · Palhoça · Orlando */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-12 lg:gap-16 pb-16 border-b border-white/10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-12 lg:gap-16 pb-12">
 
           {/* Contato */}
           <div className="flex flex-col gap-5">
@@ -66,8 +70,11 @@ export default function Footer() {
 
         </div>
 
+        {/* Linha Divisória de Gradiente */}
+        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-cta/40 to-transparent my-8 opacity-60"></div>
+
         {/* Copyright + Slogan */}
-        <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div className="flex flex-col md:flex-row md:items-center gap-5">
             <a href="#" aria-label="Voltar ao topo" className="shrink-0 hover:opacity-70 transition-opacity duration-200">
               <Image
