@@ -93,7 +93,7 @@ export default function Credibilidade() {
             className="flex flex-col"
           >
             <LeaderPhoto
-              src="/images/thiago3.png"
+              src="/images/Thiago3.png"
               alt="Thiago Weirich"
               initials="TW"
               imgClassName="object-cover object-top scale-[1.1] translate-y-1"
