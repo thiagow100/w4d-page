@@ -231,7 +231,7 @@ export default function ServicosDetalhado() {
               {/* Hierarquia interna: eyebrow → label → descrição → bullets */}
               <div className="mb-8">
                 <div className="mb-5">
-                  <Eyebrow accent>{service.subtitle}</Eyebrow>
+                  <Eyebrow>{service.subtitle}</Eyebrow>
                 </div>
                 <h3 className="text-2xl md:text-3xl lg:text-[2rem] font-semibold tracking-[-0.04em] text-primary leading-[1.15] mb-5">
                   {service.label}

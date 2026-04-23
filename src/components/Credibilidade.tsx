@@ -51,9 +51,7 @@ function LeaderPhoto({ src, alt, initials, imgClassName = "object-cover object-t
   const [hasError, setHasError] = useState(false);
 
   return (
-    <div className="w-full relative aspect-[4/5] rounded-tl-3xl rounded-br-3xl overflow-hidden bg-[#111] shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_25px_50px_-12px_rgba(0,0,0,0.45)]">
-      {/* Background de Estúdio (Radial Gradient) */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,_#2a2a2a_0%,_#111111_100%)]" />
+    <div className="w-full relative aspect-[4/5] rounded-tl-3xl rounded-br-3xl overflow-hidden bg-secondary shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_25px_50px_-12px_rgba(0,0,0,0.45)]">
       {hasError ? (
         <div className="absolute inset-0 flex items-center justify-center">
           <span className="text-5xl font-semibold text-secondary/40 tracking-tight">{initials}</span>
@@ -63,7 +61,7 @@ function LeaderPhoto({ src, alt, initials, imgClassName = "object-cover object-t
           src={src}
           alt={alt}
           onError={() => setHasError(true)}
-          className={`absolute inset-0 w-full h-full opacity-95 hover:opacity-100 transition-opacity duration-700 ${imgClassName}`}
+          className={`absolute inset-0 w-full h-full hover:opacity-90 transition-all duration-700 contrast-[1.08] saturate-[0.85] brightness-[0.95] ${imgClassName}`}
         />
       )}
     </div>
@@ -95,9 +93,10 @@ export default function Credibilidade() {
             className="flex flex-col"
           >
             <LeaderPhoto
-              src="/images/thiago2.png"
+              src="/images/thiago3.png"
               alt="Thiago Weirich"
               initials="TW"
+              imgClassName="object-cover object-top scale-[1.1] translate-y-1"
             />
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.04em] text-primary leading-[1.1] mt-8 mb-2">
               Thiago Weirich
@@ -108,19 +107,19 @@ export default function Credibilidade() {
             {/* Year-chips — âncora visual scan-friendly, não substitui a prosa */}
             <div className="flex flex-wrap gap-2 mb-5">
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
-                <span className="text-cta">●</span> 2005 · Vendas
+                <span className="text-white/40">●</span> 2005 · Vendas
               </span>
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
-                <span className="text-cta">●</span> 2020 · TW Broker
+                <span className="text-white/40">●</span> 2020 · TW Broker
               </span>
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
-                <span className="text-cta">●</span> Hoje · W4D
+                <span className="text-white/40">●</span> Hoje · W4D
               </span>
             </div>
             <p className="text-body text-base md:text-lg font-normal leading-[1.75] max-w-[60ch]">
               Thiago começou em vendas em 2005 e consolidou-se como corretor de imóveis em Santa Catarina a partir de 2011. Em 2015, passou a estudar tráfego pago errando com dinheiro do próprio bolso, quando o Facebook era mato. Em 2020 fundou a TW Broker, operação que vendeu milhões em imóveis todos os anos. Em 2023 criou o Corretor Que Vende, treinando mais de três mil profissionais do mercado imobiliário. Hoje, lidera a W4D aplicando esse mesmo sistema comercial no Brasil e Estados Unidos, focado em performance de conversão, volume e previsibilidade.
             </p>
-            <p className="text-primary font-medium text-base md:text-lg mt-6 leading-relaxed max-w-[60ch] border-l-2 border-cta/40 pl-4">
+            <p className="text-primary font-medium text-base md:text-lg mt-6 leading-relaxed max-w-[60ch] border-l-2 border-white/15 pl-4">
               No fim do dia o marketing é apenas o meio. A nossa única régua de sucesso é quanto a sua empresa vende com recorrência.
             </p>
           </motion.div>
@@ -147,19 +146,19 @@ export default function Credibilidade() {
             {/* Year-chips — âncora visual scan-friendly, não substitui a prosa */}
             <div className="flex flex-wrap gap-2 mb-5">
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
-                <span className="text-cta">●</span> 2011 · Gestão
+                <span className="text-white/40">●</span> 2011 · Gestão
               </span>
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
-                <span className="text-cta">●</span> 2019 · Tráfego
+                <span className="text-white/40">●</span> 2019 · Tráfego
               </span>
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
-                <span className="text-cta">●</span> Hoje · W4D
+                <span className="text-white/40">●</span> Hoje · W4D
               </span>
             </div>
             <p className="text-body text-base md:text-lg font-normal leading-[1.75] max-w-[60ch]">
               Carlos operou hostel e bar por oito anos a partir de 2011, sentindo na pele a gestão, a contratação e a pressão pelo faturamento. Em 2019 passou a se dedicar exclusivamente a tráfego pago e performance, com foco rigoroso em negócios locais. Em 2022 consolidou sua operação gerindo múltiplas contas de nichos variados, com métricas de ROI e conversão direta como régua. Em 2024 aprofundou a esteira em lançamentos imobiliários. Hoje, lidera o time de operação da W4D, garantindo que o faturamento projetado chegue no resultado comercial.
             </p>
-            <p className="text-primary font-medium text-base md:text-lg mt-6 leading-relaxed max-w-[60ch] border-l-2 border-cta/40 pl-4">
+            <p className="text-primary font-medium text-base md:text-lg mt-6 leading-relaxed max-w-[60ch] border-l-2 border-white/15 pl-4">
               Estratégias no papel não pagam contas. Meu trabalho é fazer a mídia colocar boas oportunidades na sua mesa todos os dias.
             </p>
           </motion.div>

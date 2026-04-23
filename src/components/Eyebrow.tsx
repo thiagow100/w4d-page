@@ -22,7 +22,7 @@ export default function Eyebrow({ children, className = '', accent = false, inde
     >
       {index && (
         <>
-          <span className="text-cta font-bold">{index}</span>
+          <span className="text-white/70 font-bold">{index}</span>
           <span className="text-secondary" aria-hidden>&bull;</span>
         </>
       )}

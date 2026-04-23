@@ -224,7 +224,7 @@ export default function FormularioLead() {
               Preencha o formulário. Nossa equipe fará uma pesquisa inicial sobre o seu negócio antes de agendar a primeira ligação.
             </p>
 
-            <p className="text-base md:text-lg text-body font-normal leading-[1.75] border-l-2 border-cta/40 pl-5">
+            <p className="text-base md:text-lg text-body font-normal leading-[1.75] border-l-2 border-white/15 pl-5">
               <strong className="text-primary font-medium">A primeira conversa:</strong> Faremos uma reunião rápida de alinhamento. Se entendermos que podemos gerar resultados reais para o seu modelo de negócio, desenhamos uma proposta comercial sob medida para a sua operação.
             </p>
 
