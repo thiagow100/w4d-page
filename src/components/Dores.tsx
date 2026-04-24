@@ -124,7 +124,10 @@ export default function Dores() {
               key={index}
               variants={cardVariants}
               style={{
-                '--mobile-top': `calc(5rem + ${index * 1.5}rem)`,
+                /* Offset 5.5rem (88px) por card: cada novo card sticky expõe
+                   o header + título do anterior. No peak (4 cards presos),
+                   user vê: 3 títulos empilhados em cima + card 4 completo. */
+                '--mobile-top': `calc(5rem + ${index * 5.5}rem)`,
                 zIndex: index + 10,
               } as React.CSSProperties}
               className="sticky top-[var(--mobile-top)] md:relative md:top-auto min-h-[60dvh] md:min-h-0 shadow-stack-card bg-tertiary p-8 md:p-10 rounded-xl md:hover:-translate-y-0.5 transition-transform duration-300 ease-out flex flex-col h-full"
