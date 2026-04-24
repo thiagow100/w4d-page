@@ -47,7 +47,12 @@ const cardVariants = {
 
 export default function Dores() {
   return (
-    <section id="dores" className="relative w-full pt-10 pb-12 md:pt-section-sm md:pb-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
+    <section id="dores" className="relative w-full pt-10 pb-12 md:pt-section-sm md:pb-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay overflow-hidden">
+
+      {/* Aurora W4D soft — continuidade atmosférica com o Hero. Camada única, blur 22px,
+          opacity 0.15, ciclo 56s. Silenciosa mas presente. */}
+      <div aria-hidden className="aurora-w4d-soft" />
+
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col gap-12 md:gap-16">
 
         {/* Cabeçalho */}

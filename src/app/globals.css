@@ -240,7 +240,34 @@ body {
   animation: aurora-w4d-slow 48s linear infinite;
 }
 
+/* Aurora SOFT — variante leve para seções não-Hero (bg-secondary, bg-primary).
+   1 só gradient (não 2), opacity reduzida 0.15, blur maior 22px. Continuidade
+   visual com o Hero sem competir com o conteúdo da seção. */
+.aurora-w4d-soft {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(80deg in oklch,
+      oklch(15% 0.10 27) 12%,
+      oklch(48% 0.22 27 / 0.7) 18%,
+      oklch(25% 0.14 27) 24%,
+      oklch(38% 0.19 27 / 0.5) 30%,
+      oklch(18% 0.11 27) 36%
+    );
+  background-size: 180% 110%;
+  background-position: 30% 60%;
+  filter: blur(22px);
+  mix-blend-mode: screen;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, #000 30%, transparent 88%);
+          mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, #000 30%, transparent 88%);
+  opacity: 0.15;
+  will-change: background-position;
+  animation: aurora-w4d-slow 56s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .aurora-w4d,
-  .aurora-w4d-slow { animation: none; }
+  .aurora-w4d-slow,
+  .aurora-w4d-soft { animation: none; }
 }
