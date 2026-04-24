@@ -124,18 +124,19 @@ export default function Dores() {
               key={index}
               variants={cardVariants}
               style={{
-                /* Offset 5.5rem (88px) por card: cada novo card sticky expõe
-                   o header + título do anterior. No peak (4 cards presos),
-                   user vê: 3 títulos empilhados em cima + card 4 completo. */
-                '--mobile-top': `calc(5rem + ${index * 5.5}rem)`,
+                /* Offset 7rem (112px) por card: expõe header + 2 linhas do título
+                   do card anterior no peak. p-6 + mb-4 + título (50px) + buffer (2px)
+                   = 112px. No peak (4 cards presos), user vê: 3 títulos COMPLETOS
+                   empilhados + card 4. */
+                '--mobile-top': `calc(5rem + ${index * 7}rem)`,
                 zIndex: index + 10,
               } as React.CSSProperties}
-              className="sticky top-[var(--mobile-top)] md:relative md:top-auto shadow-stack-card bg-tertiary p-7 md:p-10 rounded-xl md:hover:-translate-y-0.5 transition-transform duration-300 ease-out flex flex-col md:h-full"
+              className="sticky top-[var(--mobile-top)] md:relative md:top-auto shadow-stack-card bg-tertiary p-6 md:p-10 rounded-xl md:hover:-translate-y-0.5 transition-transform duration-300 ease-out flex flex-col md:h-full"
             >
               {/* GlowingEffect — border red-single ilumina sob proximidade do cursor */}
               <GlowingEffect proximity={80} spread={36} borderWidth={1} />
 
-              <div className="relative z-10 flex justify-between items-center mb-5 md:mb-8">
+              <div className="relative z-10 flex justify-between items-center mb-4 md:mb-8">
                 <span className="font-mono text-[11px] text-secondary tracking-[0.18em] uppercase">Sintoma / 0{index + 1}</span>
                 <PulseDot />
               </div>
