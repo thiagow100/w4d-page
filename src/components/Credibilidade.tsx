@@ -8,7 +8,7 @@ import Eyebrow from '@/components/Eyebrow';
 const metrics = [
   { value: 20, suffix: "+", label: "anos vendendo", context: "Antes de ser agência, fomos o cliente", isStatic: false },
   { value: 11, suffix: "+", label: "anos no digital", context: "Tráfego pago com dinheiro próprio", isStatic: false },
-  { value: 3000, suffix: "+", label: "alunos pelo mundo", context: "Método validado em operações pelo mundo", isStatic: false },
+  { value: 3000, suffix: "+", label: "alunos do método", context: "Profissionais treinados no método W4D", isStatic: false },
   { value: 0, suffix: "BR · USA", label: "onde operamos", context: "Operação ativa no Brasil e nos EUA", isStatic: true },
 ];
 
@@ -117,11 +117,14 @@ export default function Credibilidade() {
               </span>
             </div>
             <p className="text-body text-base md:text-lg font-normal leading-[1.75] max-w-[60ch]">
-              Thiago começou em vendas em 2005 e consolidou-se como corretor de imóveis em Santa Catarina a partir de 2011. Em 2015, passou a estudar tráfego pago errando com dinheiro do próprio bolso, quando o Facebook era mato. Em 2020 fundou a TW Broker, operação que vendeu milhões em imóveis todos os anos. Em 2023 criou o Corretor Que Vende, treinando mais de três mil profissionais do mercado imobiliário. Hoje, lidera a W4D aplicando esse mesmo sistema comercial no Brasil e Estados Unidos, focado em performance de conversão, volume e previsibilidade.
+              Thiago começou em vendas em 2005 e consolidou-se como corretor de imóveis em Santa Catarina a partir de 2011. Em 2015, passou a estudar tráfego pago errando com dinheiro do próprio bolso, quando quase ninguém anunciava no Facebook. Em 2020 fundou a TW Broker, operação que vendeu milhões em imóveis todos os anos. Em 2023 criou o Corretor Que Vende, treinando mais de três mil profissionais do mercado imobiliário. Hoje, lidera a W4D aplicando esse mesmo sistema comercial no Brasil e Estados Unidos, focado em performance de conversão, volume e previsibilidade.
             </p>
-            <p className="text-primary font-medium text-base md:text-lg mt-6 leading-relaxed max-w-[60ch] border-l-2 border-white/15 pl-4">
-              No fim do dia o marketing é apenas o meio. A nossa única régua de sucesso é quanto a sua empresa vende com recorrência.
-            </p>
+            <div className="mt-6 border-l-2 border-white/15 pl-4 max-w-[60ch]">
+              <span aria-hidden className="block font-serif text-5xl leading-none text-white/25 -mb-2">&ldquo;</span>
+              <p className="text-primary font-medium text-base md:text-lg leading-relaxed">
+                No fim do dia o marketing é apenas o meio. A nossa única régua de sucesso é quanto a sua empresa vende com recorrência.
+              </p>
+            </div>
           </motion.div>
 
           {/* Carlos */}
@@ -156,11 +159,14 @@ export default function Credibilidade() {
               </span>
             </div>
             <p className="text-body text-base md:text-lg font-normal leading-[1.75] max-w-[60ch]">
-              Carlos operou hostel e bar por oito anos a partir de 2011, sentindo na pele a gestão, a contratação e a pressão pelo faturamento. Em 2019 passou a se dedicar exclusivamente a tráfego pago e performance, com foco rigoroso em negócios locais. Em 2022 consolidou sua operação gerindo múltiplas contas de nichos variados, com métricas de ROI e conversão direta como régua. Em 2024 aprofundou a esteira em lançamentos imobiliários. Hoje, lidera o time de operação da W4D, garantindo que o faturamento projetado chegue no resultado comercial.
+              Carlos operou hostel e bar por oito anos a partir de 2011, sentindo na pele a gestão, a contratação e a pressão pelo faturamento. Em 2019 passou a se dedicar exclusivamente a tráfego pago e performance, com foco rigoroso em negócios locais. Em 2022 consolidou sua operação gerindo múltiplas contas em saúde e educação, com métricas de ROI e conversão direta como régua. Em 2024 aprofundou a esteira em lançamentos imobiliários. Hoje, lidera o time de operação da W4D, garantindo que o faturamento projetado chegue no resultado comercial.
             </p>
-            <p className="text-primary font-medium text-base md:text-lg mt-6 leading-relaxed max-w-[60ch] border-l-2 border-white/15 pl-4">
-              Estratégias no papel não pagam contas. Meu trabalho é fazer a mídia colocar boas oportunidades na sua mesa todos os dias.
-            </p>
+            <div className="mt-6 border-l-2 border-white/15 pl-4 max-w-[60ch]">
+              <span aria-hidden className="block font-serif text-5xl leading-none text-white/25 -mb-2">&ldquo;</span>
+              <p className="text-primary font-medium text-base md:text-lg leading-relaxed">
+                Estratégias no papel não pagam contas. Meu trabalho é fazer a mídia colocar boas oportunidades na sua mesa todos os dias.
+              </p>
+            </div>
           </motion.div>
 
         </div>
@@ -196,7 +202,7 @@ export default function Credibilidade() {
           </div>
         </motion.div>
 
-        {/* Métricas (Counters) — ratio controlado, sem salto 8x */}
+        {/* Métricas (Counters) — 4 cells, pulse dot inline na 4ª sinaliza "status ao vivo" */}
         <div className="w-full mt-24 grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 text-center md:text-left">
           {metrics.map((metric, index) => (
             <motion.div

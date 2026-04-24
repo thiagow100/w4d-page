@@ -71,7 +71,7 @@ export default function Footer() {
         </div>
 
         {/* Linha Divisória de Gradiente */}
-        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-cta/40 to-transparent my-8 opacity-60"></div>
+        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-cta-accent/55 to-transparent my-8 opacity-70"></div>
 
         {/* Copyright + Slogan */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
@@ -87,7 +87,7 @@ export default function Footer() {
             </a>
             <div className="flex items-center gap-4">
               <span className="font-mono text-[11px] md:text-xs text-secondary tracking-[0.12em] lowercase">
-                © 2026 · all rights reserved
+                © 2026 · W4D · todos os direitos reservados
               </span>
               <span className="text-white/10 hidden md:block">|</span>
               <div className="flex items-center gap-4">

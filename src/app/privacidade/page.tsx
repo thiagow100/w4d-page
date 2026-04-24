@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Política de Privacidade | W4Digital',
-  description: 'Política de privacidade e tratamento de dados pessoais da W4Digital.',
+  title: 'Política de Privacidade | W4D',
+  description: 'Política de privacidade e tratamento de dados pessoais da W4D.',
 };
 
 export default function Privacidade() {
@@ -24,7 +24,7 @@ export default function Privacidade() {
 
           <section>
             <h2 className="text-xl font-semibold text-primary mb-4">2. Como usamos seus dados</h2>
-            <p>Os dados coletados são utilizados exclusivamente para entrar em contato sobre os serviços da W4Digital. Não compartilhamos, vendemos ou cedemos dados pessoais a terceiros.</p>
+            <p>Os dados coletados são utilizados exclusivamente para entrar em contato sobre os serviços da W4D. Não compartilhamos, vendemos ou cedemos dados pessoais a terceiros.</p>
           </section>
 
           <section>

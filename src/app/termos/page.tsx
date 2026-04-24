@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Termos de Uso | W4Digital',
-  description: 'Termos de uso do site da W4Digital.',
+  title: 'Termos de Uso | W4D',
+  description: 'Termos de uso do site da W4D.',
 };
 
 export default function Termos() {
@@ -24,17 +24,17 @@ export default function Termos() {
 
           <section>
             <h2 className="text-xl font-semibold text-primary mb-4">2. Serviços</h2>
-            <p>Este site apresenta os serviços da W4Digital. As informações aqui descritas são de caráter informativo e não constituem oferta vinculante.</p>
+            <p>Este site apresenta os serviços da W4D. As informações aqui descritas são de caráter informativo e não constituem oferta vinculante.</p>
           </section>
 
           <section>
             <h2 className="text-xl font-semibold text-primary mb-4">3. Propriedade intelectual</h2>
-            <p>Todo o conteúdo deste site, incluindo textos, imagens, logotipos e design, é propriedade da W4Digital e está protegido por leis de propriedade intelectual.</p>
+            <p>Todo o conteúdo deste site, incluindo textos, imagens, logotipos e design, é propriedade da W4D e está protegido por leis de propriedade intelectual.</p>
           </section>
 
           <section>
             <h2 className="text-xl font-semibold text-primary mb-4">4. Limitação de responsabilidade</h2>
-            <p>A W4Digital não se responsabiliza por decisões tomadas com base nas informações apresentadas neste site.</p>
+            <p>A W4D não se responsabiliza por decisões tomadas com base nas informações apresentadas neste site.</p>
           </section>
 
           <section>

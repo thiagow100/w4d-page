@@ -35,7 +35,7 @@ const services = [
     id: 'conversao',
     label: 'Estrutura de Conversão',
     subtitle: 'Da Visita ao Contato',
-    description: 'Desenhamos páginas de destino e fluxos de automação de alto nível para visitantes que não compraram de primeira. O foco é filtrar curiosos e reter potenciais compradores reais.',
+    description: 'Desenhamos landing pages e fluxos de automação de alto nível para visitantes que não compraram de primeira. O foco é filtrar curiosos e reter potenciais compradores reais.',
     bullets: [
       'Construímos landing pages que conversam diretamente com a promessa do anúncio, mantendo a coerência visual e textual que faz o visitante converter.',
       'Configuramos sequências de recuperação automática para quem demonstrou interesse, aquecendo o contato antes mesmo do seu time comercial falar com ele.',
@@ -111,9 +111,9 @@ function MetodoW4D() {
           <svg className="w-full" height="2" viewBox="0 0 1000 2" preserveAspectRatio="none">
             <defs>
               <linearGradient id="metodoLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#EC0000" stopOpacity="0.2" />
-                <stop offset="50%" stopColor="#EC0000" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="#EC0000" stopOpacity="0.2" />
+                <stop offset="0%" stopColor="#FF3B3B" stopOpacity="0.3" />
+                <stop offset="50%" stopColor="#FF3B3B" stopOpacity="0.95" />
+                <stop offset="100%" stopColor="#FF3B3B" stopOpacity="0.3" />
               </linearGradient>
             </defs>
             <motion.path
@@ -135,7 +135,7 @@ function MetodoW4D() {
                 </span>
                 <PhaseDot progress={dotProgress} threshold={i} />
               </div>
-              <span className="font-mono text-xs text-cta/70 uppercase tracking-[0.18em] mb-3 mt-2">
+              <span className="font-mono text-xs text-cta uppercase tracking-[0.18em] mb-3 mt-2">
                 {phase.sub}
               </span>
               <span className="text-sm md:text-base text-body font-normal leading-snug max-w-[22ch]">
@@ -247,7 +247,7 @@ export default function ServicosDetalhado() {
                     <Check
                       size={16}
                       strokeWidth={2.5}
-                      className="text-white/25 mt-1 shrink-0"
+                      className="text-white/60 mt-1 shrink-0"
                     />
                     <span className="text-body font-normal leading-[1.7] text-sm md:text-base">
                       {bullet}

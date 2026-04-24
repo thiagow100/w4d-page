@@ -6,7 +6,7 @@ import Nav from '@/components/Nav';
 import SmoothScroll from '@/components/SmoothScroll';
 
 export const metadata: Metadata = {
-  title: 'W4Digital | Marketing Digital de Performance',
+  title: 'W4D | Marketing Digital de Performance',
   description: 'Estrutura completa de aquisição: anúncios, páginas de conversão e qualificação comercial para empresas que precisam vender com previsibilidade.',
 };
 

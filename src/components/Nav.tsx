@@ -45,7 +45,7 @@ export default function Nav() {
         initial={{ y: '-100%' }}
         animate={{ y: isScrolled ? '0%' : '-100%' }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] as any }}
-        className="fixed top-0 left-0 right-0 z-50 pointer-events-auto bg-[#171717]/85 backdrop-blur-[20px] border-b border-white/10"
+        className="fixed top-0 left-0 right-0 z-50 pointer-events-auto bg-primary/85 backdrop-blur-[20px] border-b border-white/10"
       >
         <div className="w-full px-6 sm:px-12 lg:px-24 py-3 flex items-center justify-between gap-4">
           <a href="#" aria-label="Voltar ao topo" className="shrink-0">

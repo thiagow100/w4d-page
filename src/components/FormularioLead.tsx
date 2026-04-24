@@ -187,23 +187,15 @@ export default function FormularioLead() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2.5 mb-5 self-center lg:self-start px-4 py-2 rounded-full border border-cta/30 bg-cta/[0.06]"
+            className="inline-flex items-center gap-2.5 mb-5 self-center lg:self-start px-4 py-2 rounded-full border border-cta-accent/40 bg-cta-accent/[0.08]"
           >
-            <span className="font-mono text-xs text-cta/60 tracking-[0.18em] uppercase">05</span>
-            <span className="text-cta/30" aria-hidden>/</span>
+            <span className="font-mono text-xs text-cta/80 tracking-[0.18em] uppercase">05</span>
+            <span className="text-cta/50" aria-hidden>/</span>
             <span className="w-1.5 h-1.5 rounded-full bg-cta animate-pulse" />
             <span className="font-mono text-xs text-cta tracking-[0.18em] uppercase">
-              SOLICITAR PROPOSTA
+              O próximo passo
             </span>
           </motion.div>
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="font-mono text-body text-xs tracking-[0.22em] uppercase mb-5 block"
-          >
-            O próximo passo
-          </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -241,10 +233,10 @@ export default function FormularioLead() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
           className="w-full lg:w-1/2"
         >
-          <div className="border-gradient bg-secondary p-8 md:p-10 rounded-2xl shadow-2xl shadow-cta/5 relative overflow-hidden">
+          <div className="border-gradient bg-secondary p-8 md:p-10 rounded-2xl shadow-2xl shadow-cta-accent/10 relative overflow-hidden">
             {isSuccess ? (
               <div className="py-20 flex flex-col items-center text-center">
-                <div className="w-20 h-20 bg-cta/10 border border-cta rounded-full flex items-center justify-center mb-6">
+                <div className="w-20 h-20 bg-cta-accent/15 border border-cta rounded-full flex items-center justify-center mb-6">
                   <svg className="w-10 h-10 text-cta" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
@@ -325,7 +317,7 @@ export default function FormularioLead() {
                 </button>
 
                 <p className="text-xs text-secondary text-center font-normal">
-                  Suas informações são estritamente confidenciais.
+                  Atendimento rápido. Quem te responde é quem vai operar a conta.
                 </p>
 
               </form>

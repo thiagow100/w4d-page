@@ -1,4 +1,4 @@
-# W4Digital Landing Page — Instruções para Agentes
+# W4D Landing Page — Instruções para Agentes
 
 ## Protocolo de início de sessão
 Toda sessão nova deve começar confirmando:
@@ -17,27 +17,54 @@ Se `pwd` retornar caminho diferente, pare e avise. As skills só funcionam se o 
 - TypeScript
 
 ## Nome da marca
-- **W4Digital** → nome oficial. Usar em: títulos, footer, contexto formal, primeira menção em qualquer seção
-- **W4D** → abreviação aceita. Usar em: contextos visuais (logos, ícones), URLs, hashtags, segunda menção em diante
-- **Método W4D** → nome próprio do método. Usar sempre assim, nunca traduzir, nunca abreviar
-- Nunca "W4 Digital" (separado)
+- **W4D** → nome de marca em TODA comunicação pública: copy, títulos, headers, footer, meta tags, SEO, assinaturas, logos. É o único nome da marca.
+- **W4Digital LLC** → razão social da entidade americana. Aparece APENAS em endereço legal no Footer. Nunca em copy de marketing.
+- **W4D Negócios Digitais LTDA** → razão social da entidade brasileira. Aparece APENAS em endereços legais (Footer, páginas de CNPJ/contato jurídico).
+- **Método W4D** → nome próprio do método. Usar sempre assim, nunca traduzir, nunca abreviar.
+- Nunca "W4 Digital" (separado) nem "W4digital" como marca. O nome anterior "W4Digital" foi deprecado em abril/2026 como marca pública — só sobrevive como razão social da LLC.
 
 ## Público-alvo
 Brasileiros empresários com empresa nos EUA. Sofisticado, ocupado, desconfiado. PT é a copy de origem. EN e ES virão como traduções de apoio.
 
 ## Cores da Marca (NUNCA alterar)
-- Fundo primary: #171717
-- Fundo secondary: #1C1C1C
-- Fundo tertiary: #222222
-- Vermelho CTA: #EC0000
-- Vermelho hover (vinho): #7A0000 *(marcar para revisão futura)*
-- Texto primary: #FFFFFF
-- Texto secondary: #565656
 
-**Por que não #000000:** Preto puro #000000 proibido — Geist Sans foi desenhada pra #171717. Sobre preto puro causa halation.
+### Fundos (escala Entrepedia-like — preto ancora vermelho de marca)
+- Fundo primary: `#0A0A0A` — canvas principal (Hero, FAQ, Footer). Off-black ancora acentos vermelhos
+- Fundo secondary: `#111111` — seções alternadas (Dores, Serviços, Credibilidade, Formulário)
+- Fundo tertiary: `#1A1A1A` — cards dentro das seções. Step visível mas discreto
+
+### Texto (escala de 4 níveis, calibrada sobre #0A0A0A — #171717)
+- Texto primary: `#FFFFFF` (contraste 16.9:1) — títulos, CTAs, frases-âncora
+- Texto body: `#A1A1A1` (6.3:1 ✓ AA) — parágrafos, descrições longas
+- Texto secondary: `#737373` (3.6:1 ✓ AA large) — eyebrows, labels mono, metadata
+- Texto muted: `#525252` (2.4:1, large-text only) — copyright, legal, tooltips — uso restrito
+
+### Vermelho (escala de 3 papéis)
+- CTA (solid fills): `#EC0000` — botões, pulse dots, checkmarks, ícones sólidos, **todo texto vermelho** (eyebrows, labels, sub-labels)
+- CTA hover: `#FF1F1F` — hover LIFTA (mais claro), não escurece. Padrão Apple/Vercel dark-mode
+- CTA accent: `#FF3B3B` — vermelho mais claro, uso EXCLUSIVO em **camadas translúcidas com alpha ≤ 0.5** (arcos, glows, gradientes, bordas translúcidas, fundos translúcidos). Ao aplicar `/10` a `/40` ainda lê como vermelho, não como marrom
+- Focus ring: `#EC0000` — alinhado à marca (nunca azul)
+
+**Regra operacional crítica — não violar:**
+- `text-cta-accent` em texto sólido → PROIBIDO. Vira rosa-choque/coral contra dark, rompendo a paleta. Se precisar mutar texto vermelho, use `text-cta/XX` (mesma matiz, só com alpha).
+- `bg-cta-accent/40` em fundos → OK.
+- `border-cta-accent/30` em bordas → OK.
+- `from-cta-accent/15` em gradients → OK.
+- Em resumo: `cta-accent` sempre acompanhado de `/XX`. Se você digitou `text-cta-accent` ou `bg-cta-accent` sem alpha, está errado.
+
+### Estado
+- Error: `#EF4444` — distinto do vermelho de marca pra não confundir estado com ação
+
+**Por que não #000000:** Preto puro #000000 proibido — causa halation com texto branco (o olho "queima" a borda). `#0A0A0A` é off-black seguro: 10/255 de luminância, ainda preto visualmente mas sem o problema perceptivo do preto puro. Apple, Vercel e Linear operam nesta mesma faixa.
+
+**Por que escurecer de #171717 pra #0A0A0A:** O vermelho de marca `#EC0000` precisa de fundo quase-preto pra ancorar. Em `#171717` (cinza grafite) o vermelho flutua; em `#0A0A0A` ele fixa. Decisão tomada após comparação direta com Entrepedia.
+
+**Por que não #565656 como secondary:** Reprova WCAG AA até pra texto grande. Foi substituído pelo sistema de 4 níveis acima.
 
 ## Regra de cor
-- Vermelho aparece APENAS em CTAs, linha de progresso do Método W4D, bordas de focus e hover
+- Vermelho sólido (`cta`) aparece APENAS em CTAs, pulse dots, checkmarks e ícones de marca
+- Vermelho translúcido usa SEMPRE `cta-accent` como base, nunca `cta` (que vira marrom em baixa opacidade)
+- Focus é SEMPRE vermelho (`#EC0000`), nunca azul
 - Fundo é 95% grafite escuro. Sem fundos coloridos.
 
 ## Fontes oficiais
@@ -53,13 +80,13 @@ Brasileiros empresários com empresa nos EUA. Sofisticado, ocupado, desconfiado.
 ## Conceito visual
 
 ### Filosofia: Apple-first
-Apple-first é a filosofia visual da W4Digital. Significa:
+Apple-first é a filosofia visual da W4D. Significa:
 - Minimalismo agressivo. Muito espaço negativo.
 - Tipografia grande como protagonista da página.
 - Uma ideia por seção — nunca empilhar mensagens.
 - Movimento apenas com propósito (nunca decorativo, nunca em loop).
 - Hierarquia visual fixa em todas as seções: eyebrow → título → subtítulo → corpo
-- Grafite dominante (#171717, #1C1C1C, #222222). Vermelho (#EC0000) apenas em CTAs, focus e acentos pontuais.
+- Off-black dominante (#0A0A0A, #111111, #1A1A1A). Vermelho (#EC0000) apenas em CTAs, focus e acentos pontuais.
 - Nenhum elemento "enfeite". Se não serve à mensagem, não entra.
 
 ### Sistema técnico: Vercel/Geist

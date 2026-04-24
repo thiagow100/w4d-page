@@ -43,7 +43,7 @@ function FAQItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boo
           aria-hidden
           className={`shrink-0 mt-1 w-6 h-6 flex items-center justify-center rounded-full border text-lg leading-none transition-all duration-300 ${
             isOpen
-              ? 'border-cta/40 bg-cta/[0.08] text-cta rotate-45'
+              ? 'border-cta-accent/50 bg-cta-accent/[0.1] text-cta rotate-45'
               : 'border-white/15 bg-white/[0.02] text-body group-hover:border-white/30 group-hover:text-primary'
           }`}
         >

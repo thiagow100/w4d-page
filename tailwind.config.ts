@@ -42,19 +42,21 @@ const config: Config = {
         },
       },
       backgroundColor: {
-        primary: "#171717",
-        secondary: "#1C1C1C",
-        tertiary: "#222222",
+        primary: "#0A0A0A",
+        secondary: "#111111",
+        tertiary: "#1A1A1A",
       },
       textColor: {
         primary: "#FFFFFF",
         body: "#A1A1A1",
         secondary: "#737373",
+        muted: "#525252",
       },
       colors: {
         cta: "#EC0000",
-        "cta-hover": "#7A0000",
-        "focus-ring": "#3B82F6",
+        "cta-hover": "#FF1F1F",
+        "cta-accent": "#FF3B3B",
+        "focus-ring": "#EC0000",
         "error": "#EF4444",
       }
     },

@@ -97,7 +97,7 @@ export default function Dores() {
             >
               <div className="flex justify-between items-center mb-8">
                 <span className="font-mono text-[11px] text-secondary tracking-[0.18em] uppercase">Sintoma / 0{index + 1}</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-white/25"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-cta"></span>
               </div>
               <h3 className="text-xl md:text-2xl font-semibold text-primary mb-4 tracking-[-0.03em] leading-snug">
                 {pain.title}
@@ -107,7 +107,7 @@ export default function Dores() {
               </p>
               {pain.resolution && (
                 <div className="pt-5 mt-6 border-t border-white/5 flex items-start gap-3">
-                  <span className="text-white/35 text-sm mt-0.5">&rarr;</span>
+                  <span className="text-white/60 text-sm mt-0.5">&rarr;</span>
                   <p className="text-primary font-medium text-sm md:text-base leading-relaxed">
                     {pain.resolution}
                   </p>

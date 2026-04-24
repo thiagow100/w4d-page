@@ -40,20 +40,20 @@ export default function Hero() {
       <div
         aria-hidden
         className="absolute top-[62%] left-0 right-0 h-px pointer-events-none z-0
-          bg-[linear-gradient(to_right,transparent_0%,rgba(255,255,255,0.08)_30%,rgba(236,0,0,0.35)_50%,rgba(255,255,255,0.08)_70%,transparent_100%)]"
+          bg-[linear-gradient(to_right,transparent_0%,rgba(255,255,255,0.08)_30%,rgba(255,59,59,0.5)_50%,rgba(255,255,255,0.08)_70%,transparent_100%)]"
       />
 
       {/* Anchor BR-EUA: SVG line-art minimalista, dois pontos e arco conectando */}
       <svg
         aria-hidden
-        className="absolute top-[55%] left-1/2 -translate-x-1/2 w-[min(720px,90vw)] h-[120px] pointer-events-none z-0 opacity-[0.18]"
+        className="absolute top-[55%] left-1/2 -translate-x-1/2 w-[min(720px,90vw)] h-[120px] pointer-events-none z-0 opacity-[0.32]"
         viewBox="0 0 720 120"
         fill="none"
       >
         <defs>
           <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.4" />
-            <stop offset="50%" stopColor="#EC0000" stopOpacity="0.9" />
+            <stop offset="50%" stopColor="#FF3B3B" stopOpacity="0.95" />
             <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0.4" />
           </linearGradient>
         </defs>
@@ -70,18 +70,18 @@ export default function Hero() {
         />
         {/* Pin Brasil (esquerda-baixo) */}
         <circle cx="140" cy="90" r="3" fill="#EC0000" />
-        <circle cx="140" cy="90" r="8" fill="none" stroke="rgba(236,0,0,0.35)" strokeWidth="0.8" />
+        <circle cx="140" cy="90" r="8" fill="none" stroke="rgba(255,59,59,0.5)" strokeWidth="0.8" />
         {/* Pin EUA (direita-baixo) */}
         <circle cx="580" cy="90" r="3" fill="#EC0000" />
-        <circle cx="580" cy="90" r="8" fill="none" stroke="rgba(236,0,0,0.35)" strokeWidth="0.8" />
+        <circle cx="580" cy="90" r="8" fill="none" stroke="rgba(255,59,59,0.5)" strokeWidth="0.8" />
       </svg>
 
-      {/* Glow vinho diluído na base — transição pra Dores, ainda mais discreto */}
+      {/* Glow diluído na base — transição pra Dores, ainda discreto mas legível sobre grafite */}
       <div
         aria-hidden
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-[220px] pointer-events-none z-0
-          bg-gradient-to-t from-cta-hover/[0.08] via-cta-hover/[0.025] to-transparent
-          blur-3xl opacity-70"
+          bg-gradient-to-t from-cta-accent/[0.14] via-cta-accent/[0.05] to-transparent
+          blur-3xl opacity-80"
       />
 
       {/* Container Principal */}
@@ -116,7 +116,7 @@ export default function Hero() {
           variants={fadeUp}
           className="text-lg md:text-xl text-body font-normal leading-[1.7] max-w-2xl mb-12 text-pretty"
         >
-          Aqui na W4Digital, construímos toda a estrutura para trazer cliente novo: dos anúncios, passando pela qualificação, até o momento em que ele está pronto para comprar.
+          Aqui na W4D, construímos toda a estrutura para trazer cliente novo: dos anúncios, passando pela qualificação, até o momento em que ele está pronto para comprar.
         </motion.p>
 
         {/* CTAs */}
