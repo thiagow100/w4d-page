@@ -25,7 +25,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative w-full min-h-[88dvh] flex flex-col items-center justify-center px-6 sm:px-12 lg:px-24 overflow-hidden pt-32 md:pt-40 pb-28">
+    <section className="relative w-full min-h-[88dvh] flex flex-col items-center justify-center px-6 sm:px-12 lg:px-24 overflow-hidden pt-28 md:pt-32 pb-20 md:pb-28">
 
       {/* Dot-grid com mask radial — base atmosférica */}
       <div
@@ -138,7 +138,7 @@ export default function Hero() {
           </div>
 
           {/* Kicker de posicionamento */}
-          <span className="text-sm text-body/80 mt-3 font-light max-w-2xl leading-relaxed">
+          <span className="text-sm text-body/80 mt-3 font-light max-w-4xl leading-relaxed">
             Não somos marqueteiros. Somos vendedores que colocaram dinheiro próprio em anúncios antes de cuidar do seu.
           </span>
         </motion.div>

@@ -85,12 +85,12 @@ export default function Footer() {
                 className="h-6 md:h-7 w-auto object-contain opacity-90"
               />
             </a>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col items-start gap-2 md:flex-row md:items-center md:gap-4">
               <span className="font-mono text-[11px] md:text-xs text-secondary tracking-[0.12em] lowercase">
-                © 2026 · W4D · todos os direitos reservados
+                © 2026 · W4D
               </span>
               <span className="text-white/10 hidden md:block">|</span>
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col items-start gap-2 md:flex-row md:items-center md:gap-4">
                 <a href="/privacidade" className="font-mono text-[11px] md:text-xs text-secondary hover:text-primary transition-colors duration-200 tracking-[0.12em] lowercase">
                   política de privacidade
                 </a>

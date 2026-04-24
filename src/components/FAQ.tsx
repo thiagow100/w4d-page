@@ -71,10 +71,10 @@ function FAQItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boo
 }
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="relative w-full py-section px-6 sm:px-12 lg:px-24 bg-primary">
+    <section id="faq" className="relative w-full py-20 md:py-section px-6 sm:px-12 lg:px-24 bg-primary">
       <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
 
         {/* Topo Centralizado */}

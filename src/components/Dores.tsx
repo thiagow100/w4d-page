@@ -47,7 +47,7 @@ const cardVariants = {
 
 export default function Dores() {
   return (
-    <section id="dores" className="relative w-full pt-section-sm pb-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
+    <section id="dores" className="relative w-full pt-16 pb-20 md:pt-section-sm md:pb-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col gap-12 md:gap-16">
 
         {/* Cabeçalho */}

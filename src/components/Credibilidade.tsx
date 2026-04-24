@@ -70,7 +70,7 @@ function LeaderPhoto({ src, alt, initials, imgClassName = "object-cover object-t
 
 export default function Credibilidade() {
   return (
-    <section id="quem-somos" className="relative w-full py-section overflow-hidden bg-secondary noise-overlay scroll-mt-24">
+    <section id="quem-somos" className="relative w-full py-20 md:py-section overflow-hidden bg-secondary noise-overlay scroll-mt-24">
       {/* Fundo Gradiente */}
       <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-tertiary to-transparent z-0 opacity-80" />
 

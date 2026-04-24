@@ -178,7 +178,7 @@ export default function FormularioLead() {
   };
 
   return (
-    <section id="formulario" className="relative w-full py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
+    <section id="formulario" className="relative w-full py-20 md:py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
       <div className="relative z-10 max-w-5xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
 
         <div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left">
@@ -201,7 +201,7 @@ export default function FormularioLead() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-[3.5rem] font-semibold tracking-[-0.05em] text-white/95 leading-[1.08] mb-10 text-balance"
+            className="text-4xl md:text-5xl lg:text-5xl font-semibold tracking-[-0.05em] text-white/95 leading-[1.08] mb-10 text-balance"
           >
             Se o modelo da W4D faz sentido para a sua empresa, vamos conversar.
           </motion.h2>
