@@ -2,7 +2,6 @@
 
 import { motion, useInView, animate } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
-import Image from 'next/image';
 import Eyebrow from '@/components/Eyebrow';
 
 const metrics = [
@@ -10,15 +9,6 @@ const metrics = [
   { value: 11, suffix: "+", label: "anos no digital", context: "Tráfego pago com dinheiro próprio", isStatic: false },
   { value: 3000, suffix: "+", label: "alunos do método", context: "Profissionais treinados no método W4D", isStatic: false },
   { value: 0, suffix: "BR · USA", label: "onde operamos", context: "Operação ativa no Brasil e nos EUA", isStatic: true },
-];
-
-const brands = [
-  { name: 'iFood', logo: '/logos/ifood.svg' },
-  { name: 'Santander', logo: '/logos/santander.svg' },
-  { name: 'Cyrela', logo: '/logos/cyrela.svg' },
-  { name: 'CBA', logo: '/logos/cba.svg' },
-  { name: 'A6 Inc', logo: '/logos/a6inc.svg' },
-  { name: 'Sidesc', logo: '/logos/sidesc.svg' },
 ];
 
 function Counter({ from = 0, to, suffix, duration = 2, isStatic = false }: { from?: number, to: number, suffix: string, duration?: number, isStatic?: boolean }) {
@@ -170,37 +160,6 @@ export default function Credibilidade() {
           </motion.div>
 
         </div>
-
-        {/* Marcas - Marquee horizontal infinito */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
-          className="mt-24 flex flex-col items-center w-full"
-        >
-          <Eyebrow className="mb-10">Com quem já trabalhamos</Eyebrow>
-
-          <div className="marquee-mask marquee-pause w-full overflow-hidden">
-            <div className="marquee-track gap-16 md:gap-24 py-2">
-              {[...brands, ...brands].map((brand, i) => (
-                <div
-                  key={`${brand.name}-${i}`}
-                  className="shrink-0 flex items-center justify-center"
-                  aria-hidden={i >= brands.length}
-                >
-                  <Image
-                    src={brand.logo}
-                    alt={i < brands.length ? brand.name : ''}
-                    width={140}
-                    height={48}
-                    className="h-8 md:h-10 w-auto object-contain opacity-40 hover:opacity-100 brightness-0 invert transition-opacity duration-300"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
 
         {/* Métricas (Counters) — 4 cells, pulse dot inline na 4ª sinaliza "status ao vivo" */}
         <div className="w-full mt-24 grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 text-center md:text-left">
