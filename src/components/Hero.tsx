@@ -146,7 +146,7 @@ export default function Hero() {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full min-h-[88dvh] flex flex-col items-center justify-center px-6 sm:px-12 lg:px-24 overflow-hidden pt-28 md:pt-32 pb-12 md:pb-28 noise-overlay"
+      className="relative w-full min-h-[82dvh] flex flex-col items-center justify-center px-6 sm:px-12 lg:px-24 overflow-hidden pt-28 md:pt-32 pb-8 md:pb-16 noise-overlay"
     >
 
       {/* Aurora W4D — camada principal (streaks rápidos 24s) */}
