@@ -226,7 +226,7 @@ export default function ServicosDetalhado() {
                 '--mobile-top': `calc(5rem + ${index * 1.5}rem)`,
                 zIndex: index + 10,
               } as React.CSSProperties}
-              className="sticky top-[var(--mobile-top)] md:relative md:top-auto w-full h-auto min-h-[60dvh] md:min-h-0 flex flex-col shadow-stack-card bg-tertiary rounded-2xl overflow-hidden p-8 sm:p-10 lg:p-12"
+              className="sticky top-[var(--mobile-top)] md:relative md:top-auto w-full h-auto min-h-[60dvh] md:min-h-0 flex flex-col shadow-stack-card bg-tertiary rounded-2xl overflow-hidden p-8 pb-16 sm:p-10 sm:pb-10 lg:p-12 lg:pb-12"
             >
               {/* Hierarquia interna: eyebrow → label → descrição → bullets */}
               <div className="mb-8">

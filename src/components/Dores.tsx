@@ -64,7 +64,7 @@ export default function Dores() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.1 }}
               className="text-4xl md:text-5xl font-semibold tracking-[-0.05em] leading-[1.1] text-white/95 text-balance"
             >
-              Reconhece algum destes no seu negócio?
+              Reconhece algum desses problemas no seu negócio?
             </motion.h2>
           </div>
 
@@ -76,7 +76,7 @@ export default function Dores() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.2 }}
               className="text-body text-lg md:text-xl font-normal leading-[1.7] max-w-lg"
             >
-              Quatro sintomas recorrentes em empresas que batem em um teto invisível. Se você se vê em algum deles, não é acaso. É arquitetura.
+              Quatro sintomas recorrentes em empresas em crescimento. Se você se vê em algum deles, não é falta de esforço. É falta de estrutura.
             </motion.p>
           </div>
         </div>
