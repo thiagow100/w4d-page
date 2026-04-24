@@ -96,7 +96,7 @@ export default function Credibilidade() {
               src="/images/Thiago3.png"
               alt="Thiago Weirich"
               initials="TW"
-              imgClassName="object-cover object-top scale-[1.1] translate-y-1"
+              imgClassName="object-cover object-top origin-top scale-[1.2]"
             />
             <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.04em] text-primary leading-[1.1] mt-8 mb-2">
               Thiago Weirich
