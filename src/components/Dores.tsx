@@ -155,6 +155,12 @@ export default function Dores() {
               )}
             </motion.div>
           ))}
+
+          {/* Spacer mobile — estende o peak moment do sticky stack.
+              30dvh de scroll extra depois do card 4 stickar, mantendo os 4
+              cards visíveis simultaneamente por ~1s de scroll normal.
+              md:hidden porque desktop é grid 2×2 sem sticky. */}
+          <div aria-hidden className="h-[30dvh] md:hidden" />
         </motion.div>
 
       </div>
