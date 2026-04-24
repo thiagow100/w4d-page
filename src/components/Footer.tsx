@@ -4,6 +4,10 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 export default function Footer() {
   return (
     <footer className="relative w-full overflow-hidden bg-primary pt-16 md:pt-24 pb-8 px-6 sm:px-12 lg:px-24 border-t border-white/5 noise-overlay">
+
+      {/* Aurora W4D soft — continuidade atmosférica cross-section */}
+      <div aria-hidden className="aurora-w4d-soft" />
+
       <div className="max-w-5xl mx-auto flex flex-col relative z-10">
 
         {/* Assinatura de marca e CTA Final */}

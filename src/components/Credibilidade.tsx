@@ -61,6 +61,10 @@ function LeaderPhoto({ src, alt, initials, imgClassName = "object-cover object-t
 export default function Credibilidade() {
   return (
     <section id="quem-somos" className="relative w-full py-12 md:py-section overflow-hidden bg-secondary noise-overlay scroll-mt-24">
+
+      {/* Aurora W4D soft — continuidade atmosférica cross-section */}
+      <div aria-hidden className="aurora-w4d-soft" />
+
       {/* Fundo Gradiente */}
       <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-tertiary to-transparent z-0 opacity-80" />
 

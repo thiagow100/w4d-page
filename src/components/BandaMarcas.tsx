@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Eyebrow from '@/components/Eyebrow';
+import { ProgressiveBlur } from '@/components/ui/progressive-blur';
 
 const brands = [
   { name: 'iFood', logo: '/logos/ifood.svg' },
@@ -29,7 +30,9 @@ export default function BandaMarcas() {
         >
           <Eyebrow className="mb-10">Confiança de operações exigentes</Eyebrow>
 
-          <div className="marquee-mask marquee-pause w-full overflow-hidden">
+          {/* Marquee container — substitui linear-gradient mask por ProgressiveBlur
+              nas laterais (efeito iOS-like, mais premium que CSS mask plano). */}
+          <div className="marquee-pause relative w-full overflow-hidden">
             <div className="marquee-track gap-16 md:gap-24 py-2">
               {[...brands, ...brands].map((brand, i) => (
                 <div
@@ -47,6 +50,19 @@ export default function BandaMarcas() {
                 </div>
               ))}
             </div>
+
+            {/* Progressive blur overlays — laterais esquerda + direita.
+                Substitui o linear-gradient mask plano. */}
+            <ProgressiveBlur
+              direction="left"
+              blurIntensity={0.6}
+              className="absolute top-0 left-0 h-full w-[120px] md:w-[160px]"
+            />
+            <ProgressiveBlur
+              direction="right"
+              blurIntensity={0.6}
+              className="absolute top-0 right-0 h-full w-[120px] md:w-[160px]"
+            />
           </div>
         </motion.div>
       </div>

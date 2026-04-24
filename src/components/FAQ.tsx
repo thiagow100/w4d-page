@@ -79,6 +79,10 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-primary noise-overlay">
+
+      {/* Aurora W4D soft — continuidade atmosférica cross-section */}
+      <div aria-hidden className="aurora-w4d-soft" />
+
       <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
 
         {/* Topo Centralizado */}

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll, useMotionValueEvent, useMotionValue, useMotionTemplate, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent, useMotionValue, useMotionTemplate, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import MagneticButton from '@/components/MagneticButton';
 
@@ -83,7 +83,11 @@ export default function Hero() {
     return () => clearTimeout(t);
   }, []);
 
+  /** prefers-reduced-motion: respeita preferência do user pra desabilitar
+   *  bounce perpétuo do chevron (única animação infinita Framer Motion no Hero). */
+  const prefersReducedMotion = useReducedMotion();
   const chevronActive = revealed && !isScrolled;
+  const chevronBounceEnabled = chevronActive && !prefersReducedMotion;
 
   /** Spotlight cursor — radial gradient vermelho sutil que segue o cursor dentro do Hero.
    *  Desktop only (touch não faz sentido). Opacity controlada por estado isActive — somente
@@ -243,9 +247,9 @@ export default function Hero() {
         className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none"
       >
         <motion.svg
-          animate={chevronActive ? { y: [0, 5, 0] } : { y: 0 }}
+          animate={chevronBounceEnabled ? { y: [0, 5, 0] } : { y: 0 }}
           transition={
-            chevronActive
+            chevronBounceEnabled
               ? { duration: 2.4, repeat: Infinity, ease: 'easeInOut' }
               : { duration: 0.3 }
           }
