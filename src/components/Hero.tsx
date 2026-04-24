@@ -25,7 +25,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative w-full min-h-[88dvh] flex flex-col items-center justify-center px-6 sm:px-12 lg:px-24 overflow-hidden pt-28 md:pt-32 pb-20 md:pb-28">
+    <section className="relative w-full min-h-[88dvh] flex flex-col items-center justify-center px-6 sm:px-12 lg:px-24 overflow-hidden pt-28 md:pt-32 pb-12 md:pb-28">
 
       {/* Dot-grid com mask radial — base atmosférica */}
       <div

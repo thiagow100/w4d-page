@@ -178,7 +178,7 @@ export default function FormularioLead() {
   };
 
   return (
-    <section id="formulario" className="relative w-full py-20 md:py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
+    <section id="formulario" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
       <div className="relative z-10 max-w-5xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
 
         <div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left">

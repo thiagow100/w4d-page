@@ -17,7 +17,7 @@ export default function BandaMarcas() {
   return (
     <section
       aria-label="Marcas que já operaram com a W4D"
-      className="relative w-full py-16 md:py-20 px-6 sm:px-12 lg:px-24 bg-primary border-y border-white/5"
+      className="relative w-full py-10 md:py-20 px-6 sm:px-12 lg:px-24 bg-primary border-y border-white/5"
     >
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center">
         <motion.div
