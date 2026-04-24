@@ -140,7 +140,7 @@ export default function Dores() {
                 <span className="font-mono text-[11px] text-secondary tracking-[0.18em] uppercase">Sintoma / 0{index + 1}</span>
                 <PulseDot />
               </div>
-              <h3 className="relative z-10 text-xl md:text-2xl font-semibold text-primary mb-3 md:mb-4 tracking-[-0.03em] leading-snug">
+              <h3 className="relative z-10 text-xl md:text-2xl font-semibold text-primary mb-3 md:mb-4 tracking-[-0.03em] leading-snug min-h-[2.5em] md:min-h-0">
                 {pain.title}
               </h3>
               <p className="relative z-10 text-body leading-[1.65] font-normal text-sm md:text-base md:flex-1">
