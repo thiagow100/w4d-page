@@ -130,11 +130,11 @@ function FloatingSelect({
 }
 
 const segmentOptions = [
-  { value: "Imobiliário (incorporadora, imobiliária, corretor)", label: "Imobiliário (incorporadora, imobiliária, corretor)" },
-  { value: "Educação e infoprodutos", label: "Educação e infoprodutos" },
-  { value: "Serviços profissionais (advocacia, contabilidade, consultoria)", label: "Serviços profissionais (advocacia, contabilidade, consultoria)" },
-  { value: "Saúde (clínicas, consultórios, healthtech)", label: "Saúde (clínicas, consultórios, healthtech)" },
-  { value: "E-commerce e varejo", label: "E-commerce e varejo" },
+  { value: "Imobiliário", label: "Imobiliário · Real estate" },
+  { value: "Construção", label: "Construção · Construction" },
+  { value: "Clínicas", label: "Clínicas · Healthcare" },
+  { value: "Serviços profissionais", label: "Serviços profissionais · Professional services" },
+  { value: "Educação", label: "Educação · Education" },
   { value: "Outro", label: "Outro" },
 ];
 
