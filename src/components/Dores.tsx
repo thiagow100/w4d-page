@@ -3,6 +3,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import Eyebrow from '@/components/Eyebrow';
+import { GlowingEffect } from '@/components/ui/glowing-effect';
 
 /**
  * PulseDot — transita de vermelho ("problema ativo") para neutro ("problema registrado")
@@ -121,20 +122,23 @@ export default function Dores() {
             <motion.div
               key={index}
               variants={cardVariants}
-              className="shadow-card-dark bg-tertiary p-8 md:p-10 rounded-xl hover:-translate-y-0.5 transition-transform duration-300 ease-out flex flex-col h-full"
+              className="relative shadow-card-dark bg-tertiary p-8 md:p-10 rounded-xl hover:-translate-y-0.5 transition-transform duration-300 ease-out flex flex-col h-full"
             >
-              <div className="flex justify-between items-center mb-8">
+              {/* GlowingEffect — border red-single ilumina sob proximidade do cursor */}
+              <GlowingEffect proximity={80} spread={36} borderWidth={1} />
+
+              <div className="relative z-10 flex justify-between items-center mb-8">
                 <span className="font-mono text-[11px] text-secondary tracking-[0.18em] uppercase">Sintoma / 0{index + 1}</span>
                 <PulseDot />
               </div>
-              <h3 className="text-xl md:text-2xl font-semibold text-primary mb-4 tracking-[-0.03em] leading-snug">
+              <h3 className="relative z-10 text-xl md:text-2xl font-semibold text-primary mb-4 tracking-[-0.03em] leading-snug">
                 {pain.title}
               </h3>
-              <p className="text-body leading-[1.7] font-normal text-sm md:text-base flex-1">
+              <p className="relative z-10 text-body leading-[1.7] font-normal text-sm md:text-base flex-1">
                 {pain.description}
               </p>
               {pain.resolution && (
-                <div className="pt-5 mt-6 border-t border-white/5 flex items-start gap-3">
+                <div className="relative z-10 pt-5 mt-6 border-t border-white/5 flex items-start gap-3">
                   <span className="text-white/60 text-sm mt-0.5">&rarr;</span>
                   <p className="text-primary font-medium text-sm md:text-base leading-relaxed">
                     {pain.resolution}
