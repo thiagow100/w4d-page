@@ -1,7 +1,31 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 import Eyebrow from '@/components/Eyebrow';
+import { GlowingEffect } from '@/components/ui/glowing-effect';
+
+/**
+ * PulseDot — transita de vermelho ("problema ativo") para neutro ("problema registrado")
+ * após 1.8s de estar em view. Reforça psicologicamente a leitura: você viu o sintoma,
+ * a W4D já tem a resolução mapeada. Once: true para não re-trigger em scroll reverso.
+ */
+function PulseDot() {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
+
+  return (
+    <motion.span
+      ref={ref}
+      className="w-1.5 h-1.5 rounded-full"
+      initial={{ backgroundColor: '#EC0000' }}
+      animate={{
+        backgroundColor: inView ? 'rgba(255, 255, 255, 0.28)' : '#EC0000',
+      }}
+      transition={{ duration: 1.0, delay: inView ? 1.8 : 0, ease: [0.16, 1, 0.3, 1] }}
+    />
+  );
+}
 
 const painPoints = [
   {
@@ -47,7 +71,12 @@ const cardVariants = {
 
 export default function Dores() {
   return (
-    <section id="dores" className="relative w-full pt-10 pb-12 md:pt-section-sm md:pb-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
+    <section id="dores" className="relative w-full pt-10 pb-12 md:pt-section-sm md:pb-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay overflow-hidden">
+
+      {/* Aurora W4D soft — continuidade atmosférica com o Hero. Camada única, blur 22px,
+          opacity 0.15, ciclo 56s. Silenciosa mas presente. */}
+      <div aria-hidden className="aurora-w4d-soft" />
+
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col gap-12 md:gap-16">
 
         {/* Cabeçalho */}
@@ -93,20 +122,23 @@ export default function Dores() {
             <motion.div
               key={index}
               variants={cardVariants}
-              className="shadow-card-dark bg-tertiary p-8 md:p-10 rounded-xl hover:-translate-y-0.5 transition-transform duration-300 ease-out flex flex-col h-full"
+              className="relative shadow-card-dark bg-tertiary p-8 md:p-10 rounded-xl hover:-translate-y-0.5 transition-transform duration-300 ease-out flex flex-col h-full"
             >
-              <div className="flex justify-between items-center mb-8">
+              {/* GlowingEffect — border red-single ilumina sob proximidade do cursor */}
+              <GlowingEffect proximity={80} spread={36} borderWidth={1} />
+
+              <div className="relative z-10 flex justify-between items-center mb-8">
                 <span className="font-mono text-[11px] text-secondary tracking-[0.18em] uppercase">Sintoma / 0{index + 1}</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-cta"></span>
+                <PulseDot />
               </div>
-              <h3 className="text-xl md:text-2xl font-semibold text-primary mb-4 tracking-[-0.03em] leading-snug">
+              <h3 className="relative z-10 text-xl md:text-2xl font-semibold text-primary mb-4 tracking-[-0.03em] leading-snug">
                 {pain.title}
               </h3>
-              <p className="text-body leading-[1.7] font-normal text-sm md:text-base flex-1">
+              <p className="relative z-10 text-body leading-[1.7] font-normal text-sm md:text-base flex-1">
                 {pain.description}
               </p>
               {pain.resolution && (
-                <div className="pt-5 mt-6 border-t border-white/5 flex items-start gap-3">
+                <div className="relative z-10 pt-5 mt-6 border-t border-white/5 flex items-start gap-3">
                   <span className="text-white/60 text-sm mt-0.5">&rarr;</span>
                   <p className="text-primary font-medium text-sm md:text-base leading-relaxed">
                     {pain.resolution}
