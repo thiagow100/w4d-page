@@ -207,6 +207,40 @@ body {
   will-change: background-position;
   animation: aurora-w4d 24s linear infinite;
 }
+
+/* Aurora secundário — camada mais lenta (48s) e offset angular diferente (80deg) cria
+   parallax entre as 2 camadas. Depth atmosférico sem adicionar JS. Amplitude menor
+   (opacity 0.22) pra não competir com a camada principal. */
+@keyframes aurora-w4d-slow {
+  0%   { background-position: 30% 60%, 70% 40%; }
+  50%  { background-position: 70% 40%, 30% 60%; }
+  100% { background-position: 30% 60%, 70% 40%; }
+}
+.aurora-w4d-slow {
+  position: absolute;
+  inset: -40px;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(80deg, #0A0A0A 0%, #0A0A0A 8%, transparent 11%, transparent 13%, #0A0A0A 18%),
+    repeating-linear-gradient(80deg in oklch,
+      oklch(15% 0.10 27) 12%,
+      oklch(48% 0.22 27 / 0.7) 18%,
+      oklch(25% 0.14 27) 24%,
+      oklch(38% 0.19 27 / 0.5) 30%,
+      oklch(18% 0.11 27) 36%
+    );
+  background-size: 260% 180%, 180% 110%;
+  background-position: 30% 60%, 70% 40%;
+  filter: blur(18px);
+  mix-blend-mode: screen;
+  -webkit-mask-image: radial-gradient(ellipse 65% 55% at 55% 50%, #000 30%, transparent 82%);
+          mask-image: radial-gradient(ellipse 65% 55% at 55% 50%, #000 30%, transparent 82%);
+  opacity: 0.22;
+  will-change: background-position;
+  animation: aurora-w4d-slow 48s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .aurora-w4d { animation: none; }
+  .aurora-w4d,
+  .aurora-w4d-slow { animation: none; }
 }
