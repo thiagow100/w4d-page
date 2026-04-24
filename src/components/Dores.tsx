@@ -1,7 +1,30 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 import Eyebrow from '@/components/Eyebrow';
+
+/**
+ * PulseDot — transita de vermelho ("problema ativo") para neutro ("problema registrado")
+ * após 1.8s de estar em view. Reforça psicologicamente a leitura: você viu o sintoma,
+ * a W4D já tem a resolução mapeada. Once: true para não re-trigger em scroll reverso.
+ */
+function PulseDot() {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
+
+  return (
+    <motion.span
+      ref={ref}
+      className="w-1.5 h-1.5 rounded-full"
+      initial={{ backgroundColor: '#EC0000' }}
+      animate={{
+        backgroundColor: inView ? 'rgba(255, 255, 255, 0.28)' : '#EC0000',
+      }}
+      transition={{ duration: 1.0, delay: inView ? 1.8 : 0, ease: [0.16, 1, 0.3, 1] }}
+    />
+  );
+}
 
 const painPoints = [
   {
@@ -102,7 +125,7 @@ export default function Dores() {
             >
               <div className="flex justify-between items-center mb-8">
                 <span className="font-mono text-[11px] text-secondary tracking-[0.18em] uppercase">Sintoma / 0{index + 1}</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-cta"></span>
+                <PulseDot />
               </div>
               <h3 className="text-xl md:text-2xl font-semibold text-primary mb-4 tracking-[-0.03em] leading-snug">
                 {pain.title}
