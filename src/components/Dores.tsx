@@ -110,19 +110,24 @@ export default function Dores() {
           </div>
         </div>
 
-        {/* Lado Direito - Cards */}
+        {/* Lado Direito - Cards — mobile usa Sticky Scroll Stack (dores acumulam
+            visualmente enquanto user scrolla). Desktop vira grid 2×2 normal. */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+          className="flex flex-col md:grid md:grid-cols-2 gap-6 relative"
         >
           {painPoints.map((pain, index) => (
             <motion.div
               key={index}
               variants={cardVariants}
-              className="relative shadow-card-dark bg-tertiary p-8 md:p-10 rounded-xl hover:-translate-y-0.5 transition-transform duration-300 ease-out flex flex-col h-full"
+              style={{
+                '--mobile-top': `calc(5rem + ${index * 1.5}rem)`,
+                zIndex: index + 10,
+              } as React.CSSProperties}
+              className="sticky top-[var(--mobile-top)] md:relative md:top-auto min-h-[60dvh] md:min-h-0 shadow-stack-card bg-tertiary p-8 md:p-10 rounded-xl md:hover:-translate-y-0.5 transition-transform duration-300 ease-out flex flex-col h-full"
             >
               {/* GlowingEffect — border red-single ilumina sob proximidade do cursor */}
               <GlowingEffect proximity={80} spread={36} borderWidth={1} />

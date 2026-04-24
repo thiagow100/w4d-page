@@ -213,7 +213,8 @@ export default function ServicosDetalhado() {
           <PlatformsVisual />
         </motion.div>
 
-        {/* Content Blocks - Sticky Stack Mobile, 2 Columns Desktop */}
+        {/* Content Blocks — grid 2x2 limpo (sticky stack agora vive em Dores).
+            Serviços = entregas paralelas funcionais; Dores = acumulação emocional. */}
         <div className="w-full flex flex-col md:grid md:grid-cols-2 gap-8 lg:gap-12 relative">
           {services.map((service, index) => (
             <motion.div
@@ -222,11 +223,7 @@ export default function ServicosDetalhado() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: index * 0.08, duration: 0.7, ease: [0.16, 1, 0.3, 1] as any }}
-              style={{
-                '--mobile-top': `calc(5rem + ${index * 1.5}rem)`,
-                zIndex: index + 10,
-              } as React.CSSProperties}
-              className="sticky top-[var(--mobile-top)] md:relative md:top-auto w-full h-auto min-h-[60dvh] md:min-h-0 flex flex-col shadow-stack-card bg-tertiary rounded-2xl overflow-hidden p-8 pb-16 sm:p-10 sm:pb-10 lg:p-12 lg:pb-12"
+              className="w-full flex flex-col shadow-card-dark bg-tertiary rounded-2xl overflow-hidden p-8 pb-12 sm:p-10 sm:pb-10 lg:p-12 lg:pb-12 md:hover:-translate-y-0.5 transition-transform duration-300 ease-out"
             >
               {/* Hierarquia interna: eyebrow → label → descrição → bullets */}
               <div className="mb-8">
