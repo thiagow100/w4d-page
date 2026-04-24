@@ -135,7 +135,7 @@ const segmentOptions = [
   { value: "Clínicas", label: "Clínicas · Healthcare" },
   { value: "Serviços profissionais", label: "Serviços profissionais · Professional services" },
   { value: "Educação", label: "Educação · Education" },
-  { value: "Outro", label: "Outro" },
+  { value: "Outro", label: "Outro · Other" },
 ];
 
 export default function FormularioLead() {
