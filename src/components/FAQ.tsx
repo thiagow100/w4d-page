@@ -10,12 +10,16 @@ const faqs = [
     a: 'As primeiras 2 a 4 semanas são de planejamento e estrutura: rastreamento, páginas de destino, qualificação, integrações. A partir da semana 5, entra operação ativa com ajuste diário. Resultado comercial mensurável começa entre o segundo e terceiro mês. Quem promete "explodir em 30 dias" está te vendendo sorte.',
   },
   {
+    q: 'Quanto custa trabalhar com a W4D?',
+    a: 'Cada cliente tem seu plano específico. Não trabalhamos com pacote de prateleira. O investimento é construído considerando os canais de mídia ativos na operação (Google, Meta, YouTube, LinkedIn, TikTok ou combinação deles), as camadas de automação e IA aplicadas na qualificação do lead, a verba mensal de mídia que a empresa comporta, e a complexidade do funil comercial. Como referência, nossa parceria se posiciona na faixa de um profissional sênior de performance interno. A diferença é que você recebe um time completo operando a conta, não uma única pessoa. O valor exato é definido na primeira conversa, depois de entendermos o seu modelo de negócio.',
+  },
+  {
     q: 'O que acontece se o resultado vier abaixo do esperado?',
     a: 'Nosso contrato mínimo de implementação é de 3 meses. Esse é o tempo necessário para a estrutura maturar. A regra é clara: se você acompanhar o nosso passo a passo e executar a sua parte comercial dentro do que foi combinado, o resultado da sua empresa crescerá junto com a nossa operação. O jogo é de parceria e transparência diária.',
   },
   {
     q: 'Por que não contratar um gestor de tráfego interno ao invés da W4D?',
-    a: 'Um gestor aperta botões e sobe campanhas. Para crescer com previsibilidade, você precisa de engenharia de dados, orquestração, copy e design focado em conversão. Nós entregamos a solução de performance marketing completa pelo custo de um único funcionário sênior.',
+    a: 'Um gestor interno opera uma função: subir campanhas. Vender com previsibilidade exige mais do que isso: engenharia de dados, orquestração, copy e design focado em conversão, operando juntos na mesma conta. A W4D entrega esse time multidisciplinar dentro da sua operação, algo que uma contratação CLT isolada não alcança.',
   },
   {
     q: 'Quais projetos vocês NÃO aceitam?',
@@ -74,7 +78,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-primary">
+    <section id="faq" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-primary noise-overlay">
       <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
 
         {/* Topo Centralizado */}
@@ -87,7 +91,7 @@ export default function FAQ() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.1 }}
-            className="text-4xl md:text-5xl font-semibold tracking-[-0.05em] leading-[1.1] text-white/95 text-balance max-w-2xl"
+            className="h2-section font-semibold tracking-[-0.05em] leading-[1.1] text-white/95 text-balance max-w-2xl"
           >
             As perguntas que todo dono de empresa faz antes de contratar.
           </motion.h2>

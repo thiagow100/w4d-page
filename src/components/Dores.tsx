@@ -62,7 +62,7 @@ export default function Dores() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.1 }}
-              className="text-4xl md:text-5xl font-semibold tracking-[-0.05em] leading-[1.1] text-white/95 text-balance"
+              className="h2-section font-semibold tracking-[-0.05em] leading-[1.1] text-white/95 text-balance"
             >
               Reconhece algum desses problemas no seu negócio?
             </motion.h2>

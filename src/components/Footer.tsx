@@ -3,7 +3,7 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="relative w-full overflow-hidden bg-primary pt-16 md:pt-24 pb-8 px-6 sm:px-12 lg:px-24 border-t border-white/5">
+    <footer className="relative w-full overflow-hidden bg-primary pt-16 md:pt-24 pb-8 px-6 sm:px-12 lg:px-24 border-t border-white/5 noise-overlay">
       <div className="max-w-5xl mx-auto flex flex-col relative z-10">
 
         {/* Assinatura de marca e CTA Final */}
@@ -15,7 +15,7 @@ export default function Footer() {
             href="#formulario"
             className="mt-10 group inline-flex items-center justify-center px-9 py-4 text-base font-semibold text-primary transition-colors duration-200 ease-out bg-cta rounded-full hover:bg-cta-hover active:scale-[0.98] glow-cta"
           >
-            Solicitar proposta
+            Começar a parceria
             <span className="ml-2 transition-transform duration-200 ease-out group-hover:translate-x-1">&#8594;</span>
           </a>
         </div>
@@ -70,8 +70,8 @@ export default function Footer() {
 
         </div>
 
-        {/* Linha Divisória de Gradiente */}
-        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-cta-accent/55 to-transparent my-8 opacity-70"></div>
+        {/* Linha Divisória de Gradiente — oklch evita passagem por marrom no fade */}
+        <div className="w-full h-[1px] bg-[linear-gradient(to_right_in_oklch,transparent,rgba(255,59,59,0.55),transparent)] my-8 opacity-70"></div>
 
         {/* Copyright + Slogan */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">

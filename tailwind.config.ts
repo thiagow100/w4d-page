@@ -50,7 +50,6 @@ const config: Config = {
         primary: "#FFFFFF",
         body: "#A1A1A1",
         secondary: "#737373",
-        muted: "#525252",
       },
       colors: {
         cta: "#EC0000",

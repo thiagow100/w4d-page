@@ -1,9 +1,30 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import MagneticButton from '@/components/MagneticButton';
 
 export default function Hero() {
+  /** Scroll indicator lifecycle:
+   *  - reveal: appears at 2.4s after mount (fade-in)
+   *  - fade-out: ao scrollar > 80px (não fica perpétuo em loop enquanto user está parado)
+   *  - bounce: só anima quando `active` (visível). Evita GPU waste + cumpre emil-design-eng
+   *    "never perpetual motion without purpose". */
+  const [revealed, setRevealed] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, 'change', (v) => {
+    setIsScrolled(v > 80);
+  });
+
+  useEffect(() => {
+    const t = setTimeout(() => setRevealed(true), 2400);
+    return () => clearTimeout(t);
+  }, []);
+
+  const chevronActive = revealed && !isScrolled;
+
   const staggerContainer = {
     hidden: { opacity: 0 },
     show: {
@@ -24,67 +45,36 @@ export default function Hero() {
     }
   };
 
-  return (
-    <section className="relative w-full min-h-[88dvh] flex flex-col items-center justify-center px-6 sm:px-12 lg:px-24 overflow-hidden pt-28 md:pt-32 pb-12 md:pb-28">
+  /** fadeBlur — reveal cinematográfico Apple-style: opacity + y + filter blur.
+   *  Exclusivo do H1 (blur é caro; justificado pelo peak moment). */
+  const fadeBlur = {
+    hidden: { opacity: 0, y: 20, filter: 'blur(12px)' },
+    show: {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] as any }
+    }
+  };
 
-      {/* Dot-grid com mask radial — base atmosférica */}
+  return (
+    <section className="relative w-full min-h-[88dvh] flex flex-col items-center justify-center px-6 sm:px-12 lg:px-24 overflow-hidden pt-28 md:pt-32 pb-12 md:pb-28 noise-overlay">
+
+      {/* Aurora W4D — fundo atmosférico animado (streaks diagonais de luz vermelha diluída em blur,
+          com mask radial localizando no centro). Substitui o Dark Horizon Glow — mais premium,
+          mais "respiração". CSS-only, animação 24s. */}
+      <div aria-hidden className="aurora-w4d" />
+
+      {/* Dot-grid com mask radial — base atmosférica tecnica sobre o aurora */}
       <div
         aria-hidden
-        className="absolute inset-0 opacity-60 pointer-events-none z-0
+        className="absolute inset-0 opacity-50 pointer-events-none z-0
           bg-[linear-gradient(to_right,rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.035)_1px,transparent_1px)]
           bg-[size:6rem_5rem]
           [mask-image:radial-gradient(ellipse_70%_55%_at_50%_30%,#000_55%,transparent_100%)]"
       />
 
-      {/* Linha-arquitetura horizontal — meridiano sutil, assinatura Vercel/Linear */}
-      <div
-        aria-hidden
-        className="absolute top-[62%] left-0 right-0 h-px pointer-events-none z-0
-          bg-[linear-gradient(to_right,transparent_0%,rgba(255,255,255,0.08)_30%,rgba(255,59,59,0.5)_50%,rgba(255,255,255,0.08)_70%,transparent_100%)]"
-      />
-
-      {/* Anchor BR-EUA: SVG line-art minimalista, dois pontos e arco conectando */}
-      <svg
-        aria-hidden
-        className="absolute top-[55%] left-1/2 -translate-x-1/2 w-[min(720px,90vw)] h-[120px] pointer-events-none z-0 opacity-[0.32]"
-        viewBox="0 0 720 120"
-        fill="none"
-      >
-        <defs>
-          <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.4" />
-            <stop offset="50%" stopColor="#FF3B3B" stopOpacity="0.95" />
-            <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0.4" />
-          </linearGradient>
-        </defs>
-        {/* Arco BR → EUA */}
-        <motion.path
-          d="M 140 90 Q 360 -10, 580 90"
-          stroke="url(#arcGrad)"
-          strokeWidth="1"
-          strokeDasharray="4 6"
-          fill="none"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
-        />
-        {/* Pin Brasil (esquerda-baixo) */}
-        <circle cx="140" cy="90" r="3" fill="#EC0000" />
-        <circle cx="140" cy="90" r="8" fill="none" stroke="rgba(255,59,59,0.5)" strokeWidth="0.8" />
-        {/* Pin EUA (direita-baixo) */}
-        <circle cx="580" cy="90" r="3" fill="#EC0000" />
-        <circle cx="580" cy="90" r="8" fill="none" stroke="rgba(255,59,59,0.5)" strokeWidth="0.8" />
-      </svg>
-
-      {/* Glow diluído na base — transição pra Dores, ainda discreto mas legível sobre grafite */}
-      <div
-        aria-hidden
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-[220px] pointer-events-none z-0
-          bg-gradient-to-t from-cta-accent/[0.14] via-cta-accent/[0.05] to-transparent
-          blur-3xl opacity-80"
-      />
-
-      {/* Container Principal */}
+      {/* Container Principal — só texto, layout 1-col */}
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -102,10 +92,11 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        {/* Título Principal — hierarquia por cor, não por gradiente */}
+        {/* Título Principal — fadeBlur cinematográfico. Hierarquia por cor (branco→body),
+            sem riscados, underlines ou typewriter. */}
         <motion.h1
-          variants={fadeUp}
-          className="text-5xl md:text-7xl lg:text-[5.5rem] font-semibold tracking-[-0.055em] leading-[1.04] mb-8 text-balance"
+          variants={fadeBlur}
+          className="h1-hero font-semibold tracking-[-0.055em] leading-[1.04] mb-8 text-balance"
         >
           <span className="text-white/95">Seu marketing precisa gerar<br className="hidden md:block" /> receita. </span>
           <span className="text-body">Não engajamento.</span>
@@ -125,24 +116,54 @@ export default function Hero() {
           className="flex flex-col items-start gap-5"
         >
           <div className="flex flex-col items-start">
-            {/* Botão Principal — glow refinado + tracking magnético no hover desktop */}
             <MagneticButton>
               <a
                 href="#formulario"
                 className="group inline-flex items-center justify-center px-9 py-4 text-base font-semibold text-primary transition-colors duration-200 ease-out bg-cta rounded-full hover:bg-cta-hover active:scale-[0.98] glow-cta"
               >
-                Solicitar proposta
+                Solicitar apresentação
                 <span className="ml-2 transition-transform duration-200 ease-out group-hover:translate-x-1">&#8594;</span>
               </a>
             </MagneticButton>
           </div>
 
-          {/* Kicker de posicionamento */}
-          <span className="text-sm text-body/80 mt-3 font-light max-w-4xl leading-relaxed">
+          {/* Kicker de posicionamento — dentro do `gap-5` do parent (20px basta pra
+              separar do CTA sem quebrar grupo visual). mt-3 foi removido. */}
+          <span className="text-sm text-body/80 font-light max-w-4xl leading-relaxed">
             Não somos marqueteiros. Somos vendedores que colocaram dinheiro próprio em anúncios antes de cuidar do seu.
           </span>
         </motion.div>
 
+      </motion.div>
+
+      {/* Scroll indicator — aparece 2.4s após mount, fade-out ao user scrollar (>80px).
+          Bounce perpétuo só quando visível (economia GPU + emil-design-eng). */}
+      <motion.div
+        aria-hidden
+        initial={{ opacity: 0 }}
+        animate={{ opacity: chevronActive ? 1 : 0 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as any }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none"
+      >
+        <motion.svg
+          animate={chevronActive ? { y: [0, 5, 0] } : { y: 0 }}
+          transition={
+            chevronActive
+              ? { duration: 2.4, repeat: Infinity, ease: 'easeInOut' }
+              : { duration: 0.3 }
+          }
+          className="w-5 h-5 text-secondary/55"
+          viewBox="0 0 20 20"
+          fill="none"
+        >
+          <path
+            d="M5 8l5 5 5-5"
+            stroke="currentColor"
+            strokeWidth="1.25"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </motion.svg>
       </motion.div>
     </section>
   );

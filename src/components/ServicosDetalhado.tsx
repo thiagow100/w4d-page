@@ -190,7 +190,7 @@ export default function ServicosDetalhado() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
-          className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.05em] leading-[1.05] mb-20 text-center text-white/95 max-w-4xl text-balance"
+          className="h2-section font-semibold tracking-[-0.05em] leading-[1.05] mb-20 text-center text-white/95 max-w-4xl text-balance"
         >
           Do anúncio à agenda do seu time comercial.
         </motion.h2>
@@ -274,7 +274,7 @@ export default function ServicosDetalhado() {
             href="#formulario"
             className="group inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-primary transition-colors duration-200 ease-out bg-cta rounded-full hover:bg-cta-hover active:scale-[0.98] glow-cta"
           >
-            Solicitar proposta
+            Aplicar na minha operação
             <span className="ml-2 transition-transform duration-200 ease-out group-hover:translate-x-1">&#8594;</span>
           </a>
         </motion.div>

@@ -116,8 +116,7 @@ export default function Nav() {
               href="#formulario"
               className="group inline-flex items-center justify-center shrink-0 px-4 md:px-5 py-2 md:py-2 text-xs md:text-sm font-medium text-primary shadow-border-dark rounded-full hover:bg-white/[0.04] transition-all duration-200 ease-out whitespace-nowrap"
             >
-              <span className="hidden sm:inline">Solicitar proposta</span>
-              <span className="sm:hidden">Proposta</span>
+              Falar com a W4D
               <span className="ml-1.5 transition-transform duration-200 group-hover:translate-x-0.5">&#8594;</span>
             </a>
           </div>
@@ -195,7 +194,7 @@ export default function Nav() {
                 onClick={closeMobile}
                 className="group inline-flex items-center justify-center px-9 py-4 text-base font-semibold text-primary bg-cta rounded-full hover:bg-cta-hover transition-colors duration-200 glow-cta"
               >
-                Solicitar proposta
+                Falar com a W4D
                 <span className="ml-2 transition-transform duration-200 group-hover:translate-x-1">&#8594;</span>
               </a>
             </motion.nav>

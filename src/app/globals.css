@@ -30,6 +30,15 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* Tipografia fluida — escala única por papel, colapsa suavemente entre 320px e 1440px.
+   H1: 48px → 88px. H2: 36px → 60px. Elimina breakpoint jumps do Tailwind (text-4xl md:text-5xl lg:text-6xl). */
+.h1-hero {
+  font-size: clamp(3rem, 1.5rem + 4.75vw, 5.5rem);
+}
+.h2-section {
+  font-size: clamp(2.25rem, 1.4rem + 2.65vw, 3.75rem);
+}
+
 /* Noise texture sutil para profundidade */
 .noise-overlay::before {
   content: '';
@@ -50,21 +59,22 @@ body {
 }
 
 /* Glow CTA — refinado: menos blur, inner shadow pra simular "peça fundida" em vez de neon.
-   Glow externo usa cta-accent (#FF3B3B = 255,59,59) pra não virar marrom em baixa opacidade. */
+   Glow externo usa cta-accent (#FF3B3B = 255,59,59) pra não virar marrom em baixa opacidade.
+   oklch fornece luminância perceptualmente uniforme — o vermelho mantém saturação em baixas opacidades. */
 .glow-cta {
   box-shadow:
-    0 0 0 1px rgba(255, 90, 90, 0.25) inset,
-    0 1px 0 0 rgba(255, 140, 140, 0.15) inset,
-    0 8px 20px -8px rgba(255, 59, 59, 0.4),
-    0 0 24px -12px rgba(255, 59, 59, 0.45);
+    0 0 0 1px oklch(65% 0.24 27 / 0.28) inset,
+    0 1px 0 0 oklch(75% 0.18 25 / 0.18) inset,
+    0 8px 20px -8px oklch(62% 0.26 27 / 0.42),
+    0 0 24px -12px oklch(62% 0.26 27 / 0.48);
   transition: box-shadow 0.2s ease-out, transform 0.15s ease-out;
 }
 .glow-cta:hover {
   box-shadow:
-    0 0 0 1px rgba(255, 90, 90, 0.35) inset,
-    0 1px 0 0 rgba(255, 140, 140, 0.2) inset,
-    0 10px 24px -6px rgba(255, 59, 59, 0.55),
-    0 0 32px -10px rgba(255, 59, 59, 0.6);
+    0 0 0 1px oklch(65% 0.24 27 / 0.38) inset,
+    0 1px 0 0 oklch(75% 0.18 25 / 0.22) inset,
+    0 10px 24px -6px oklch(62% 0.26 27 / 0.58),
+    0 0 32px -10px oklch(62% 0.26 27 / 0.62);
 }
 
 /* Shadow-as-border dark (equivalente Vercel invertido pra #171717) */
@@ -103,7 +113,8 @@ body {
     0 16px 32px -12px rgba(0, 0, 0, 0.6);
 }
 
-/* Gradient border sutil para cards hitech — reservado ao card principal (formulário) */
+/* Gradient border sutil para cards hitech — reservado ao card principal (formulário).
+   `in oklch` força interpolação perceptual — evita banding nas zonas escuras. */
 .border-gradient {
   position: relative;
 }
@@ -113,7 +124,7 @@ body {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02), rgba(255, 59, 59, 0.08));
+  background: linear-gradient(135deg in oklch, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02), rgba(255, 59, 59, 0.08));
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: xor;
@@ -161,4 +172,41 @@ body {
 .fade-bottom {
   -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
           mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+}
+
+/* Aurora W4D — fundo atmosférico com streaks diagonais de luz vermelha animados.
+   Adaptado do padrão Aceternity (trocado blue/violet → palette W4D red+off-black).
+   Duas camadas: (1) dark-gradient marca os "vales" de off-black, (2) red-aurora cria
+   as ondas de luz. Blur 14px dilui tudo em atmosfera; mask radial localiza o efeito
+   no centro para não invadir as bordas. CSS-only, GPU (background-position apenas). */
+@keyframes aurora-w4d {
+  0%   { background-position: 50% 50%, 50% 50%; }
+  50%  { background-position: 100% 50%, 80% 50%; }
+  100% { background-position: 50% 50%, 50% 50%; }
+}
+.aurora-w4d {
+  position: absolute;
+  inset: -40px;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(100deg, #0A0A0A 0%, #0A0A0A 7%, transparent 10%, transparent 12%, #0A0A0A 16%),
+    repeating-linear-gradient(100deg in oklch,
+      oklch(20% 0.12 27) 10%,
+      oklch(55% 0.25 27) 15%,
+      oklch(32% 0.17 27) 20%,
+      oklch(45% 0.22 27 / 0.65) 25%,
+      oklch(22% 0.13 27) 30%
+    );
+  background-size: 300% 200%, 200% 100%;
+  background-position: 50% 50%, 50% 50%;
+  filter: blur(14px);
+  mix-blend-mode: screen;
+  -webkit-mask-image: radial-gradient(ellipse 75% 60% at 50% 45%, #000 35%, transparent 78%);
+          mask-image: radial-gradient(ellipse 75% 60% at 50% 45%, #000 35%, transparent 78%);
+  opacity: 0.38;
+  will-change: background-position;
+  animation: aurora-w4d 24s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .aurora-w4d { animation: none; }
 }

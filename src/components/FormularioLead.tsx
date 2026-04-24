@@ -201,7 +201,7 @@ export default function FormularioLead() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-5xl font-semibold tracking-[-0.05em] text-white/95 leading-[1.08] mb-10 text-balance"
+            className="h2-section font-semibold tracking-[-0.05em] text-white/95 leading-[1.08] mb-10 text-balance"
           >
             Se o modelo da W4D faz sentido para a sua empresa, vamos conversar.
           </motion.h2>
@@ -249,6 +249,7 @@ export default function FormularioLead() {
 
                 <FloatingInput
                   label="Nome completo *"
+                  autoComplete="name"
                   error={errors.fullName}
                   {...register("fullName")}
                   value={fullName || ""}
@@ -257,6 +258,9 @@ export default function FormularioLead() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <FloatingInput
                     label="WhatsApp / Telefone *"
+                    type="tel"
+                    inputMode="tel"
+                    autoComplete="tel"
                     error={errors.phone}
                     {...register("phone")}
                     value={phone || ""}
@@ -264,6 +268,8 @@ export default function FormularioLead() {
                   <FloatingInput
                     label="E-mail profissional *"
                     type="email"
+                    inputMode="email"
+                    autoComplete="email"
                     error={errors.email}
                     {...register("email")}
                     value={email || ""}
@@ -272,6 +278,7 @@ export default function FormularioLead() {
 
                 <FloatingInput
                   label="Nome da empresa *"
+                  autoComplete="organization"
                   error={errors.company}
                   {...register("company")}
                   value={company || ""}
@@ -311,7 +318,7 @@ export default function FormularioLead() {
                 >
                   {isSubmitting ? "Enviando..." : (
                     <>
-                      Solicitar proposta <span className="ml-2 transition-transform group-hover:translate-x-1">&#8594;</span>
+                      Enviar para análise <span className="ml-2 transition-transform group-hover:translate-x-1">&#8594;</span>
                     </>
                   )}
                 </button>
