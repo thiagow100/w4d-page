@@ -20,19 +20,28 @@ export default function BandaMarcas() {
       aria-label="Marcas que já operaram com a W4D"
       className="relative w-full py-10 md:py-20 px-6 sm:px-12 lg:px-24 bg-primary border-y border-white/5 noise-overlay"
     >
-      <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center">
+      <div className="relative z-10 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
-          className="flex flex-col items-center w-full"
+          className="flex flex-col items-center md:flex-row md:items-center md:gap-10 lg:gap-12"
         >
-          <Eyebrow className="mb-10">Confiança de operações exigentes</Eyebrow>
+          {/* Text block — Logo Cloud 4 pattern. Mobile: eyebrow expandido centralizado.
+              Desktop md+: eyebrow curto + headline + border-r vertical sutil separando do marquee. */}
+          <div className="flex flex-col items-center md:items-start md:shrink-0 md:max-w-[260px] md:border-r md:border-white/5 md:pr-8 lg:pr-12 mb-10 md:mb-0">
+            <Eyebrow className="mb-0 md:mb-3">
+              <span className="md:hidden">Confiança de operações exigentes</span>
+              <span className="hidden md:inline">Confiança</span>
+            </Eyebrow>
+            <p className="hidden md:block text-base text-body font-normal leading-snug">
+              Operações exigentes já confiaram no método W4D.
+            </p>
+          </div>
 
-          {/* Marquee container — substitui linear-gradient mask por ProgressiveBlur
-              nas laterais (efeito iOS-like, mais premium que CSS mask plano). */}
-          <div className="marquee-pause relative w-full overflow-hidden">
+          {/* Marquee — full-width em mobile, flex-1 em desktop. min-w-0 evita overflow do flex item. */}
+          <div className="marquee-pause relative w-full md:flex-1 md:min-w-0 overflow-hidden">
             <div className="marquee-track gap-16 md:gap-24 py-2">
               {[...brands, ...brands].map((brand, i) => (
                 <div
@@ -51,17 +60,16 @@ export default function BandaMarcas() {
               ))}
             </div>
 
-            {/* Progressive blur overlays — laterais esquerda + direita.
-                Substitui o linear-gradient mask plano. */}
+            {/* Progressive blur lateral — reduzido em desktop pq o marquee agora ocupa menos largura */}
             <ProgressiveBlur
               direction="left"
               blurIntensity={0.6}
-              className="absolute top-0 left-0 h-full w-[120px] md:w-[160px]"
+              className="absolute top-0 left-0 h-full w-[80px] md:w-[100px]"
             />
             <ProgressiveBlur
               direction="right"
               blurIntensity={0.6}
-              className="absolute top-0 right-0 h-full w-[120px] md:w-[160px]"
+              className="absolute top-0 right-0 h-full w-[80px] md:w-[100px]"
             />
           </div>
         </motion.div>
