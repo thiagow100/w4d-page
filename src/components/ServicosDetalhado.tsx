@@ -1,6 +1,7 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { Check } from 'lucide-react';
 import Eyebrow from '@/components/Eyebrow';
 
@@ -74,25 +75,39 @@ const PHASES = [
 ] as const;
 
 /**
- * MetodoW4DHub — visual redesign do Método W4D como engineering schematic.
+ * MetodoW4DHub — Método W4D como hub schematic com pulse "data flowing" + scroll-driven trace.
  *
- * Antes: char-reveal billboard "MÉTODO W4D" gigante + linha horizontal scroll-drawn +
- * PhaseDots scroll-driven (3 sistemas de animação competindo).
+ * Desktop (lg+): hub-and-spoke horizontal.
+ *   - Hub badge central (pill com Método W4D mono + pulse dot vermelho)
+ *   - Trunk vertical → rail horizontal → 4 drops (draw-on stagger sequencial)
+ *   - PULSE TRAVELING infinito ao longo da rail (left→right) — simula data flow
+ *   - Port dots vermelhos no top de cada phase node
  *
- * Agora: hub badge central pequeno (pill com pulse dot) → trunk vertical →
- * rail horizontal → 4 drops verticais → port dots → 4 phase nodes. Topology hub-and-spoke
- * que comunica "Método W4D conecta com X, Y, Z, W" sem competição visual.
+ * Mobile/tablet (<lg): timeline single-column.
+ *   - Hub badge no top, trunk vertical descendendo pela left-side dos phases
+ *   - Trunk SCROLL-DRIVEN: cresce conforme user scrolla (useScroll + useTransform)
+ *   - Pulse na leading edge do trunk (ponto vermelho que persegue o caminho)
+ *   - 4 phases stacked vertical: port dot na linha + word + sub + desc à direita
  *
- * Pattern: engineering schematic / circuit-board ports. Sober, premium.
- * Conectores draw-on (scaleY/X 0→1) com stagger sequencial pra desenhar o sistema.
+ * Reduced-motion: pulses desabilitam, scroll-driven mantém (não é loop perpétuo).
  */
 function MetodoW4DHub() {
   const prefersReducedMotion = useReducedMotion();
+  const phasesRef = useRef<HTMLDivElement>(null);
+
+  /** Scroll progress relativo ao container das phases (mobile timeline).
+   *  start 0.85: trunk começa a crescer quando phases entram (top a 85% do viewport)
+   *  end 0.5: trunk completo quando phases saem (bottom a 50% do viewport) */
+  const { scrollYProgress } = useScroll({
+    target: phasesRef,
+    offset: ['start 0.85', 'end 0.5'],
+  });
+  const trunkHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
 
   return (
     <div id="metodo" className="w-full mb-16 md:mb-20 lg:mb-24 relative scroll-mt-24">
 
-      {/* Hub Badge — central node "Método W4D". Pill com border vermelho + pulse dot + glow. */}
+      {/* Hub Badge — central node "Método W4D" */}
       <div className="flex justify-center">
         <motion.div
           initial={{ opacity: 0, y: 12, scale: 0.95 }}
@@ -108,8 +123,9 @@ function MetodoW4DHub() {
         </motion.div>
       </div>
 
-      {/* Schematic connectors — desktop lg+. Trunk + rail + 4 drops desenham na entrada.
-          Posições em 12.5%, 37.5%, 62.5%, 87.5% alinham com o center de cada cell do grid-cols-4. */}
+      {/* ═══════ DESKTOP (lg+) — schematic horizontal ═══════ */}
+
+      {/* Connectors: trunk + rail + 4 drops. Posições 12.5/37.5/62.5/87.5% = cell centers grid-cols-4. */}
       <div className="hidden lg:block relative h-14 w-full mt-2">
         <motion.div
           aria-hidden
@@ -127,6 +143,28 @@ function MetodoW4DHub() {
           transition={{ duration: 0.7, delay: 0.7, ease: [0.16, 1, 0.3, 1] as any }}
           className="absolute left-[12.5%] right-[12.5%] top-6 h-px bg-white/15 origin-center"
         />
+
+        {/* Pulse traveling along rail — simula data flow do hub correndo até as fases.
+            left animado de 0% a 100% do wrapper; opacity fade nas pontas pra não aparecer abrupto.
+            Infinite loop, gated por reduced-motion. */}
+        {!prefersReducedMotion && (
+          <div className="absolute left-[12.5%] right-[12.5%] top-6 -translate-y-1/2 pointer-events-none">
+            <motion.div
+              aria-hidden
+              animate={{ left: ['0%', '100%'], opacity: [0, 1, 1, 0] }}
+              transition={{
+                duration: 3.2,
+                delay: 1.6,
+                repeat: Infinity,
+                repeatDelay: 1.2,
+                ease: 'easeInOut',
+                times: [0, 0.08, 0.92, 1],
+              }}
+              className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-cta shadow-[0_0_12px_3px_rgba(236,0,0,0.7)]"
+            />
+          </div>
+        )}
+
         {[12.5, 37.5, 62.5, 87.5].map((leftPct, i) => (
           <motion.div
             key={i}
@@ -141,23 +179,10 @@ function MetodoW4DHub() {
         ))}
       </div>
 
-      {/* Mobile/tablet: trunk único conectando hub às fases empilhadas. */}
-      <div className="lg:hidden flex justify-center mt-4 mb-4">
-        <motion.div
-          aria-hidden
-          initial={{ scaleY: 0 }}
-          whileInView={{ scaleY: 1 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] as any }}
-          className="w-px h-10 bg-gradient-to-b from-cta/60 to-white/15 origin-top"
-        />
-      </div>
-
-      {/* 4 phase nodes — port dot (lg only) + word + sub + desc */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-y-12 lg:gap-y-0 items-start relative z-10">
+      {/* Phase grid desktop horizontal — 4 cols com port dot + word + sub + desc centralizados */}
+      <div className="hidden lg:grid grid-cols-4 gap-x-4 items-start relative z-10">
         {PHASES.map((phase, i) => (
           <div key={phase.word} className="flex flex-col items-center text-center w-full px-2">
-            {/* Port dot — desktop only, aparece após drop chegar */}
             <motion.span
               aria-hidden
               initial={{ scale: 0, opacity: 0 }}
@@ -168,9 +193,8 @@ function MetodoW4DHub() {
                 delay: prefersReducedMotion ? 0 : 1.5 + i * 0.1,
                 ease: [0.16, 1, 0.3, 1] as any,
               }}
-              className="hidden lg:block w-2 h-2 rounded-full bg-cta mb-5 shadow-[0_0_8px_rgba(236,0,0,0.6)]"
+              className="w-2 h-2 rounded-full bg-cta mb-5 shadow-[0_0_8px_rgba(236,0,0,0.6)]"
             />
-
             <motion.span
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -180,20 +204,90 @@ function MetodoW4DHub() {
                 delay: prefersReducedMotion ? 0 : 0.3 + i * 0.08,
                 ease: [0.16, 1, 0.3, 1] as any,
               }}
-              className="text-5xl md:text-6xl font-semibold text-primary tracking-[-0.05em] leading-[1] block mb-3"
+              className="text-6xl font-semibold text-primary tracking-[-0.05em] leading-[1] block mb-3"
             >
               {phase.word}
             </motion.span>
-
             <span className="font-mono text-xs text-cta uppercase tracking-[0.18em] mb-3">
               {phase.sub}
             </span>
-
             <span className="text-sm md:text-base text-body font-normal leading-snug max-w-[22ch]">
               {phase.desc}
             </span>
           </div>
         ))}
+      </div>
+
+      {/* ═══════ MOBILE / TABLET (<lg) — timeline vertical scroll-driven ═══════ */}
+
+      {/* Conector hub→trunk-start: linha curta entre hub e início do timeline (alinha com left-6 do trunk). */}
+      <div className="lg:hidden flex pl-[1.4375rem] mt-2">
+        <motion.div
+          aria-hidden
+          initial={{ scaleY: 0 }}
+          whileInView={{ scaleY: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] as any }}
+          className="w-px h-6 bg-gradient-to-b from-cta/60 to-white/15 origin-top"
+        />
+      </div>
+
+      {/* Mobile timeline: trunk vertical scroll-driven na esquerda + 4 phases stacked à direita */}
+      <div className="lg:hidden relative" ref={phasesRef}>
+
+        {/* Trunk background — linha estática white/10 ocupando toda altura do timeline */}
+        <div aria-hidden className="absolute left-6 top-0 bottom-0 w-px bg-white/10" />
+
+        {/* Trunk progress fill — gradient vermelho com height controlada por scrollYProgress.
+            Cresce conforme user scrolla pelo container das phases. */}
+        <motion.div
+          aria-hidden
+          style={{ height: trunkHeight }}
+          className="absolute left-6 top-0 w-px bg-gradient-to-b from-cta via-cta/80 to-cta/40 origin-top"
+        />
+
+        {/* Pulse na leading edge do trunk — persegue o caminho conforme scroll.
+            Posicionado em `top: trunkHeight` segue exatamente onde o gradient termina. */}
+        {!prefersReducedMotion && (
+          <motion.div
+            aria-hidden
+            style={{ top: trunkHeight }}
+            className="absolute left-6 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-cta shadow-[0_0_14px_4px_rgba(236,0,0,0.7)]"
+          />
+        )}
+
+        {/* 4 phases stacked vertical, conteúdo em pl-14 (3.5rem) — port dots ficam em -left-2rem do conteúdo, alinhando com o trunk em left-6 */}
+        <div className="flex flex-col gap-12 pl-14">
+          {PHASES.map((phase, i) => (
+            <motion.div
+              key={phase.word}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.6,
+                delay: prefersReducedMotion ? 0 : 0.1 + i * 0.05,
+                ease: [0.16, 1, 0.3, 1] as any,
+              }}
+              className="relative"
+            >
+              {/* Port dot — alinha com o trunk (pl-14 = 3.5rem; -left-2rem volta até 1.5rem = left-6 do trunk) */}
+              <span
+                aria-hidden
+                className="absolute -left-[2rem] top-3 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-cta shadow-[0_0_8px_rgba(236,0,0,0.6)]"
+              />
+              <h4 className="text-5xl md:text-6xl font-semibold text-primary tracking-[-0.05em] leading-[1] mb-3">
+                {phase.word}
+              </h4>
+              <span className="block font-mono text-xs text-cta uppercase tracking-[0.18em] mb-3">
+                {phase.sub}
+              </span>
+              <span className="block text-sm md:text-base text-body font-normal leading-snug max-w-[40ch]">
+                {phase.desc}
+              </span>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </div>
   );
