@@ -249,9 +249,6 @@ export default function ServicosDetalhado() {
   return (
     <section id="servicos" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
 
-      {/* Aurora W4D soft — continuidade atmosférica cross-section */}
-      <div aria-hidden className="aurora-w4d-soft" />
-
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center">
 
         {/* Header */}

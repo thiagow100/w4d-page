@@ -22,7 +22,7 @@ function Counter({ to, suffix, duration = 2, isStatic = false }: { to: number, s
   const inView = useInView(ref, { once: true, margin: "-50px" });
   const prefersReducedMotion = useReducedMotion();
 
-  const sizeClass = "text-4xl md:text-5xl font-semibold text-primary tracking-[-0.04em]";
+  const sizeClass = "text-4xl md:text-5xl font-mono font-semibold text-primary tracking-[-0.02em]";
 
   // Static: mostra direto o suffix completo (ex: "BR · USA")
   if (isStatic) {
@@ -173,7 +173,6 @@ export default function Credibilidade() {
               Thiago começou em vendas em 2005 e consolidou-se como corretor de imóveis em Santa Catarina a partir de 2011. Em 2015, passou a estudar tráfego pago errando com dinheiro do próprio bolso, quando quase ninguém anunciava no Facebook. Em 2020 fundou a TW Broker, operação que vendeu milhões em imóveis todos os anos. Em 2023 criou o Corretor Que Vende, treinando mais de três mil profissionais do mercado imobiliário. Hoje, lidera a W4D aplicando esse mesmo sistema comercial no Brasil e Estados Unidos, focado em performance de conversão, volume e previsibilidade.
             </p>
             <div className="mt-6 border-l-2 border-white/15 pl-4 max-w-[60ch]">
-              <span aria-hidden className="block font-serif text-5xl leading-none text-white/25 -mb-2">&ldquo;</span>
               <p className="text-primary font-medium text-base md:text-lg leading-relaxed">
                 No fim do dia o marketing é apenas o meio. A nossa única régua de sucesso é quanto a sua empresa vende com recorrência.
               </p>
@@ -215,7 +214,6 @@ export default function Credibilidade() {
               Carlos operou hostel e bar por oito anos a partir de 2011, sentindo na pele a gestão, a contratação e a pressão pelo faturamento. Em 2019 passou a se dedicar exclusivamente a tráfego pago e performance, com foco rigoroso em negócios locais. Em 2022 consolidou sua operação gerindo múltiplas contas em saúde e educação, com métricas de ROI e conversão direta como régua. Em 2024 aprofundou a esteira em lançamentos imobiliários. Hoje, lidera o time de operação da W4D, garantindo que o faturamento projetado chegue no resultado comercial.
             </p>
             <div className="mt-6 border-l-2 border-white/15 pl-4 max-w-[60ch]">
-              <span aria-hidden className="block font-serif text-5xl leading-none text-white/25 -mb-2">&ldquo;</span>
               <p className="text-primary font-medium text-base md:text-lg leading-relaxed">
                 Estratégias no papel não pagam contas. Meu trabalho é fazer a mídia colocar boas oportunidades na sua mesa todos os dias.
               </p>

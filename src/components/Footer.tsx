@@ -1,17 +1,62 @@
+'use client';
+
 import Image from 'next/image';
 import { Phone, Mail, MapPin, ArrowUp } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+/** Stagger das 4 colunas — 80ms entre cada (cascade calmo, não atrasa interação). */
+const columnsContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
+};
+const columnItem = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as any } },
+};
 
 export default function Footer() {
   return (
     <footer className="relative w-full overflow-hidden bg-primary pt-16 md:pt-24 pb-8 px-6 sm:px-12 lg:px-24 border-t border-white/5 noise-overlay">
 
-      {/* Aurora W4D soft — continuidade atmosférica cross-section */}
-      <div aria-hidden className="aurora-w4d-soft" />
+      {/* Aurora-soft contida — só atrás da seção de fechamento (top 50%), não atrás de colunas/legal.
+          Wrapper absolute serve como contexto de positioning para o `inset:0` da .aurora-w4d-soft. */}
+      <div aria-hidden className="absolute top-0 left-0 right-0 h-[50%] pointer-events-none overflow-hidden">
+        <div className="aurora-w4d-soft" />
+      </div>
+
+      {/* Spotlight focal — gradient radial vermelho atrás do h2/CTA do closing scene.
+          Cria "palco" visual pra mensagem final, distinto da aurora-soft (atmosférica difusa).
+          Posicionado em 25% from left pq h2 é left-aligned (items-start). */}
+      <div
+        aria-hidden
+        className="absolute top-0 left-0 w-full md:w-[65%] h-[42%] pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 60% 75% at 28% 50%, rgba(255, 59, 59, 0.09) 0%, rgba(255, 59, 59, 0.04) 35%, transparent 70%)',
+        }}
+      />
+
+      {/* Fade final dramático — últimos ~240px afundam pra near-black.
+          Usa rgba alpha em vez de #000000 hardcoded (CLAUDE.md proíbe pure black). */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 h-[240px] pointer-events-none"
+        style={{
+          background:
+            'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.75) 100%)',
+        }}
+      />
 
       <div className="max-w-6xl mx-auto flex flex-col relative z-10">
 
         {/* Closing scene — h2 com presença equivalente às demais seções, subtítulo de apoio e CTA único */}
-        <div className="mb-16 md:mb-20 w-full flex flex-col items-start">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as any }}
+          className="mb-16 md:mb-20 w-full flex flex-col items-start"
+        >
           <h2 className="h2-section font-semibold tracking-[-0.05em] text-white/95 leading-[1.08]">
             Marketing medido pelo que vende.
           </h2>
@@ -25,16 +70,23 @@ export default function Footer() {
             Começar a parceria
             <span className="ml-2 transition-transform duration-200 ease-out group-hover:translate-x-1">&#8594;</span>
           </a>
-        </div>
+        </motion.div>
 
         {/* 4 colunas: Navegação · Contato · Palhoça · Orlando.
             Mobile (<sm) → stack vertical 1-col.
             Tablet (sm-lg) → 2×2.
-            Desktop (lg+) → 4×1. */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-12">
+            Desktop (lg+) → 4×1.
+            Stagger reveal cascade ao entrar no viewport. */}
+        <motion.div
+          variants={columnsContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-50px' }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-12"
+        >
 
           {/* Navegação — links âncora pra seções da página */}
-          <div className="flex flex-col gap-5">
+          <motion.div variants={columnItem} className="flex flex-col gap-5">
             <span className="font-mono text-xs text-secondary tracking-[0.18em] uppercase">
               Navegação
             </span>
@@ -52,10 +104,10 @@ export default function Footer() {
                 Falar com a W4D
               </a>
             </nav>
-          </div>
+          </motion.div>
 
           {/* Contato */}
-          <div className="flex flex-col gap-5">
+          <motion.div variants={columnItem} className="flex flex-col gap-5">
             <span className="font-mono text-xs text-secondary tracking-[0.18em] uppercase">
               Contato
             </span>
@@ -69,10 +121,10 @@ export default function Footer() {
                 sales@w4d.com.br
               </a>
             </div>
-          </div>
+          </motion.div>
 
           {/* Palhoça — cidade primary (decision-info), razão social mono small (legal-info) */}
-          <div className="flex flex-col gap-5">
+          <motion.div variants={columnItem} className="flex flex-col gap-5">
             <span className="font-mono text-xs text-secondary tracking-[0.18em] uppercase">
               Palhoça, SC
             </span>
@@ -85,10 +137,10 @@ export default function Footer() {
                 </span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Orlando — mesma hierarquia: cidade primary, razão social mono small */}
-          <div className="flex flex-col gap-5">
+          <motion.div variants={columnItem} className="flex flex-col gap-5">
             <span className="font-mono text-xs text-secondary tracking-[0.18em] uppercase">
               Orlando, FL
             </span>
@@ -101,12 +153,20 @@ export default function Footer() {
                 </span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-        </div>
+        </motion.div>
 
-        {/* Linha Divisória de Gradiente — oklch evita passagem por marrom no fade */}
-        <div className="w-full h-[1px] bg-[linear-gradient(to_right_in_oklch,transparent,rgba(255,59,59,0.55),transparent)] my-8 opacity-70"></div>
+        {/* Linha Divisória de Gradiente — oklch evita passagem por marrom no fade.
+            Draw-on do centro pra fora ao entrar no viewport (1.2s, ease-out). Pattern Apple/Stripe. */}
+        <motion.div
+          aria-hidden
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] as any }}
+          className="w-full h-[1px] bg-[linear-gradient(to_right_in_oklch,transparent,rgba(255,59,59,0.55),transparent)] my-8 opacity-70 origin-center"
+        />
 
         {/* Bottom row: logo + copyright + legal · stamp + voltar ao topo */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
@@ -136,7 +196,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Stamp + botão circular "Voltar ao topo" (pattern Vercel/21st.dev) */}
+          {/* Stamp + back-to-top polished — w-11 h-11, hover lift + arrow translate up */}
           <div className="flex items-center gap-4">
             <span className="font-mono text-[11px] md:text-xs text-secondary tracking-[0.12em] uppercase">
               BUILT WITH DISCIPLINE, NOT HYPE.
@@ -144,9 +204,9 @@ export default function Footer() {
             <a
               href="#"
               aria-label="Voltar ao topo da página"
-              className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-secondary hover:text-primary hover:border-white/30 transition-all duration-200 ease-out shrink-0"
+              className="group w-11 h-11 rounded-full border border-white/15 flex items-center justify-center text-secondary hover:text-primary hover:border-white/30 hover:-translate-y-0.5 transition-all duration-200 ease-out shrink-0"
             >
-              <ArrowUp size={14} strokeWidth={2} />
+              <ArrowUp size={16} strokeWidth={2} className="transition-transform duration-200 ease-out group-hover:-translate-y-0.5" />
             </a>
           </div>
         </div>
