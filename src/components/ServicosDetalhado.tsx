@@ -199,42 +199,47 @@ function MetodoW4DHub() {
         />
       </div>
 
-      {/* Phase grid desktop horizontal — 4 cols com port dot + word + sub + desc centralizados */}
+      {/* Phase grid desktop horizontal — 4 cols. Eyebrow numerado (01 · BASE) acima do word.
+          Cada coluna inteira faz cascata reveal com stagger 0.18s (mais pronunciado que antes). */}
       <div className="hidden lg:grid grid-cols-4 gap-x-4 items-start relative z-10">
         {PHASES.map((phase, i) => (
-          <div key={phase.word} className="flex flex-col items-center text-center w-full px-2">
+          <motion.div
+            key={phase.word}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{
+              duration: prefersReducedMotion ? 0 : 0.7,
+              delay: prefersReducedMotion ? 0 : 0.4 + i * 0.18,
+              ease: [0.16, 1, 0.3, 1] as any,
+            }}
+            className="flex flex-col items-center text-center w-full px-2"
+          >
             <motion.span
               aria-hidden
-              initial={{ scale: 0, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
               viewport={{ once: true, margin: '-100px' }}
               transition={{
                 duration: 0.4,
-                delay: prefersReducedMotion ? 0 : 1.5 + i * 0.1,
+                delay: prefersReducedMotion ? 0 : 0.6 + i * 0.18,
                 ease: [0.16, 1, 0.3, 1] as any,
               }}
               className="w-2 h-2 rounded-full bg-cta mb-5 shadow-[0_0_8px_rgba(236,0,0,0.6)]"
             />
-            <motion.span
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{
-                duration: prefersReducedMotion ? 0 : 0.6,
-                delay: prefersReducedMotion ? 0 : 0.3 + i * 0.08,
-                ease: [0.16, 1, 0.3, 1] as any,
-              }}
-              className="text-6xl font-semibold text-primary tracking-[-0.05em] leading-[1] block mb-3"
-            >
+            {/* Eyebrow numerado: 01 · BASE — index secondary + bullet muted + sub cta */}
+            <div className="flex items-baseline justify-center gap-2 mb-3 font-mono text-xs uppercase tracking-[0.18em]">
+              <span className="text-secondary">0{i + 1}</span>
+              <span className="text-secondary/40">·</span>
+              <span className="text-cta">{phase.sub}</span>
+            </div>
+            <span className="text-6xl font-semibold text-primary tracking-[-0.05em] leading-[1] block mb-3">
               {phase.word}
-            </motion.span>
-            <span className="font-mono text-xs text-cta uppercase tracking-[0.18em] mb-3">
-              {phase.sub}
             </span>
             <span className="text-sm md:text-base text-body font-normal leading-snug max-w-[22ch]">
               {phase.desc}
             </span>
-          </div>
+          </motion.div>
         ))}
       </div>
 
@@ -276,17 +281,19 @@ function MetodoW4DHub() {
           />
         )}
 
-        {/* 4 phases stacked vertical, conteúdo em pl-14 (3.5rem) — port dots ficam em -left-2rem do conteúdo, alinhando com o trunk em left-6 */}
+        {/* 4 phases stacked vertical, conteúdo em pl-14 (3.5rem) — port dots ficam em -left-2rem alinhando com trunk em left-6.
+            Cascata reveal: cada phase desliza da direita (x: 24 → 0) com stagger 0.18s (mais pronunciado).
+            Eyebrow numerado (01 · BASE) acima do word — index secondary + sub cta. */}
         <div className="flex flex-col gap-12 pl-14">
           {PHASES.map((phase, i) => (
             <motion.div
               key={phase.word}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{
-                duration: prefersReducedMotion ? 0 : 0.6,
-                delay: prefersReducedMotion ? 0 : 0.1 + i * 0.05,
+                duration: prefersReducedMotion ? 0 : 0.7,
+                delay: prefersReducedMotion ? 0 : 0.1 + i * 0.18,
                 ease: [0.16, 1, 0.3, 1] as any,
               }}
               className="relative"
@@ -296,12 +303,15 @@ function MetodoW4DHub() {
                 aria-hidden
                 className="absolute -left-[2rem] top-3 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-cta shadow-[0_0_8px_rgba(236,0,0,0.6)]"
               />
-              <h4 className="text-3xl md:text-5xl font-semibold text-primary tracking-[-0.04em] leading-[1] mb-2">
+              {/* Eyebrow numerado: 01 · BASE */}
+              <div className="flex items-baseline gap-2 mb-2 font-mono text-[11px] md:text-xs uppercase tracking-[0.18em]">
+                <span className="text-secondary">0{i + 1}</span>
+                <span className="text-secondary/40">·</span>
+                <span className="text-cta">{phase.sub}</span>
+              </div>
+              <h4 className="text-3xl md:text-5xl font-semibold text-primary tracking-[-0.04em] leading-[1] mb-3">
                 {phase.word}
               </h4>
-              <span className="block font-mono text-[11px] md:text-xs text-cta uppercase tracking-[0.18em] mb-2.5">
-                {phase.sub}
-              </span>
               <span className="block text-sm md:text-base text-body font-normal leading-snug max-w-[40ch]">
                 {phase.desc}
               </span>
