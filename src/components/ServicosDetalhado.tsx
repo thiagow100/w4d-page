@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import Eyebrow from '@/components/Eyebrow';
 
@@ -89,6 +89,7 @@ function PhaseDot({ progress, threshold }: { progress: any, threshold: number })
 
 function MetodoW4D() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start 0.85", "end 0.4"],
@@ -98,15 +99,19 @@ function MetodoW4D() {
 
   return (
     <div ref={sectionRef} id="metodo" className="w-full mb-24 lg:mb-28 relative scroll-mt-24">
-      <div className="flex justify-center mb-12">
-        <Eyebrow accent>Método W4D</Eyebrow>
+      {/* Headline interno — antes era Eyebrow mono pequeno (subordinado ao H2 da seção).
+          Vira h3 grande accent vermelho — autônomo, anuncia "framework proprietário". */}
+      <div className="flex justify-center mb-16">
+        <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-[-0.04em] text-cta leading-[1.1] text-center">
+          Método W4D
+        </h3>
       </div>
 
       <div className="relative">
-        {/* Linha horizontal scroll-drawn — apenas lg+ */}
+        {/* Linha horizontal scroll-drawn — apenas lg+. top calibrado pra palavras text-7xl (72px). */}
         <div
           aria-hidden
-          className="hidden lg:block absolute left-0 right-0 top-[34px] pointer-events-none z-0 px-[12.5%]"
+          className="hidden lg:block absolute left-0 right-0 top-[58px] pointer-events-none z-0 px-[12.5%]"
         >
           <svg className="w-full" height="2" viewBox="0 0 1000 2" preserveAspectRatio="none">
             <defs>
@@ -130,9 +135,22 @@ function MetodoW4D() {
           {PHASES.map((phase, i) => (
             <div key={phase.word} className="flex flex-col items-center text-center w-full px-2">
               <div className="relative mb-4">
-                <span className="text-3xl md:text-4xl lg:text-5xl font-semibold text-primary tracking-[-0.04em] block">
+                {/* Billboard tier: text-7xl em desktop (72px) — antes era text-5xl (48px).
+                    Stagger reveal por scroll: cada palavra entra com fade+y, delay i*0.15s.
+                    Reduced-motion: duration e delay zerados (mostra direto). */}
+                <motion.span
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{
+                    duration: prefersReducedMotion ? 0 : 0.7,
+                    delay: prefersReducedMotion ? 0 : i * 0.15,
+                    ease: [0.16, 1, 0.3, 1] as any,
+                  }}
+                  className="text-5xl md:text-6xl lg:text-7xl font-semibold text-primary tracking-[-0.05em] leading-[1] block"
+                >
                   {phase.word}
-                </span>
+                </motion.span>
                 <PhaseDot progress={dotProgress} threshold={i} />
               </div>
               <span className="font-mono text-xs text-cta uppercase tracking-[0.18em] mb-3 mt-2">
