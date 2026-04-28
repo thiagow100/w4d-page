@@ -107,28 +107,29 @@ function MetodoW4DHub() {
   return (
     <div id="metodo" className="w-full mb-16 md:mb-20 lg:mb-24 relative scroll-mt-24">
 
-      {/* Hub Badge — central node "Método W4D" */}
+      {/* Hub label — título tipográfico em vez de pill alerta. "Método" primary + "W4D" cta vermelho.
+          Removido: pill border, glow externo, pulse dot inline (parecia notification de alerta).
+          O PulseBeams overlay abaixo já carrega o "alive" do sistema. */}
       <div className="flex justify-center">
-        <motion.div
-          initial={{ opacity: 0, y: 12, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        <motion.h3
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as any }}
-          className="relative inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-cta/40 bg-cta-accent/[0.06] backdrop-blur-sm shadow-[0_0_32px_-12px_rgba(236,0,0,0.5)]"
+          className="text-2xl md:text-3xl lg:text-4xl font-semibold text-primary tracking-[-0.04em] leading-[1] inline-flex items-baseline gap-2.5"
         >
-          <span aria-hidden className="w-2 h-2 rounded-full bg-cta animate-pulse" />
-          <span className="font-mono text-xs md:text-sm text-primary tracking-[0.2em] uppercase">
-            Método W4D
-          </span>
-        </motion.div>
+          Método
+          <span className="text-cta">W4D</span>
+        </motion.h3>
       </div>
 
       {/* ═══════ DESKTOP (lg+) — schematic horizontal ═══════ */}
 
-      {/* Schematic stack: skeleton estático (white/15 lines) + PulseBeams overlay (red gradient flowing).
+      {/* Schematic stack: skeleton estático (white/15 lines) + PulseBeams overlay (red gradient flowing) +
+          source node SVG (red circle no topo do trunk) ancorando o título ao schematic.
           Posições 12.5/37.5/62.5/87.5% = cell centers do grid-cols-4. ViewBox 1000x56 alinhado.
-          h-14 = 56px (match com viewBox y). */}
-      <div className="hidden lg:block relative h-14 w-full mt-2">
+          h-14 = 56px (match com viewBox y). mt-5 = breathing room maior pro título tipográfico. */}
+      <div className="hidden lg:block relative h-14 w-full mt-5">
 
         {/* Skeleton: trunk + rail + 4 drops draw-on inicial (white/15 = "wires desligados") */}
         <motion.div
@@ -160,12 +161,11 @@ function MetodoW4DHub() {
           />
         ))}
 
-        {/* PulseBeams overlay — 4 SVG paths com linearGradient deslizando do hub até cada phase port.
-            Pattern Aceternity adaptado pro hub W4D: cada beam fan out do trunk (500,0) → corner (500,24) →
-            rail-portion → drop → phase port. linearGradient userSpaceOnUse animado em 3 keyframes:
-            (1) escondido acima do hub, (2) na corner+rail, (3) passou da phase port.
-            Stops 20%-50% formam o "comet body"; 0% e 100% transparentes formam fade head/tail.
-            Stagger 0/0.4/0.8/1.2s cria efeito sequencial "data packet split". */}
+        {/* PulseBeams overlay — UM único gradient vertical desce do hub e ilumina toda a árvore.
+            Como o gradient é puramente vertical (x1=x2=0), todos os pontos com mesmo Y recebem
+            a mesma cor: a RAIL (y=24) flasha uniformemente em toda extensão, e as 4 DROPS (y=24-52)
+            acendem SIMULTANEAMENTE. Semantic: hub alimenta as 4 phases juntas via uma linha única.
+            Path tem múltiplos subpaths (M ... M ...) reunindo trunk + rail + 4 drops num só stroke. */}
         {!prefersReducedMotion && (
           <svg
             aria-hidden
@@ -174,44 +174,42 @@ function MetodoW4DHub() {
             preserveAspectRatio="none"
             fill="none"
           >
-            <path d="M 500 0 L 500 24 L 125 24 L 125 52" stroke="url(#beam1)" strokeWidth="1.5" strokeLinecap="round" />
-            <path d="M 500 0 L 500 24 L 375 24 L 375 52" stroke="url(#beam2)" strokeWidth="1.5" strokeLinecap="round" />
-            <path d="M 500 0 L 500 24 L 625 24 L 625 52" stroke="url(#beam3)" strokeWidth="1.5" strokeLinecap="round" />
-            <path d="M 500 0 L 500 24 L 875 24 L 875 52" stroke="url(#beam4)" strokeWidth="1.5" strokeLinecap="round" />
-
+            {/* Source node — red circle no topo do trunk, ancora visual entre título e schematic.
+                Static (sem pulse próprio) — beam gradient passa por ele e ilumina momentaneamente. */}
+            <circle
+              cx="500"
+              cy="4"
+              r="3"
+              fill="#EC0000"
+              style={{ filter: 'drop-shadow(0 0 6px rgba(236, 0, 0, 0.55))' }}
+            />
+            <path
+              d="M 500 4 L 500 24 M 125 24 L 875 24 M 125 24 L 125 52 M 375 24 L 375 52 M 625 24 L 625 52 M 875 24 L 875 52"
+              stroke="url(#hubBeam)"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
             <defs>
-              {[
-                { id: 'beam1', dropX: 125, delay: 0 },
-                { id: 'beam2', dropX: 375, delay: 0.4 },
-                { id: 'beam3', dropX: 625, delay: 0.8 },
-                { id: 'beam4', dropX: 875, delay: 1.2 },
-              ].map(({ id, dropX, delay }) => (
-                <motion.linearGradient
-                  key={id}
-                  id={id}
-                  gradientUnits="userSpaceOnUse"
-                  initial={{ x1: 500, y1: -30, x2: 500, y2: -10 }}
-                  animate={{
-                    x1: [500, dropX, dropX],
-                    y1: [-30, 18, 80],
-                    x2: [500, dropX, dropX],
-                    y2: [-10, 30, 100],
-                  }}
-                  transition={{
-                    duration: 1.6,
-                    delay,
-                    repeat: Infinity,
-                    repeatDelay: 2,
-                    ease: 'easeInOut',
-                    times: [0, 0.5, 1],
-                  }}
-                >
-                  <stop offset="0%" stopColor="#FF3B3B" stopOpacity="0" />
-                  <stop offset="20%" stopColor="#FF3B3B" stopOpacity="0.9" />
-                  <stop offset="50%" stopColor="#EC0000" stopOpacity="1" />
-                  <stop offset="100%" stopColor="#FF3B3B" stopOpacity="0" />
-                </motion.linearGradient>
-              ))}
+              <motion.linearGradient
+                id="hubBeam"
+                gradientUnits="userSpaceOnUse"
+                initial={{ x1: 0, y1: -50, x2: 0, y2: 0 }}
+                animate={{
+                  y1: [-50, 60],
+                  y2: [0, 110],
+                }}
+                transition={{
+                  duration: 1.4,
+                  repeat: Infinity,
+                  repeatDelay: 1.6,
+                  ease: 'easeInOut',
+                }}
+              >
+                <stop offset="0%" stopColor="#FF3B3B" stopOpacity="0" />
+                <stop offset="20%" stopColor="#FF3B3B" stopOpacity="0.9" />
+                <stop offset="50%" stopColor="#EC0000" stopOpacity="1" />
+                <stop offset="100%" stopColor="#FF3B3B" stopOpacity="0" />
+              </motion.linearGradient>
             </defs>
           </svg>
         )}
