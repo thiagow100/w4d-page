@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useInView, animate } from 'framer-motion';
+import { motion, useInView, animate, useMotionValue, useTransform, useReducedMotion } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import Eyebrow from '@/components/Eyebrow';
 
@@ -11,30 +11,89 @@ const metrics = [
   { value: 0, suffix: "BR · USA", label: "onde operamos", context: "Operação ativa no Brasil e nos EUA", isStatic: true },
 ];
 
-function Counter({ from = 0, to, suffix, duration = 2, isStatic = false }: { from?: number, to: number, suffix: string, duration?: number, isStatic?: boolean }) {
+/**
+ * Counter — slot-machine digit roll.
+ * Cada dígito anima individualmente via Y transform (hardware-accelerated, sem
+ * re-renders React no main thread). Stagger esquerda→direita reforça leitura
+ * tipo "as casas decimais pousam uma de cada vez". Respeita prefers-reduced-motion.
+ */
+function Counter({ to, suffix, duration = 2, isStatic = false }: { to: number, suffix: string, duration?: number, isStatic?: boolean }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
-  const [display, setDisplay] = useState<string>(() =>
-    isStatic ? suffix : `${from}${suffix}`
+  const prefersReducedMotion = useReducedMotion();
+
+  const sizeClass = "text-4xl md:text-5xl font-semibold text-primary tracking-[-0.04em]";
+
+  // Static: mostra direto o suffix completo (ex: "BR · USA")
+  if (isStatic) {
+    return <span ref={ref} className={sizeClass}>{suffix}</span>;
+  }
+
+  // Quebra o target em dígitos. Ex: 3000 → [3, 0, 0, 0]
+  const digits = String(to).split('').map(Number);
+  const ariaLabel = `${to}${suffix}`;
+
+  return (
+    <span ref={ref} className={`${sizeClass} inline-flex items-baseline tabular-nums`} aria-label={ariaLabel}>
+      <span aria-hidden className="inline-flex items-baseline">
+        {digits.map((digitValue, i) => (
+          <RollingDigit
+            key={i}
+            target={inView ? digitValue : 0}
+            duration={duration}
+            delay={i * 0.08}
+            reducedMotion={prefersReducedMotion ?? false}
+          />
+        ))}
+      </span>
+      <span aria-hidden>{suffix}</span>
+    </span>
   );
+}
+
+/**
+ * RollingDigit — um dígito 0-9 que rola via translateY.
+ * Stack vertical de 0..9 (height 1em cada), container overflow-hidden 1em alto,
+ * transform Y do inner stack = -digitValue * 10% (% relativo ao próprio elemento que tem 10em).
+ */
+function RollingDigit({ target, duration, delay, reducedMotion }: { target: number; duration: number; delay: number; reducedMotion: boolean }) {
+  const value = useMotionValue(0);
+  const y = useTransform(value, (latest) => `${-latest * 10}%`);
 
   useEffect(() => {
-    if (isStatic) return;
-    if (!inView) return;
-    const controls = animate(from, to, {
+    if (reducedMotion) {
+      value.set(target);
+      return;
+    }
+    const controls = animate(value, target, {
       duration,
+      delay,
       ease: [0.16, 1, 0.3, 1] as any,
-      onUpdate(value) {
-        const hasFloat = to % 1 !== 0;
-        setDisplay((hasFloat ? value.toFixed(1).replace('.', ',') : Math.round(value)) + suffix);
-      }
     });
     return () => controls.stop();
-  }, [inView, from, to, duration, suffix, isStatic]);
+  }, [value, target, duration, delay, reducedMotion]);
 
-  const sizeClass = "text-4xl md:text-5xl";
-
-  return <span ref={ref} className={`${sizeClass} font-semibold text-primary tracking-[-0.04em]`}>{display}</span>;
+  return (
+    <span
+      className="relative inline-block overflow-hidden leading-[1]"
+      style={{ width: '0.62em', height: '1em' }}
+    >
+      <motion.span
+        style={{ y }}
+        className="absolute inset-x-0 top-0 flex flex-col"
+      >
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
+          <span
+            key={n}
+            className="flex items-center justify-center"
+            style={{ height: '1em', lineHeight: 1 }}
+          >
+            {n}
+          </span>
+        ))}
+      </motion.span>
+    </span>
+  );
 }
 
 function LeaderPhoto({ src, alt, initials, imgClassName = "object-cover object-top" }: { src: string, alt: string, initials: string, imgClassName?: string }) {
