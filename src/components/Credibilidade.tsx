@@ -127,7 +127,7 @@ export default function Credibilidade() {
       {/* Fundo Gradiente */}
       <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-tertiary to-transparent z-0 opacity-80" />
 
-      <div className="relative z-10 max-w-5xl mx-auto">
+      <div className="relative z-10 max-w-[60rem] mx-auto">
 
         {/* Eyebrow */}
         <div className="flex justify-center mb-16">
