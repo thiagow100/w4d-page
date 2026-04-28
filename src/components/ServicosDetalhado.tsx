@@ -125,15 +125,19 @@ function MetodoW4DHub() {
 
       {/* ═══════ DESKTOP (lg+) — schematic horizontal ═══════ */}
 
-      {/* Connectors: trunk + rail + 4 drops. Posições 12.5/37.5/62.5/87.5% = cell centers grid-cols-4. */}
+      {/* Schematic stack: skeleton estático (white/15 lines) + PulseBeams overlay (red gradient flowing).
+          Posições 12.5/37.5/62.5/87.5% = cell centers do grid-cols-4. ViewBox 1000x56 alinhado.
+          h-14 = 56px (match com viewBox y). */}
       <div className="hidden lg:block relative h-14 w-full mt-2">
+
+        {/* Skeleton: trunk + rail + 4 drops draw-on inicial (white/15 = "wires desligados") */}
         <motion.div
           aria-hidden
           initial={{ scaleY: 0 }}
           whileInView={{ scaleY: 1 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] as any }}
-          className="absolute left-1/2 top-0 -translate-x-1/2 w-px h-6 bg-gradient-to-b from-cta/60 to-white/15 origin-top"
+          className="absolute left-1/2 top-0 -translate-x-1/2 w-px h-6 bg-white/15 origin-top"
         />
         <motion.div
           aria-hidden
@@ -143,28 +147,6 @@ function MetodoW4DHub() {
           transition={{ duration: 0.7, delay: 0.7, ease: [0.16, 1, 0.3, 1] as any }}
           className="absolute left-[12.5%] right-[12.5%] top-6 h-px bg-white/15 origin-center"
         />
-
-        {/* Pulse traveling along rail — simula data flow do hub correndo até as fases.
-            left animado de 0% a 100% do wrapper; opacity fade nas pontas pra não aparecer abrupto.
-            Infinite loop, gated por reduced-motion. */}
-        {!prefersReducedMotion && (
-          <div className="absolute left-[12.5%] right-[12.5%] top-6 -translate-y-1/2 pointer-events-none">
-            <motion.div
-              aria-hidden
-              animate={{ left: ['0%', '100%'], opacity: [0, 1, 1, 0] }}
-              transition={{
-                duration: 3.2,
-                delay: 1.6,
-                repeat: Infinity,
-                repeatDelay: 1.2,
-                ease: 'easeInOut',
-                times: [0, 0.08, 0.92, 1],
-              }}
-              className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-cta shadow-[0_0_12px_3px_rgba(236,0,0,0.7)]"
-            />
-          </div>
-        )}
-
         {[12.5, 37.5, 62.5, 87.5].map((leftPct, i) => (
           <motion.div
             key={i}
@@ -177,6 +159,62 @@ function MetodoW4DHub() {
             style={{ left: `${leftPct}%` }}
           />
         ))}
+
+        {/* PulseBeams overlay — 4 SVG paths com linearGradient deslizando do hub até cada phase port.
+            Pattern Aceternity adaptado pro hub W4D: cada beam fan out do trunk (500,0) → corner (500,24) →
+            rail-portion → drop → phase port. linearGradient userSpaceOnUse animado em 3 keyframes:
+            (1) escondido acima do hub, (2) na corner+rail, (3) passou da phase port.
+            Stops 20%-50% formam o "comet body"; 0% e 100% transparentes formam fade head/tail.
+            Stagger 0/0.4/0.8/1.2s cria efeito sequencial "data packet split". */}
+        {!prefersReducedMotion && (
+          <svg
+            aria-hidden
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            viewBox="0 0 1000 56"
+            preserveAspectRatio="none"
+            fill="none"
+          >
+            <path d="M 500 0 L 500 24 L 125 24 L 125 52" stroke="url(#beam1)" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M 500 0 L 500 24 L 375 24 L 375 52" stroke="url(#beam2)" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M 500 0 L 500 24 L 625 24 L 625 52" stroke="url(#beam3)" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M 500 0 L 500 24 L 875 24 L 875 52" stroke="url(#beam4)" strokeWidth="1.5" strokeLinecap="round" />
+
+            <defs>
+              {[
+                { id: 'beam1', dropX: 125, delay: 0 },
+                { id: 'beam2', dropX: 375, delay: 0.4 },
+                { id: 'beam3', dropX: 625, delay: 0.8 },
+                { id: 'beam4', dropX: 875, delay: 1.2 },
+              ].map(({ id, dropX, delay }) => (
+                <motion.linearGradient
+                  key={id}
+                  id={id}
+                  gradientUnits="userSpaceOnUse"
+                  initial={{ x1: 500, y1: -30, x2: 500, y2: -10 }}
+                  animate={{
+                    x1: [500, dropX, dropX],
+                    y1: [-30, 18, 80],
+                    x2: [500, dropX, dropX],
+                    y2: [-10, 30, 100],
+                  }}
+                  transition={{
+                    duration: 1.6,
+                    delay,
+                    repeat: Infinity,
+                    repeatDelay: 2,
+                    ease: 'easeInOut',
+                    times: [0, 0.5, 1],
+                  }}
+                >
+                  <stop offset="0%" stopColor="#FF3B3B" stopOpacity="0" />
+                  <stop offset="20%" stopColor="#FF3B3B" stopOpacity="0.9" />
+                  <stop offset="50%" stopColor="#EC0000" stopOpacity="1" />
+                  <stop offset="100%" stopColor="#FF3B3B" stopOpacity="0" />
+                </motion.linearGradient>
+              ))}
+            </defs>
+          </svg>
+        )}
       </div>
 
       {/* Phase grid desktop horizontal — 4 cols com port dot + word + sub + desc centralizados */}
