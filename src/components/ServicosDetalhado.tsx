@@ -161,58 +161,12 @@ function MetodoW4DHub() {
           />
         ))}
 
-        {/* PulseBeams overlay — UM único gradient vertical desce do hub e ilumina toda a árvore.
-            Como o gradient é puramente vertical (x1=x2=0), todos os pontos com mesmo Y recebem
-            a mesma cor: a RAIL (y=24) flasha uniformemente em toda extensão, e as 4 DROPS (y=24-52)
-            acendem SIMULTANEAMENTE. Semantic: hub alimenta as 4 phases juntas via uma linha única.
-            Path tem múltiplos subpaths (M ... M ...) reunindo trunk + rail + 4 drops num só stroke. */}
-        {!prefersReducedMotion && (
-          <svg
-            aria-hidden
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            viewBox="0 0 1000 56"
-            preserveAspectRatio="none"
-            fill="none"
-          >
-            {/* Source node — red circle no topo do trunk, ancora visual entre título e schematic.
-                Static (sem pulse próprio) — beam gradient passa por ele e ilumina momentaneamente. */}
-            <circle
-              cx="500"
-              cy="4"
-              r="3"
-              fill="#EC0000"
-              style={{ filter: 'drop-shadow(0 0 6px rgba(236, 0, 0, 0.55))' }}
-            />
-            <path
-              d="M 500 4 L 500 24 M 125 24 L 875 24 M 125 24 L 125 52 M 375 24 L 375 52 M 625 24 L 625 52 M 875 24 L 875 52"
-              stroke="url(#hubBeam)"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-            <defs>
-              <motion.linearGradient
-                id="hubBeam"
-                gradientUnits="userSpaceOnUse"
-                initial={{ x1: 0, y1: -50, x2: 0, y2: 0 }}
-                animate={{
-                  y1: [-50, 60],
-                  y2: [0, 110],
-                }}
-                transition={{
-                  duration: 1.4,
-                  repeat: Infinity,
-                  repeatDelay: 1.6,
-                  ease: 'easeInOut',
-                }}
-              >
-                <stop offset="0%" stopColor="#FF3B3B" stopOpacity="0" />
-                <stop offset="20%" stopColor="#FF3B3B" stopOpacity="0.9" />
-                <stop offset="50%" stopColor="#EC0000" stopOpacity="1" />
-                <stop offset="100%" stopColor="#FF3B3B" stopOpacity="0" />
-              </motion.linearGradient>
-            </defs>
-          </svg>
-        )}
+        {/* Source node — static red dot no topo do trunk, ancora visual entre título e schematic.
+            Sem animação infinita (PulseBeams removido a pedido do user). Apenas presence estática. */}
+        <span
+          aria-hidden
+          className="absolute left-1/2 top-[3px] -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-cta shadow-[0_0_6px_rgba(236,0,0,0.55)]"
+        />
       </div>
 
       {/* Phase grid desktop horizontal — 4 cols com port dot + word + sub + desc centralizados */}
@@ -312,10 +266,10 @@ function MetodoW4DHub() {
                 aria-hidden
                 className="absolute -left-[2rem] top-3 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-cta shadow-[0_0_8px_rgba(236,0,0,0.6)]"
               />
-              <h4 className="text-5xl md:text-6xl font-semibold text-primary tracking-[-0.05em] leading-[1] mb-3">
+              <h4 className="text-3xl md:text-5xl font-semibold text-primary tracking-[-0.04em] leading-[1] mb-2">
                 {phase.word}
               </h4>
-              <span className="block font-mono text-xs text-cta uppercase tracking-[0.18em] mb-3">
+              <span className="block font-mono text-[11px] md:text-xs text-cta uppercase tracking-[0.18em] mb-2.5">
                 {phase.sub}
               </span>
               <span className="block text-sm md:text-base text-body font-normal leading-snug max-w-[40ch]">
