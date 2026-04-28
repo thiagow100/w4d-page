@@ -24,9 +24,11 @@ function Counter({ to, suffix, duration = 2, isStatic = false }: { to: number, s
 
   const sizeClass = "text-4xl md:text-5xl font-mono font-semibold text-primary tracking-[-0.02em]";
 
-  // Static: mostra direto o suffix completo (ex: "BR · USA")
+  // Static: mostra direto o suffix completo (ex: "BR · USA").
+  // whitespace-nowrap evita quebra natural nos espaços — Geist Mono é mais largo
+  // que Sans e estoura a célula da grid sem isso.
   if (isStatic) {
-    return <span ref={ref} className={sizeClass}>{suffix}</span>;
+    return <span ref={ref} className={`${sizeClass} whitespace-nowrap`}>{suffix}</span>;
   }
 
   // Quebra o target em dígitos. Ex: 3000 → [3, 0, 0, 0]
