@@ -31,7 +31,10 @@ const faqs = [
   },
 ];
 
-function FAQItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boolean; onToggle: () => void }) {
+function FAQItem({ index, total, q, a, isOpen, onToggle }: { index: number; total: number; q: string; a: string; isOpen: boolean; onToggle: () => void }) {
+  const indexStr = String(index).padStart(2, '0');
+  const totalStr = String(total).padStart(2, '0');
+
   return (
     <div className="border-b border-white/5">
       <button
@@ -40,9 +43,14 @@ function FAQItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boo
         aria-expanded={isOpen}
         className="w-full flex items-start justify-between gap-6 py-6 md:py-7 text-left group"
       >
-        <span className="text-base md:text-lg font-medium text-primary tracking-[-0.01em] leading-snug">
-          {q}
-        </span>
+        <div className="flex items-baseline gap-4 md:gap-6 flex-1 min-w-0">
+          <span className="font-mono text-[11px] md:text-xs text-secondary tracking-[0.18em] uppercase shrink-0 pt-0.5">
+            {indexStr} / {totalStr}
+          </span>
+          <span className="text-base md:text-lg font-medium text-primary tracking-[-0.01em] leading-snug">
+            {q}
+          </span>
+        </div>
         <span
           aria-hidden
           className={`shrink-0 mt-1 w-6 h-6 flex items-center justify-center rounded-full border text-lg leading-none transition-all duration-300 ${
@@ -109,6 +117,8 @@ export default function FAQ() {
           {faqs.map((item, i) => (
             <FAQItem
               key={i}
+              index={i + 1}
+              total={faqs.length}
               q={item.q}
               a={item.a}
               isOpen={openIndex === i}
