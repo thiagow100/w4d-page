@@ -81,7 +81,7 @@ const PHASES = [
  */
 function MetodoW4DTitle() {
   const prefersReducedMotion = useReducedMotion();
-  const text = 'Método W4D';
+  const text = 'MÉTODO W4D';
 
   const containerVariants = {
     hidden: { opacity: 1 },
@@ -105,17 +105,14 @@ function MetodoW4DTitle() {
       };
 
   return (
-    <motion.div
+    <motion.h3
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
-      className="flex flex-col items-center"
+      className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-[0.02em] text-cta leading-[1.1] inline-flex justify-center"
+      aria-label={text}
     >
-      <h3
-        className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-[-0.05em] text-cta leading-[1.1] inline-flex justify-center"
-        aria-label={text}
-      >
       {text.split('').map((char, i) => (
         <motion.span
           key={i}
@@ -123,26 +120,10 @@ function MetodoW4DTitle() {
           aria-hidden
           style={{ display: 'inline-block', willChange: 'transform, opacity, filter' }}
         >
-          {char === ' ' ? ' ' : char}
+          {char}
         </motion.span>
       ))}
-      </h3>
-
-      {/* Underline draw — scaleX 0→1 do center pros lados após chars finish stagger.
-          Gradient cta-accent fade nas laterais → sólido no centro. Ancora visualmente. */}
-      <motion.div
-        initial={prefersReducedMotion ? { scaleX: 1 } : { scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{
-          duration: prefersReducedMotion ? 0 : 0.9,
-          delay: prefersReducedMotion ? 0 : 0.7,
-          ease: [0.16, 1, 0.3, 1] as any,
-        }}
-        style={{ transformOrigin: 'center', width: '70%' }}
-        className="h-px bg-gradient-to-r from-cta-accent/0 via-cta-accent/70 to-cta-accent/0 mt-4"
-      />
-    </motion.div>
+    </motion.h3>
   );
 }
 
@@ -170,15 +151,15 @@ function MetodoW4D() {
   const dotProgress = useTransform(scrollYProgress, [0, 0.33, 0.66, 1], [0, 1, 2, 3]);
 
   return (
-    <div ref={sectionRef} id="metodo" className="w-full mb-24 lg:mb-28 relative scroll-mt-24">
+    <div ref={sectionRef} id="metodo" className="w-full mb-16 md:mb-20 lg:mb-24 relative scroll-mt-24">
       {/* Headline interno cinematográfico — char-by-char reveal por scroll.
           Cada letra entra com blur+y+scale, stagger 40ms. Anuncia framework. */}
-      <div className="flex justify-center mb-16">
+      <div className="flex justify-center mb-8 md:mb-10">
         <MetodoW4DTitle />
       </div>
 
       <div className="relative">
-        {/* Linha horizontal scroll-drawn — apenas lg+. top calibrado pra palavras text-7xl (72px). */}
+        {/* Linha horizontal scroll-drawn — apenas lg+. */}
         <div
           aria-hidden
           className="hidden lg:block absolute left-0 right-0 top-[58px] pointer-events-none z-0 px-[12.5%]"
@@ -201,7 +182,7 @@ function MetodoW4D() {
           </svg>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-10 lg:gap-0 items-start relative z-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6 md:gap-10 lg:gap-0 items-start relative z-10">
           {PHASES.map((phase, i) => (
             <div key={phase.word} className="flex flex-col items-center text-center w-full px-2">
               <div className="relative mb-4">
@@ -282,7 +263,7 @@ export default function ServicosDetalhado() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
-          className="h2-section font-semibold tracking-[-0.05em] leading-[1.05] mb-20 text-center text-white/95 max-w-4xl text-balance"
+          className="h2-section font-semibold tracking-[-0.05em] leading-[1.05] mb-10 md:mb-14 text-center text-white/95 max-w-4xl text-balance"
         >
           Do anúncio à agenda do seu time comercial.
         </motion.h2>
