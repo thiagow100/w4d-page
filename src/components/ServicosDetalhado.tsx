@@ -227,15 +227,16 @@ function MetodoW4DHub() {
               }}
               className="w-2 h-2 rounded-full bg-cta mb-5 shadow-[0_0_8px_rgba(236,0,0,0.6)]"
             />
-            {/* Eyebrow numerado: 01 · BASE — index secondary + bullet muted + sub cta */}
+            {/* Phase word (focal) → eyebrow numerado abaixo → desc. Ordem: word grande primeiro,
+                depois "01 · BASE" pequeno como subtítulo metadata. */}
+            <span className="text-6xl font-semibold text-primary tracking-[-0.05em] leading-[1] block mb-3">
+              {phase.word}
+            </span>
             <div className="flex items-baseline justify-center gap-2 mb-3 font-mono text-xs uppercase tracking-[0.18em]">
               <span className="text-secondary">0{i + 1}</span>
               <span className="text-secondary/40">·</span>
               <span className="text-cta">{phase.sub}</span>
             </div>
-            <span className="text-6xl font-semibold text-primary tracking-[-0.05em] leading-[1] block mb-3">
-              {phase.word}
-            </span>
             <span className="text-sm md:text-base text-body font-normal leading-snug max-w-[22ch]">
               {phase.desc}
             </span>
@@ -303,15 +304,16 @@ function MetodoW4DHub() {
                 aria-hidden
                 className="absolute -left-[2rem] top-3 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-cta shadow-[0_0_8px_rgba(236,0,0,0.6)]"
               />
-              {/* Eyebrow numerado: 01 · BASE */}
-              <div className="flex items-baseline gap-2 mb-2 font-mono text-[11px] md:text-xs uppercase tracking-[0.18em]">
+              {/* Phase word (focal) → eyebrow numerado abaixo → desc. Word grande primeiro,
+                  depois "01 · BASE" como subtítulo metadata. */}
+              <h4 className="text-3xl md:text-5xl font-semibold text-primary tracking-[-0.04em] leading-[1] mb-2">
+                {phase.word}
+              </h4>
+              <div className="flex items-baseline gap-2 mb-3 font-mono text-[11px] md:text-xs uppercase tracking-[0.18em]">
                 <span className="text-secondary">0{i + 1}</span>
                 <span className="text-secondary/40">·</span>
                 <span className="text-cta">{phase.sub}</span>
               </div>
-              <h4 className="text-3xl md:text-5xl font-semibold text-primary tracking-[-0.04em] leading-[1] mb-3">
-                {phase.word}
-              </h4>
               <span className="block text-sm md:text-base text-body font-normal leading-snug max-w-[40ch]">
                 {phase.desc}
               </span>
