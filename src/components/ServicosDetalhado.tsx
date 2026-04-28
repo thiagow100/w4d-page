@@ -107,20 +107,50 @@ function MetodoW4DHub() {
   return (
     <div id="metodo" className="w-full mb-16 md:mb-20 lg:mb-24 relative scroll-mt-24">
 
-      {/* Hub label — título tipográfico em vez de pill alerta. "Método" primary + "W4D" cta vermelho.
-          Removido: pill border, glow externo, pulse dot inline (parecia notification de alerta).
-          O PulseBeams overlay abaixo já carrega o "alive" do sistema. */}
+      {/* Hub label — título tipográfico com 3 efeitos coerentes:
+          (1) word-stagger: "Método" entra, "W4D" entra com delay 0.3s
+          (2) fadeBlur no "W4D" — pattern do Hero H1, blur 8→0 + y 12→0 (Apple-style cinematográfico)
+          (3) underline draw-on no "W4D" — pattern dos NavLinks Footer, thin red line scaleX 0→1
+          Tudo gated por reduced-motion. Sem loop perpétuo (CLAUDE.md proíbe motion decorativa). */}
       <div className="flex justify-center">
-        <motion.h3
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as any }}
-          className="text-2xl md:text-3xl lg:text-4xl font-semibold text-primary tracking-[-0.04em] leading-[1] inline-flex items-baseline gap-2.5"
-        >
-          Método
-          <span className="text-cta">W4D</span>
-        </motion.h3>
+        <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-primary tracking-[-0.04em] leading-[1] inline-flex items-baseline gap-2.5">
+          <motion.span
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{
+              duration: prefersReducedMotion ? 0 : 0.7,
+              ease: [0.16, 1, 0.3, 1] as any,
+            }}
+          >
+            Método
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, y: 12, filter: 'blur(8px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{
+              duration: prefersReducedMotion ? 0 : 0.9,
+              delay: prefersReducedMotion ? 0 : 0.3,
+              ease: [0.16, 1, 0.3, 1] as any,
+            }}
+            className="relative text-cta"
+          >
+            W4D
+            <motion.span
+              aria-hidden
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.6,
+                delay: prefersReducedMotion ? 0 : 1.0,
+                ease: [0.16, 1, 0.3, 1] as any,
+              }}
+              className="absolute -bottom-1 left-0 right-0 h-px bg-cta origin-left"
+            />
+          </motion.span>
+        </h3>
       </div>
 
       {/* ═══════ DESKTOP (lg+) — schematic horizontal ═══════ */}
