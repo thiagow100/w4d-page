@@ -323,15 +323,25 @@ function MetodoW4DHub() {
 }
 
 // Grid de plataformas — logos soltos sem fundo escuro, editorial.
-// Sem stagger por logo (o parent wrapper já tem fade-up que cobre a entrada do bloco).
-// Apenas hover glow vermelho no desktop (mobile não tem hover real).
+// Breathing assimétrico: cada logo pulsa scale 1→1.04→1 com delay sequencial 0.5s,
+// nunca todos no mesmo fase. Comunica "canais operacionalmente ativos" (signal, não decoração).
+// Hover glow vermelho desktop preservado. Reduced-motion: pulse desabilita.
 function PlatformsVisual() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <div className="grid grid-cols-3 md:grid-cols-6 gap-8 md:gap-10 place-items-center w-full max-w-4xl mx-auto">
-      {platforms.map((p) => (
-        <div
+      {platforms.map((p, i) => (
+        <motion.div
           key={p.name}
           title={p.name}
+          animate={prefersReducedMotion ? {} : { scale: [1, 1.04, 1] }}
+          transition={{
+            duration: 3.5,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: i * 0.5,
+          }}
           className="group flex items-center justify-center w-full h-16 md:h-20"
         >
           {typeof p.icon === 'string' ? (
@@ -345,7 +355,7 @@ function PlatformsVisual() {
               {p.icon}
             </div>
           )}
-        </div>
+        </motion.div>
       ))}
     </div>
   );
