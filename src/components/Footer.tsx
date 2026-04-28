@@ -2,7 +2,9 @@
 
 import Image from 'next/image';
 import { Phone, Mail, MapPin, ArrowUp } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useMotionTemplate } from 'framer-motion';
+import { useState } from 'react';
+import DirectionalCTA from '@/components/DirectionalCTA';
 
 /** Stagger das 4 colunas — 80ms entre cada (cascade calmo, não atrasa interação). */
 const columnsContainer = {
@@ -14,7 +16,41 @@ const columnItem = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as any } },
 };
 
+/** NavLink — link com underline draw-on no hover (origin-left, 300ms ease-out).
+ *  Pattern Stripe/Linear: cor + linha vermelha que se desenha embaixo ao hover. */
+function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <a
+      href={href}
+      className="group relative w-fit text-sm font-medium text-body hover:text-primary transition-colors duration-200"
+    >
+      {children}
+      <span
+        aria-hidden
+        className="absolute -bottom-0.5 left-0 right-0 h-px bg-cta scale-x-0 origin-left transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"
+      />
+    </a>
+  );
+}
+
 export default function Footer() {
+  /** Cursor spotlight — radial vermelho sutil que segue o cursor sobre o grid das 4 colunas.
+   *  Aparece no hover, fade-out 500ms ao sair. Desktop only (mobile não tem cursor).
+   *  motion values fora do React render cycle = zero re-renders no scroll/hover. */
+  const colsMouseX = useMotionValue(0);
+  const colsMouseY = useMotionValue(0);
+  const [colsActive, setColsActive] = useState(false);
+
+  const handleColsMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    colsMouseX.set(e.clientX - rect.left);
+    colsMouseY.set(e.clientY - rect.top);
+    if (!colsActive) setColsActive(true);
+  };
+
+  const colsSpotlight = useMotionTemplate`radial-gradient(280px circle at ${colsMouseX}px ${colsMouseY}px, rgba(255, 59, 59, 0.06), transparent 65%)`;
+
   return (
     <footer className="relative w-full overflow-hidden bg-primary pt-16 md:pt-24 pb-8 px-6 sm:px-12 lg:px-24 border-t border-white/5 noise-overlay">
 
@@ -49,7 +85,8 @@ export default function Footer() {
 
       <div className="max-w-6xl mx-auto flex flex-col relative z-10">
 
-        {/* Closing scene — h2 com presença equivalente às demais seções, subtítulo de apoio e CTA único */}
+        {/* Closing scene — h2 com presença equivalente às demais seções, subtítulo de apoio e CTA único.
+            CTA usa DirectionalCTA (mesmo do Hero) — magnetic pull + directional fill. */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -63,46 +100,47 @@ export default function Footer() {
           <p className="mt-6 text-lg md:text-xl text-body font-normal leading-[1.7] max-w-2xl">
             Estrutura completa de marketing, do anúncio à agenda do seu comercial.
           </p>
-          <a
-            href="#formulario"
-            className="mt-10 group inline-flex items-center justify-center px-9 py-4 text-base font-semibold text-primary transition-colors duration-200 ease-out bg-cta rounded-full hover:bg-cta-hover active:scale-[0.98] glow-cta"
-          >
-            Começar a parceria
-            <span className="ml-2 transition-transform duration-200 ease-out group-hover:translate-x-1">&#8594;</span>
-          </a>
+          <div className="mt-10">
+            <DirectionalCTA href="#formulario">Começar a parceria</DirectionalCTA>
+          </div>
         </motion.div>
 
         {/* 4 colunas: Navegação · Contato · Palhoça · Orlando.
             Mobile (<sm) → stack vertical 1-col.
             Tablet (sm-lg) → 2×2.
             Desktop (lg+) → 4×1.
-            Stagger reveal cascade ao entrar no viewport. */}
+            Stagger reveal cascade ao entrar no viewport.
+            Cursor spotlight global (desktop only) — radial vermelho segue mouse sobre o grid. */}
         <motion.div
           variants={columnsContainer}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: '-50px' }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-12"
+          onMouseMove={handleColsMouseMove}
+          onMouseLeave={() => setColsActive(false)}
+          className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-12"
         >
 
-          {/* Navegação — links âncora pra seções da página */}
+          {/* Spotlight overlay — desktop only, fade in/out 500ms via opacity. */}
+          <motion.div
+            aria-hidden
+            className="absolute inset-0 pointer-events-none hidden md:block transition-opacity duration-500 ease-out -mx-6 sm:-mx-12 lg:-mx-24"
+            style={{
+              background: colsSpotlight,
+              opacity: colsActive ? 1 : 0,
+            }}
+          />
+
+          {/* Navegação — links âncora pra seções da página, com underline draw-on no hover */}
           <motion.div variants={columnItem} className="flex flex-col gap-5">
             <span className="font-mono text-xs text-secondary tracking-[0.18em] uppercase">
               Navegação
             </span>
-            <nav className="flex flex-col gap-3" aria-label="Navegação rodapé">
-              <a href="#metodo" className="text-sm font-medium text-body hover:text-primary transition-colors duration-200">
-                Método W4D
-              </a>
-              <a href="#quem-somos" className="text-sm font-medium text-body hover:text-primary transition-colors duration-200">
-                Quem somos
-              </a>
-              <a href="#faq" className="text-sm font-medium text-body hover:text-primary transition-colors duration-200">
-                FAQ
-              </a>
-              <a href="#formulario" className="text-sm font-medium text-body hover:text-primary transition-colors duration-200">
-                Falar com a W4D
-              </a>
+            <nav className="flex flex-col gap-3 items-start" aria-label="Navegação rodapé">
+              <NavLink href="#metodo">Método W4D</NavLink>
+              <NavLink href="#quem-somos">Quem somos</NavLink>
+              <NavLink href="#faq">FAQ</NavLink>
+              <NavLink href="#formulario">Falar com a W4D</NavLink>
             </nav>
           </motion.div>
 
@@ -196,7 +234,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Stamp + back-to-top polished — w-11 h-11, hover lift + arrow translate up */}
+          {/* Stamp + back-to-top com glassmorphism — backdrop-blur + bg translucent + inner highlight refraction.
+              Pattern redesign-skill ("True glassmorphism"). */}
           <div className="flex items-center gap-4">
             <span className="font-mono text-[11px] md:text-xs text-secondary tracking-[0.12em] uppercase">
               BUILT WITH DISCIPLINE, NOT HYPE.
@@ -204,7 +243,7 @@ export default function Footer() {
             <a
               href="#"
               aria-label="Voltar ao topo da página"
-              className="group w-11 h-11 rounded-full border border-white/15 flex items-center justify-center text-secondary hover:text-primary hover:border-white/30 hover:-translate-y-0.5 transition-all duration-200 ease-out shrink-0"
+              className="group w-11 h-11 rounded-full border border-white/10 bg-white/[0.02] backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] flex items-center justify-center text-secondary hover:text-primary hover:border-white/25 hover:bg-white/[0.04] hover:-translate-y-0.5 transition-all duration-200 ease-out shrink-0"
             >
               <ArrowUp size={16} strokeWidth={2} className="transition-transform duration-200 ease-out group-hover:-translate-y-0.5" />
             </a>
