@@ -13,6 +13,7 @@ type HoverDirection = 'top' | 'right' | 'bottom' | 'left' | null;
  */
 function DirectionalHoverCTA() {
   const [direction, setDirection] = useState<HoverDirection>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   const getDirection = (e: React.MouseEvent<HTMLAnchorElement>): HoverDirection => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -44,9 +45,10 @@ function DirectionalHoverCTA() {
       onMouseLeave={(e) => setDirection(getDirection(e))}
       className="group relative inline-flex items-center justify-center px-9 py-4 text-base font-semibold text-primary bg-cta rounded-full active:scale-[0.98] glow-cta overflow-hidden isolate"
     >
-      {/* Directional fill — slide in da direção onde o cursor entrou */}
+      {/* Directional fill — slide in da direção onde o cursor entrou.
+          Acessibilidade: omite o slide quando reduced-motion (CTA mantém solid bg-cta sem efeito). */}
       <AnimatePresence>
-        {direction && (
+        {direction && !prefersReducedMotion && (
           <motion.span
             key={direction}
             aria-hidden

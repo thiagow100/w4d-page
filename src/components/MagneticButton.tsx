@@ -1,13 +1,18 @@
 'use client';
 
 import { useRef, useState, useEffect, ReactNode } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 export default function MagneticButton({ children, className = "" }: { children: ReactNode, className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
+    // Acessibilidade: respeita preferência do user (motion sickness, vertigem).
+    // Skipa listener inteiro — botão fica estático em (0,0).
+    if (prefersReducedMotion) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       // Regra bloqueante: Não executar tracking magnético em celulares
       if (window.innerWidth < 768) return;
@@ -38,7 +43,7 @@ export default function MagneticButton({ children, className = "" }: { children:
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <motion.div

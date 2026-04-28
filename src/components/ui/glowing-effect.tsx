@@ -14,7 +14,7 @@
  */
 
 import { memo, useCallback, useEffect, useRef } from 'react';
-import { animate } from 'framer-motion';
+import { animate, useReducedMotion } from 'framer-motion';
 
 interface GlowingEffectProps {
   /** Raio em px fora da borda onde o efeito ativa. Maior = ativa mais cedo. */
@@ -44,6 +44,10 @@ export const GlowingEffect = memo(({
   const containerRef = useRef<HTMLDivElement>(null);
   const lastPosition = useRef({ x: 0, y: 0 });
   const rafRef = useRef<number>(0);
+
+  // Acessibilidade: reduce-motion trata como disabled (não renderiza nem ativa raf).
+  const prefersReducedMotion = useReducedMotion();
+  const effectiveDisabled = disabled || prefersReducedMotion;
 
   const handleMove = useCallback(
     (e?: { clientX: number; clientY: number }) => {
@@ -99,7 +103,7 @@ export const GlowingEffect = memo(({
   );
 
   useEffect(() => {
-    if (disabled) return;
+    if (effectiveDisabled) return;
 
     const handlePointerMove = (e: PointerEvent) =>
       handleMove({ clientX: e.clientX, clientY: e.clientY });
@@ -115,9 +119,9 @@ export const GlowingEffect = memo(({
       document.body.removeEventListener('pointermove', handlePointerMove);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [handleMove, disabled]);
+  }, [handleMove, effectiveDisabled]);
 
-  if (disabled) return null;
+  if (effectiveDisabled) return null;
 
   return (
     <div
