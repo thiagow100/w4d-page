@@ -127,7 +127,7 @@ export default function Credibilidade() {
       {/* Fundo Gradiente */}
       <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-tertiary to-transparent z-0 opacity-80" />
 
-      <div className="relative z-10 max-w-6xl mx-auto">
+      <div className="relative z-10 max-w-5xl mx-auto">
 
         {/* Eyebrow */}
         <div className="flex justify-center mb-16">
@@ -143,7 +143,7 @@ export default function Credibilidade() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }}
-            className="flex flex-col h-full"
+            className="flex flex-col"
           >
             <LeaderPhoto
               src="/images/Thiago3.png"
@@ -169,10 +169,10 @@ export default function Credibilidade() {
                 <span className="text-white/40">●</span> Hoje · W4D
               </span>
             </div>
-            <p className="text-body text-base md:text-lg font-normal leading-[1.75] max-w-[52ch]">
+            <p className="text-body text-base md:text-lg font-normal leading-[1.75] max-w-[60ch]">
               Thiago começou em vendas em 2005 e consolidou-se como corretor de imóveis em Santa Catarina a partir de 2011. Em 2015, passou a estudar tráfego pago errando com dinheiro do próprio bolso, quando quase ninguém anunciava no Facebook. Em 2020 fundou a TW Broker, operação que vendeu milhões em imóveis todos os anos. Em 2023 criou o Corretor Que Vende, treinando mais de três mil profissionais do mercado imobiliário. Hoje, lidera a W4D aplicando esse mesmo sistema comercial no Brasil e Estados Unidos, focado em performance de conversão, volume e previsibilidade.
             </p>
-            <div className="mt-auto pt-6 border-l-2 border-white/15 pl-4 max-w-[60ch]">
+            <div className="mt-6 border-l-2 border-white/15 pl-4 max-w-[60ch]">
               <span aria-hidden className="block font-serif text-5xl leading-none text-white/25 -mb-2">&ldquo;</span>
               <p className="text-primary font-medium text-base md:text-lg leading-relaxed">
                 No fim do dia o marketing é apenas o meio. A nossa única régua de sucesso é quanto a sua empresa vende com recorrência.
@@ -186,7 +186,7 @@ export default function Credibilidade() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as any, delay: 0.15 }}
-            className="flex flex-col h-full"
+            className="flex flex-col"
           >
             <LeaderPhoto
               src="/images/carlos.png"
@@ -211,10 +211,10 @@ export default function Credibilidade() {
                 <span className="text-white/40">●</span> Hoje · W4D
               </span>
             </div>
-            <p className="text-body text-base md:text-lg font-normal leading-[1.75] max-w-[52ch]">
+            <p className="text-body text-base md:text-lg font-normal leading-[1.75] max-w-[60ch]">
               Carlos operou hostel e bar por oito anos a partir de 2011, sentindo na pele a gestão, a contratação e a pressão pelo faturamento. Em 2019 passou a se dedicar exclusivamente a tráfego pago e performance, com foco rigoroso em negócios locais. Em 2022 consolidou sua operação gerindo múltiplas contas em saúde e educação, com métricas de ROI e conversão direta como régua. Em 2024 aprofundou a esteira em lançamentos imobiliários. Hoje, lidera o time de operação da W4D, garantindo que o faturamento projetado chegue no resultado comercial.
             </p>
-            <div className="mt-auto pt-6 border-l-2 border-white/15 pl-4 max-w-[60ch]">
+            <div className="mt-6 border-l-2 border-white/15 pl-4 max-w-[60ch]">
               <span aria-hidden className="block font-serif text-5xl leading-none text-white/25 -mb-2">&ldquo;</span>
               <p className="text-primary font-medium text-base md:text-lg leading-relaxed">
                 Estratégias no papel não pagam contas. Meu trabalho é fazer a mídia colocar boas oportunidades na sua mesa todos os dias.
