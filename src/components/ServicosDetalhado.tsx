@@ -322,30 +322,59 @@ function MetodoW4DHub() {
   );
 }
 
-// Grid de plataformas — logos soltos sem fundo escuro, editorial
+// Grid de plataformas — logos soltos sem fundo escuro, editorial.
+// Stagger reveal cascata 60ms ao entrar no viewport + hover glow vermelho desktop.
 function PlatformsVisual() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <div className="grid grid-cols-3 md:grid-cols-6 gap-8 md:gap-10 place-items-center w-full max-w-4xl mx-auto">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-50px' }}
+      variants={{
+        hidden: {},
+        visible: {
+          transition: {
+            staggerChildren: prefersReducedMotion ? 0 : 0.06,
+            delayChildren: prefersReducedMotion ? 0 : 0.1,
+          },
+        },
+      }}
+      className="grid grid-cols-3 md:grid-cols-6 gap-8 md:gap-10 place-items-center w-full max-w-4xl mx-auto"
+    >
       {platforms.map((p) => (
-        <div
+        <motion.div
           key={p.name}
           title={p.name}
+          variants={{
+            hidden: { opacity: 0, y: 12, scale: 0.95 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              transition: {
+                duration: prefersReducedMotion ? 0 : 0.5,
+                ease: [0.16, 1, 0.3, 1] as any,
+              },
+            },
+          }}
           className="group flex items-center justify-center w-full h-16 md:h-20"
         >
           {typeof p.icon === 'string' ? (
             <img
               src={p.icon}
               alt={p.name}
-              className="w-10 h-10 md:w-12 md:h-12 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+              className="w-10 h-10 md:w-12 md:h-12 object-contain opacity-80 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_14px_rgba(236,0,0,0.45)] transition-all duration-300 ease-out pointer-events-none"
             />
           ) : (
-            <div className="flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <div className="flex items-center justify-center opacity-80 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_14px_rgba(236,0,0,0.45)] transition-all duration-300 ease-out pointer-events-none">
               {p.icon}
             </div>
           )}
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 }
 
