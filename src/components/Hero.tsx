@@ -159,8 +159,9 @@ export default function Hero() {
       <div aria-hidden className="aurora-w4d" />
 
       {/* Aurora W4D secundário — camada lenta (48s, ângulo 80deg, offset diferente)
-          cria parallax entre 2 camadas. Depth atmosférico silencioso. */}
-      <div aria-hidden className="aurora-w4d-slow" />
+          cria parallax entre 2 camadas. Depth atmosférico silencioso.
+          Mobile: hidden — em GPU integrada de baixo-end, 2 auroras com blur podem dropar frames. */}
+      <div aria-hidden className="aurora-w4d-slow hidden md:block" />
 
       {/* Spotlight cursor — radial vermelho sutil segue mouse (desktop only via mediaquery via JS).
           Transition opacity mascara entry/exit suave. */}
@@ -173,10 +174,11 @@ export default function Hero() {
         }}
       />
 
-      {/* Dot-grid com mask radial — base atmosférica tecnica sobre o aurora */}
+      {/* Dot-grid com mask radial — base atmosférica tecnica sobre o aurora.
+          Mobile: hidden — economia de paint em scrolling (mascara radial + grid linhas é caro em GPU integrada). */}
       <div
         aria-hidden
-        className="absolute inset-0 opacity-50 pointer-events-none z-0
+        className="hidden md:block absolute inset-0 opacity-50 pointer-events-none z-0
           bg-[linear-gradient(to_right,rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.035)_1px,transparent_1px)]
           bg-[size:6rem_5rem]
           [mask-image:radial-gradient(ellipse_70%_55%_at_50%_30%,#000_55%,transparent_100%)]"
