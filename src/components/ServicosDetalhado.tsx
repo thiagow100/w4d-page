@@ -74,6 +74,59 @@ const PHASES = [
   { word: "WEALTH", sub: "crescimento", desc: "Crescimento baseado no que já funcionou" },
 ] as const;
 
+/**
+ * MetodoW4DTitle — cinematic char-by-char reveal pra anunciar o framework.
+ * Cada letra entra com filter blur 12px→0, translateY 40%→0, scale 1.1→1,
+ * stagger 40ms entre chars. Once-triggered (não loop). Reduced-motion bypass.
+ */
+function MetodoW4DTitle() {
+  const prefersReducedMotion = useReducedMotion();
+  const text = 'Método W4D';
+
+  const containerVariants = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: prefersReducedMotion ? 0 : 0.04 },
+    },
+  };
+
+  const charVariants = prefersReducedMotion
+    ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
+    : {
+        hidden: { opacity: 0, y: '40%', filter: 'blur(12px)', scale: 1.1 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          filter: 'blur(0px)',
+          scale: 1,
+          transition: { duration: 1, ease: [0.16, 1, 0.3, 1] as any },
+        },
+      };
+
+  return (
+    <motion.h3
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-100px' }}
+      className="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-[-0.04em] text-cta leading-[1.1] inline-flex justify-center"
+      aria-label={text}
+    >
+      {text.split('').map((char, i) => (
+        <motion.span
+          key={i}
+          variants={charVariants}
+          aria-hidden
+          style={{ display: 'inline-block', willChange: 'transform, opacity, filter' }}
+        >
+          {char === ' ' ? ' ' : char}
+        </motion.span>
+      ))}
+    </motion.h3>
+  );
+}
+
 // Um dot por fase — hooks em nível superior (Rules of Hooks respeitadas)
 function PhaseDot({ progress, threshold }: { progress: any, threshold: number }) {
   const opacity = useTransform(progress, (p: number) => (p >= threshold ? 1 : 0.18));
@@ -99,12 +152,10 @@ function MetodoW4D() {
 
   return (
     <div ref={sectionRef} id="metodo" className="w-full mb-24 lg:mb-28 relative scroll-mt-24">
-      {/* Headline interno — antes era Eyebrow mono pequeno (subordinado ao H2 da seção).
-          Vira h3 grande accent vermelho — autônomo, anuncia "framework proprietário". */}
+      {/* Headline interno cinematográfico — char-by-char reveal por scroll.
+          Cada letra entra com blur+y+scale, stagger 40ms. Anuncia framework. */}
       <div className="flex justify-center mb-16">
-        <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-[-0.04em] text-cta leading-[1.1] text-center">
-          Método W4D
-        </h3>
+        <MetodoW4DTitle />
       </div>
 
       <div className="relative">
