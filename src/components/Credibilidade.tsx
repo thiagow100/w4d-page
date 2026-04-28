@@ -80,6 +80,11 @@ function RollingDigit({ target, duration, delay, reducedMotion }: { target: numb
       className="relative inline-block overflow-hidden leading-[1]"
       style={{ width: '0.62em', height: '1em' }}
     >
+      {/* Baseline anchor — char invisível ("0") estabelece a baseline REAL do inline-block.
+          Sem isso, o CSS deriva baseline default = bottom da box, e o "+" do suffix alinha
+          ao bottom (não ao digit baseline), renderizando rebaixado. Geist Mono acentua o
+          problema porque a baseline real fica mais alta dentro da box que em Geist Sans. */}
+      <span aria-hidden className="invisible">0</span>
       <motion.span
         style={{ y }}
         className="absolute inset-x-0 top-0 flex flex-col"
