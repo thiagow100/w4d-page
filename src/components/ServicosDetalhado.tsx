@@ -1,7 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import Eyebrow from '@/components/Eyebrow';
 
@@ -75,144 +74,126 @@ const PHASES = [
 ] as const;
 
 /**
- * MetodoW4DTitle — cinematic char-by-char reveal pra anunciar o framework.
- * Cada letra entra com filter blur 12px→0, translateY 40%→0, scale 1.1→1,
- * stagger 40ms entre chars. Once-triggered (não loop). Reduced-motion bypass.
+ * MetodoW4DHub — visual redesign do Método W4D como engineering schematic.
+ *
+ * Antes: char-reveal billboard "MÉTODO W4D" gigante + linha horizontal scroll-drawn +
+ * PhaseDots scroll-driven (3 sistemas de animação competindo).
+ *
+ * Agora: hub badge central pequeno (pill com pulse dot) → trunk vertical →
+ * rail horizontal → 4 drops verticais → port dots → 4 phase nodes. Topology hub-and-spoke
+ * que comunica "Método W4D conecta com X, Y, Z, W" sem competição visual.
+ *
+ * Pattern: engineering schematic / circuit-board ports. Sober, premium.
+ * Conectores draw-on (scaleY/X 0→1) com stagger sequencial pra desenhar o sistema.
  */
-function MetodoW4DTitle() {
+function MetodoW4DHub() {
   const prefersReducedMotion = useReducedMotion();
-  const text = 'MÉTODO W4D';
-
-  const containerVariants = {
-    hidden: { opacity: 1 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: prefersReducedMotion ? 0 : 0.04 },
-    },
-  };
-
-  const charVariants = prefersReducedMotion
-    ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
-    : {
-        hidden: { opacity: 0, y: '40%', filter: 'blur(12px)', scale: 1.1 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          filter: 'blur(0px)',
-          scale: 1,
-          transition: { duration: 1, ease: [0.16, 1, 0.3, 1] as any },
-        },
-      };
 
   return (
-    <motion.h3
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-100px' }}
-      className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-[0.02em] text-cta leading-[1.1] inline-flex justify-center"
-      aria-label={text}
-    >
-      {text.split('').map((char, i) => (
-        <motion.span
-          key={i}
-          variants={charVariants}
-          aria-hidden
-          style={{ display: 'inline-block', willChange: 'transform, opacity, filter' }}
+    <div id="metodo" className="w-full mb-16 md:mb-20 lg:mb-24 relative scroll-mt-24">
+
+      {/* Hub Badge — central node "Método W4D". Pill com border vermelho + pulse dot + glow. */}
+      <div className="flex justify-center">
+        <motion.div
+          initial={{ opacity: 0, y: 12, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as any }}
+          className="relative inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-cta/40 bg-cta-accent/[0.06] backdrop-blur-sm shadow-[0_0_32px_-12px_rgba(236,0,0,0.5)]"
         >
-          {char}
-        </motion.span>
-      ))}
-    </motion.h3>
-  );
-}
-
-// Um dot por fase — hooks em nível superior (Rules of Hooks respeitadas)
-function PhaseDot({ progress, threshold }: { progress: any, threshold: number }) {
-  const opacity = useTransform(progress, (p: number) => (p >= threshold ? 1 : 0.18));
-  const scale = useTransform(progress, (p: number) => (p >= threshold ? 1 : 0.7));
-  return (
-    <motion.span
-      aria-hidden
-      className="hidden lg:block absolute -bottom-4 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-cta"
-      style={{ opacity, scale }}
-    />
-  );
-}
-
-function MetodoW4D() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const prefersReducedMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start 0.85", "end 0.4"],
-  });
-  const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
-  const dotProgress = useTransform(scrollYProgress, [0, 0.33, 0.66, 1], [0, 1, 2, 3]);
-
-  return (
-    <div ref={sectionRef} id="metodo" className="w-full mb-16 md:mb-20 lg:mb-24 relative scroll-mt-24">
-      {/* Headline interno cinematográfico — char-by-char reveal por scroll.
-          Cada letra entra com blur+y+scale, stagger 40ms. Anuncia framework. */}
-      <div className="flex justify-center mb-8 md:mb-10">
-        <MetodoW4DTitle />
+          <span aria-hidden className="w-2 h-2 rounded-full bg-cta animate-pulse" />
+          <span className="font-mono text-xs md:text-sm text-primary tracking-[0.2em] uppercase">
+            Método W4D
+          </span>
+        </motion.div>
       </div>
 
-      <div className="relative">
-        {/* Linha horizontal scroll-drawn — apenas lg+. */}
-        <div
+      {/* Schematic connectors — desktop lg+. Trunk + rail + 4 drops desenham na entrada.
+          Posições em 12.5%, 37.5%, 62.5%, 87.5% alinham com o center de cada cell do grid-cols-4. */}
+      <div className="hidden lg:block relative h-14 w-full mt-2">
+        <motion.div
           aria-hidden
-          className="hidden lg:block absolute left-0 right-0 top-[58px] pointer-events-none z-0 px-[12.5%]"
-        >
-          <svg className="w-full" height="2" viewBox="0 0 1000 2" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="metodoLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#FF3B3B" stopOpacity="0.3" />
-                <stop offset="50%" stopColor="#FF3B3B" stopOpacity="0.95" />
-                <stop offset="100%" stopColor="#FF3B3B" stopOpacity="0.3" />
-              </linearGradient>
-            </defs>
-            <motion.path
-              d="M 0 1 L 1000 1"
-              stroke="url(#metodoLineGrad)"
-              strokeWidth="1"
-              fill="none"
-              style={{ pathLength }}
-            />
-          </svg>
-        </div>
+          initial={{ scaleY: 0 }}
+          whileInView={{ scaleY: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] as any }}
+          className="absolute left-1/2 top-0 -translate-x-1/2 w-px h-6 bg-gradient-to-b from-cta/60 to-white/15 origin-top"
+        />
+        <motion.div
+          aria-hidden
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.7, delay: 0.7, ease: [0.16, 1, 0.3, 1] as any }}
+          className="absolute left-[12.5%] right-[12.5%] top-6 h-px bg-white/15 origin-center"
+        />
+        {[12.5, 37.5, 62.5, 87.5].map((leftPct, i) => (
+          <motion.div
+            key={i}
+            aria-hidden
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.4, delay: 1.1 + i * 0.1, ease: [0.16, 1, 0.3, 1] as any }}
+            className="absolute top-6 w-px h-7 bg-white/15 origin-top"
+            style={{ left: `${leftPct}%` }}
+          />
+        ))}
+      </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6 md:gap-10 lg:gap-0 items-start relative z-10">
-          {PHASES.map((phase, i) => (
-            <div key={phase.word} className="flex flex-col items-center text-center w-full px-2">
-              <div className="relative mb-4">
-                {/* Billboard tier: text-7xl em desktop (72px) — antes era text-5xl (48px).
-                    Stagger reveal por scroll: cada palavra entra com fade+y, delay i*0.15s.
-                    Reduced-motion: duration e delay zerados (mostra direto). */}
-                <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{
-                    duration: prefersReducedMotion ? 0 : 0.7,
-                    delay: prefersReducedMotion ? 0 : i * 0.15,
-                    ease: [0.16, 1, 0.3, 1] as any,
-                  }}
-                  className="text-5xl md:text-6xl lg:text-7xl font-semibold text-primary tracking-[-0.05em] leading-[1] block"
-                >
-                  {phase.word}
-                </motion.span>
-                <PhaseDot progress={dotProgress} threshold={i} />
-              </div>
-              <span className="font-mono text-xs text-cta uppercase tracking-[0.18em] mb-3 mt-2">
-                {phase.sub}
-              </span>
-              <span className="text-sm md:text-base text-body font-normal leading-snug max-w-[22ch]">
-                {phase.desc}
-              </span>
-            </div>
-          ))}
-        </div>
+      {/* Mobile/tablet: trunk único conectando hub às fases empilhadas. */}
+      <div className="lg:hidden flex justify-center mt-4 mb-4">
+        <motion.div
+          aria-hidden
+          initial={{ scaleY: 0 }}
+          whileInView={{ scaleY: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] as any }}
+          className="w-px h-10 bg-gradient-to-b from-cta/60 to-white/15 origin-top"
+        />
+      </div>
+
+      {/* 4 phase nodes — port dot (lg only) + word + sub + desc */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-y-12 lg:gap-y-0 items-start relative z-10">
+        {PHASES.map((phase, i) => (
+          <div key={phase.word} className="flex flex-col items-center text-center w-full px-2">
+            {/* Port dot — desktop only, aparece após drop chegar */}
+            <motion.span
+              aria-hidden
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{
+                duration: 0.4,
+                delay: prefersReducedMotion ? 0 : 1.5 + i * 0.1,
+                ease: [0.16, 1, 0.3, 1] as any,
+              }}
+              className="hidden lg:block w-2 h-2 rounded-full bg-cta mb-5 shadow-[0_0_8px_rgba(236,0,0,0.6)]"
+            />
+
+            <motion.span
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.6,
+                delay: prefersReducedMotion ? 0 : 0.3 + i * 0.08,
+                ease: [0.16, 1, 0.3, 1] as any,
+              }}
+              className="text-5xl md:text-6xl font-semibold text-primary tracking-[-0.05em] leading-[1] block mb-3"
+            >
+              {phase.word}
+            </motion.span>
+
+            <span className="font-mono text-xs text-cta uppercase tracking-[0.18em] mb-3">
+              {phase.sub}
+            </span>
+
+            <span className="text-sm md:text-base text-body font-normal leading-snug max-w-[22ch]">
+              {phase.desc}
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -265,8 +246,8 @@ export default function ServicosDetalhado() {
           Do anúncio à agenda do seu time comercial.
         </motion.h2>
 
-        {/* Faixa Método W4D — linha scroll-drawn vermelha conecta as fases */}
-        <MetodoW4D />
+        {/* Método W4D — hub schematic central com connectors até as 4 fases */}
+        <MetodoW4DHub />
 
 
         {/* Plataformas — logos soltos, sem tile escuro */}
