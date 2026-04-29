@@ -178,7 +178,7 @@ export default function FormularioLead() {
   };
 
   return (
-    <section id="formulario" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay overflow-hidden">
+    <section id="formulario" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
       {/* Top color fade — dissolve abrupt cut com FAQ (#0A0A0A → transparent revela bg-secondary). */}
       <div aria-hidden className="absolute top-0 inset-x-0 h-20 md:h-24 pointer-events-none z-[1] bg-gradient-to-b from-[#0A0A0A] to-transparent" />
 

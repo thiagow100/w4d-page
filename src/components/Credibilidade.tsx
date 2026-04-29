@@ -126,7 +126,7 @@ function LeaderPhoto({ src, alt, initials, imgClassName = "object-cover object-t
 
 export default function Credibilidade() {
   return (
-    <section id="quem-somos" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 overflow-hidden bg-secondary noise-overlay scroll-mt-24">
+    <section id="quem-somos" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay scroll-mt-24">
 
       {/* Top color fade — dissolve abrupt cut com BandaMarcas (#0A0A0A → transparent revela bg-secondary). */}
       <div aria-hidden className="absolute top-0 inset-x-0 h-20 md:h-24 pointer-events-none z-[1] bg-gradient-to-b from-[#0A0A0A] to-transparent" />

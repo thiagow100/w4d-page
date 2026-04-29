@@ -86,10 +86,10 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-primary noise-overlay overflow-hidden">
+    <section id="faq" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-primary noise-overlay">
 
-      {/* Top color fade — dissolve abrupt cut com Credibilidade (#111111 → transparent revela bg-primary). */}
-      <div aria-hidden className="absolute top-0 inset-x-0 h-20 md:h-24 pointer-events-none z-[1] bg-gradient-to-b from-[#111111] to-transparent" />
+      {/* Top color fade — dissolve abrupt cut com Credibilidade (#151515 → transparent revela bg-primary). */}
+      <div aria-hidden className="absolute top-0 inset-x-0 h-20 md:h-24 pointer-events-none z-[1] bg-gradient-to-b from-[#151515] to-transparent" />
 
       <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
 

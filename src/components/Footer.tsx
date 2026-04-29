@@ -54,8 +54,8 @@ export default function Footer() {
   return (
     <footer className="relative w-full overflow-hidden bg-primary pt-16 md:pt-24 pb-8 px-6 sm:px-12 lg:px-24 border-t border-white/5 noise-overlay">
 
-      {/* Top color fade — dissolve abrupt cut com FormularioLead (#111111 → transparent revela bg-primary). */}
-      <div aria-hidden className="absolute top-0 inset-x-0 h-20 md:h-24 pointer-events-none z-[1] bg-gradient-to-b from-[#111111] to-transparent" />
+      {/* Top color fade — dissolve abrupt cut com FormularioLead (#151515 → transparent revela bg-primary). */}
+      <div aria-hidden className="absolute top-0 inset-x-0 h-20 md:h-24 pointer-events-none z-[1] bg-gradient-to-b from-[#151515] to-transparent" />
 
       {/* Fade final dramático — últimos ~240px afundam pra near-black.
           Usa rgba alpha em vez de #000000 hardcoded (CLAUDE.md proíbe pure black). */}

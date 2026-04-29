@@ -357,7 +357,7 @@ function PlatformsVisual() {
 
 export default function ServicosDetalhado() {
   return (
-    <section id="servicos" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay overflow-hidden">
+    <section id="servicos" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
 
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center">
 

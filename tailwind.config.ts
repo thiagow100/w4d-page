@@ -43,7 +43,10 @@ const config: Config = {
       },
       backgroundColor: {
         primary: "#0A0A0A",
-        secondary: "#111111",
+        // Fase 4 (ritmo cinematográfico): secondary #11 → #15 (Δ4/255 a mais
+        // sobre primary). Cria alternância dark/medium-dark perceptível entre
+        // seções vizinhas — Apple-feel cinematic rhythm.
+        secondary: "#151515",
         // Fase 3: tertiary #1A → #1F (5/255 mais luminoso) pra cards
         // se diferenciarem mais sobre bg-secondary em estado de repouso.
         tertiary: "#1F1F1F",
