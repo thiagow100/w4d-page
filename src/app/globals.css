@@ -6,6 +6,19 @@
   color-scheme: dark;
 }
 
+/* Smooth scroll fallback nativo — cobre anchors no gap antes do Lenis
+   carregar (init defer via requestIdleCallback no SmoothScroll). Quando
+   Lenis ativa, ele toma controle. Mas usuário que clica âncora ANTES
+   de Lenis carregar ainda recebe smooth scroll básico. */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset para anchors targets — equivale ao offset:-80 do Lenis */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
 body {
   background-color: theme('backgroundColor.primary');
   color: theme('textColor.primary');
