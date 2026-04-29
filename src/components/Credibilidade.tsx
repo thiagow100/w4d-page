@@ -116,9 +116,6 @@ function LeaderPhoto({ src, alt, initials, imgClassName = "object-cover object-t
         <img
           src={src}
           alt={alt}
-          width={800}
-          height={1000}
-          loading="lazy"
           decoding="async"
           onError={() => setHasError(true)}
           className={`absolute inset-0 w-full h-full hover:opacity-90 transition-all duration-700 contrast-[1.08] saturate-[0.85] brightness-[0.95] ${imgClassName}`}
@@ -173,13 +170,13 @@ export default function Credibilidade() {
             </span>
             {/* Year-chips — âncora visual scan-friendly, não substitui a prosa */}
             <div className="flex flex-wrap gap-2 mb-5">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-[0.12em]">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-wider">
                 <span aria-hidden className="text-white/40">●</span> 2005 · Vendas
               </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-[0.12em]">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-wider">
                 <span aria-hidden className="text-white/40">●</span> 2020 · TW Broker
               </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-[0.12em]">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-wider">
                 <span aria-hidden className="text-cta">●</span> Hoje · W4D
               </span>
             </div>
@@ -214,13 +211,13 @@ export default function Credibilidade() {
             </span>
             {/* Year-chips — âncora visual scan-friendly, não substitui a prosa */}
             <div className="flex flex-wrap gap-2 mb-5">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-[0.12em]">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-wider">
                 <span aria-hidden className="text-white/40">●</span> 2011 · Gestão
               </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-[0.12em]">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-wider">
                 <span aria-hidden className="text-white/40">●</span> 2019 · Tráfego
               </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-[0.12em]">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-wider">
                 <span aria-hidden className="text-cta">●</span> Hoje · W4D
               </span>
             </div>
@@ -253,7 +250,11 @@ export default function Credibilidade() {
               <span className="font-mono text-xs text-body tracking-[0.18em] uppercase mb-1.5">
                 {metric.label}
               </span>
-              <span className="text-secondary text-sm font-normal leading-snug">
+              {/* Item #10 do top 10 — context: text-secondary → text-body.
+                  Contraste sobe de 3.25:1 (fail AA non-large) pra 6.04:1 (pass ✓).
+                  Visualmente: contexto sai do sussurro e vira diferenciação legível,
+                  criando 3 níveis hierárquicos claros (número/label/contexto). */}
+              <span className="text-body text-sm font-normal leading-snug">
                 {metric.context}
               </span>
             </motion.div>
