@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent, useTransform, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
@@ -10,12 +10,17 @@ export default function Nav() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
+  /** Sticky header: scroll-driven smooth appearance em vez de binary trigger.
+   *  Antes: isScrolled binary > 400px disparava motion.animate em y -100% → 0% (pop abrupto).
+   *  Agora: scroll 150→350px mapeia y [-100%, 0%] + opacity [0, 1] linearmente.
+   *  Header faz cross-fade natural conforme o user passa pelo header absolute do topo. */
+  const headerY = useTransform(scrollY, [150, 350], ['-100%', '0%'], { clamp: true });
+  const headerOpacity = useTransform(scrollY, [150, 350], [0, 1], { clamp: true });
+
+  /** isScrolled mantém só pra controlar pointer-events (avoid invisible click capture
+   *  quando header está fully transparent acima da fold). Threshold 250 = meio do range. */
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 400) {
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
-    }
+    setIsScrolled(latest > 250);
   });
 
   // Lock body scroll enquanto o drawer estiver aberto
@@ -78,10 +83,8 @@ export default function Nav() {
 
       {/* HEADER FIXO QUE DESCE DEPOIS DO HERO */}
       <motion.header
-        initial={{ y: '-100%' }}
-        animate={{ y: isScrolled ? '0%' : '-100%' }}
-        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] as any }}
-        className="fixed top-0 left-0 right-0 z-50 pointer-events-auto bg-primary/85 backdrop-blur-[20px] border-b border-white/10"
+        style={{ y: headerY, opacity: headerOpacity }}
+        className={`fixed top-0 left-0 right-0 z-50 bg-primary/85 backdrop-blur-[20px] border-b border-white/10 ${isScrolled ? 'pointer-events-auto' : 'pointer-events-none'}`}
       >
         <div className="w-full px-6 sm:px-12 lg:px-24 py-3 flex items-center justify-between gap-4">
           <a href="#" aria-label="Voltar ao topo" className="shrink-0">
