@@ -15,9 +15,10 @@ export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
 export default async function Image() {
-  // Logo W4D — lido do filesystem e convertido pra base64 inline (ImageResponse
-  // não baixa URLs externas em runtime de build).
-  const logoPath = path.join(process.cwd(), 'public/images/logo-w4d-only.png');
+  // Logo W4D MARCA-20 (versão vermelha #BD0000-ish, mais saturada da marca).
+  // Lido do filesystem e convertido pra base64 inline — ImageResponse não
+  // baixa URLs externas em runtime de build.
+  const logoPath = path.join(process.cwd(), 'public/images/W4D MARCA-20.png');
   const logoBase64 = fs.readFileSync(logoPath).toString('base64');
   const logoSrc = `data:image/png;base64,${logoBase64}`;
 
@@ -52,13 +53,13 @@ export default async function Image() {
           }}
         />
 
-        {/* Top: logo W4D */}
+        {/* Top: logo W4D vermelha (MARCA-20 é quadrada 2501×2501) */}
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <img
             src={logoSrc}
             alt="W4D"
-            width={240}
-            height={71}
+            width={140}
+            height={140}
             style={{ objectFit: 'contain' }}
           />
         </div>

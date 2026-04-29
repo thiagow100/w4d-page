@@ -43,3 +43,6 @@ next-env.d.ts
 # Claude Code MCP (contém API keys, não commitar)
 .mcp.json
 .env*.local
+
+# Lighthouse reports (local only)
+lighthouse-*.json
