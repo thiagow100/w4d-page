@@ -71,7 +71,11 @@ const cardVariants = {
 
 export default function Dores() {
   return (
-    <section id="dores" className="relative w-full pt-6 pb-12 md:pt-12 md:pb-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
+    <section id="dores" className="relative w-full pt-6 pb-12 md:pt-12 md:pb-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay overflow-hidden">
+
+      {/* Top color fade — dissolve abrupt cut com Hero (#0A0A0A → transparent revela bg-secondary).
+          Cohesion fix: gradient 80-96px no topo da section pra suavizar a banda horizontal. */}
+      <div aria-hidden className="absolute top-0 inset-x-0 h-20 md:h-24 pointer-events-none z-[1] bg-gradient-to-b from-[#0A0A0A] to-transparent" />
 
       {/* Aurora W4D soft — continuidade atmosférica com o Hero. Camada única, blur 22px,
           opacity 0.15, ciclo 56s. Silenciosa mas presente. */}

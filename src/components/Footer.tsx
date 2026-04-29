@@ -54,6 +54,9 @@ export default function Footer() {
   return (
     <footer className="relative w-full overflow-hidden bg-primary pt-16 md:pt-24 pb-8 px-6 sm:px-12 lg:px-24 border-t border-white/5 noise-overlay">
 
+      {/* Top color fade — dissolve abrupt cut com FormularioLead (#111111 → transparent revela bg-primary). */}
+      <div aria-hidden className="absolute top-0 inset-x-0 h-20 md:h-24 pointer-events-none z-[1] bg-gradient-to-b from-[#111111] to-transparent" />
+
       {/* Aurora-soft contida — só atrás da seção de fechamento (top 50%), não atrás de colunas/legal.
           Wrapper absolute serve como contexto de positioning para o `inset:0` da .aurora-w4d-soft. */}
       <div aria-hidden className="absolute top-0 left-0 right-0 h-[50%] pointer-events-none overflow-hidden">

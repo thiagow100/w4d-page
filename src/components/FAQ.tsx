@@ -88,6 +88,9 @@ export default function FAQ() {
   return (
     <section id="faq" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-primary noise-overlay overflow-hidden">
 
+      {/* Top color fade — dissolve abrupt cut com Credibilidade (#111111 → transparent revela bg-primary). */}
+      <div aria-hidden className="absolute top-0 inset-x-0 h-20 md:h-24 pointer-events-none z-[1] bg-gradient-to-b from-[#111111] to-transparent" />
+
       {/* Atmospheric focal gradient — sutil red glow atrás do header centralizado.
           Cohesion fix: balança o ritmo warm/dead da página. Static, localized. */}
       <div

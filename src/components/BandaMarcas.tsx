@@ -18,8 +18,11 @@ export default function BandaMarcas() {
   return (
     <section
       aria-label="Marcas que já operaram com a W4D"
-      className="relative w-full py-12 md:py-24 px-6 sm:px-12 lg:px-24 bg-primary border-y border-white/5 noise-overlay"
+      className="relative w-full py-12 md:py-24 px-6 sm:px-12 lg:px-24 bg-primary border-y border-white/5 noise-overlay overflow-hidden"
     >
+      {/* Top color fade — dissolve abrupt cut com Servicos (#111111 → transparent revela bg-primary). */}
+      <div aria-hidden className="absolute top-0 inset-x-0 h-20 md:h-24 pointer-events-none z-[1] bg-gradient-to-b from-[#111111] to-transparent" />
+
       <div className="relative z-10 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
