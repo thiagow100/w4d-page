@@ -1,16 +1,14 @@
 import { ImageResponse } from 'next/og';
 
 /**
- * Favicon W4D — texto "W4D" vermelho sobre fundo preto.
+ * Favicon W4D — texto "W4D" branco sobre fundo vermelho saturado.
  *
- * Decisão de design depois de feedback "ficou merda" do user com a versão
- * baseada em logo MARCA-20 PNG redimensionada: tipografia detalhada da logo
- * vira borrão em 32×32. ImageResponse com texto rendered direto pelo browser
- * é pixel-friendly em qualquer tamanho.
- *
- * Cor vermelha #EC0000 sobre off-black #0A0A0A: contraste alto, chama atenção
- * em meio a outras abas (favicons da maioria dos sites são claros — preto+vermelho
- * destaca).
+ * Iteração 3 depois de "ficou escuro" do user: invertemos as cores.
+ * Pattern Apple/Netflix/Pinterest — cor solid forte de fundo + letra
+ * contrastante. Em meio à barra de favicons, a maioria dos sites
+ * populares (Gmail, Facebook, Instagram, LinkedIn, X) usa cor saturada
+ * de fundo. Fundo preto afundava visualmente; fundo vermelho destaca
+ * como marker em qualquer tab background.
  */
 
 export const size = { width: 32, height: 32 };
@@ -26,8 +24,8 @@ export default function Icon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#0A0A0A',
-          color: '#EC0000',
+          background: '#EC0000',
+          color: '#FFFFFF',
           fontSize: 14,
           fontWeight: 900,
           letterSpacing: '-0.06em',
