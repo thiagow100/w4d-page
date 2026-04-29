@@ -215,17 +215,17 @@ export default function Credibilidade() {
             {/* Year-chips — âncora visual scan-friendly, não substitui a prosa */}
             <div className="flex flex-wrap gap-2 mb-5">
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-wider">
-                <span aria-hidden className="text-white/40">●</span> 2011 · Gestão
+                <span aria-hidden className="text-white/40">●</span> 2007 · Marketing
               </span>
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-wider">
-                <span aria-hidden className="text-white/40">●</span> 2019 · Tráfego
+                <span aria-hidden className="text-white/40">●</span> 2019 · Indigo
               </span>
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-wider">
                 <span aria-hidden className="text-cta">●</span> Hoje · W4D
               </span>
             </div>
             <p className="text-body text-base md:text-lg font-normal leading-[1.75] max-w-[60ch]">
-              Carlos operou hostel e bar por oito anos a partir de 2011, sentindo na pele a gestão, a contratação e a pressão pelo faturamento. Em 2019 passou a se dedicar exclusivamente a tráfego pago e performance, com foco rigoroso em negócios locais. Em 2022 consolidou sua operação gerindo múltiplas contas em saúde e educação, com métricas de ROI e conversão direta como régua. Em 2024 aprofundou a esteira em lançamentos imobiliários. Hoje, lidera o time de operação da W4D, garantindo que o faturamento projetado chegue no resultado comercial.
+              Carlos começou em 2007 como analista de trade marketing em multinacionais como Panasonic e Souza Cruz. Em 2013 abriu seus próprios negócios operando hostel e bar, sentindo na pele a gestão e a pressão pelo faturamento. Em 2019 passou a se dedicar a tráfego pago e à Indigo, com foco rigoroso em performance e negócios locais. Em 2025 expandiu para o mercado imobiliário, atendendo incorporadoras e grandes imobiliárias em lançamentos. Hoje, lidera o time de operação da W4D, garantindo que o faturamento projetado chegue no resultado comercial.
             </p>
             <div className="mt-6 border-l-2 border-white/15 pl-4 max-w-[60ch]">
               <p className="text-primary font-medium text-base md:text-lg leading-relaxed">
