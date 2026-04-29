@@ -182,16 +182,6 @@ export default function FormularioLead() {
       {/* Top color fade — dissolve abrupt cut com FAQ (#0A0A0A → transparent revela bg-secondary). */}
       <div aria-hidden className="absolute top-0 inset-x-0 h-20 md:h-24 pointer-events-none z-[1] bg-gradient-to-b from-[#0A0A0A] to-transparent" />
 
-      {/* Atmospheric focal gradient — sutil red glow atrás da divisão título/form.
-          Cohesion fix: balança o ritmo warm/dead da página. Static, localized. */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse 50% 60% at 30% 50%, rgba(255, 59, 59, 0.045) 0%, transparent 65%)',
-        }}
-      />
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
 
         <div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left">
@@ -204,7 +194,7 @@ export default function FormularioLead() {
           >
             <span className="font-mono text-xs text-cta/80 tracking-[0.18em] uppercase">05</span>
             <span className="text-cta/50" aria-hidden>/</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-cta animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-cta" />
             <span className="font-mono text-xs text-cta tracking-[0.18em] uppercase">
               O próximo passo
             </span>

@@ -44,7 +44,9 @@ const config: Config = {
       backgroundColor: {
         primary: "#0A0A0A",
         secondary: "#111111",
-        tertiary: "#1A1A1A",
+        // Fase 3: tertiary #1A → #1F (5/255 mais luminoso) pra cards
+        // se diferenciarem mais sobre bg-secondary em estado de repouso.
+        tertiary: "#1F1F1F",
       },
       // Tokens primários — use estes para body text e hierarquia geral.
       // Para micro-states com opacidade precisa que não cabe nos 4 níveis

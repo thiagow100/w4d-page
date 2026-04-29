@@ -230,8 +230,10 @@ function MetodoW4DHub() {
             />
             {/* Phase word (focal) → eyebrow term abaixo → desc. Numbers removidos —
                 sequência já comunicada pelo schematic (trunk/rail/drops) + reading order natural
-                + alliteration WORK/WAY/WIN/WEALTH. Strategic omission (redesign-skill). */}
-            <span className="text-6xl font-semibold text-primary tracking-[-0.05em] leading-[1] block mb-3">
+                + alliteration WORK/WAY/WIN/WEALTH. Strategic omission (redesign-skill).
+                Fase 2: text-5xl (era text-6xl) pra criar hierarquia visível com H2 da seção
+                (h2-section ~60px). Phase é apoio, não protagonista. */}
+            <span className="text-5xl font-semibold text-primary tracking-[-0.05em] leading-[1] block mb-3">
               {phase.word}
             </span>
             <span className="block font-mono text-xs text-cta uppercase tracking-[0.18em] mb-3">
@@ -324,25 +326,16 @@ function MetodoW4DHub() {
 }
 
 // Grid de plataformas — logos soltos sem fundo escuro, editorial.
-// Breathing assimétrico: cada logo pulsa scale 1→1.04→1 com delay sequencial 0.5s,
-// nunca todos no mesmo fase. Comunica "canais operacionalmente ativos" (signal, não decoração).
-// Hover glow vermelho desktop preservado. Reduced-motion: pulse desabilita.
+// Hover glow vermelho desktop. Estado inert estático: logos são informação
+// (canais operados), não evento — perpetual breathing pulse foi removido na
+// Fase 1 subtração (emil-design-eng: motion sem propósito estrutural).
 function PlatformsVisual() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <div className="grid grid-cols-3 md:grid-cols-6 gap-8 md:gap-10 place-items-center w-full max-w-4xl mx-auto">
-      {platforms.map((p, i) => (
-        <motion.div
+      {platforms.map((p) => (
+        <div
           key={p.name}
           title={p.name}
-          animate={prefersReducedMotion ? {} : { scale: [1, 1.04, 1] }}
-          transition={{
-            duration: 3.5,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: i * 0.5,
-          }}
           className="group flex items-center justify-center w-full h-16 md:h-20"
         >
           {typeof p.icon === 'string' ? (
@@ -356,7 +349,7 @@ function PlatformsVisual() {
               {p.icon}
             </div>
           )}
-        </motion.div>
+        </div>
       ))}
     </div>
   );
@@ -365,25 +358,6 @@ function PlatformsVisual() {
 export default function ServicosDetalhado() {
   return (
     <section id="servicos" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay overflow-hidden">
-
-      {/* Atmospheric focal gradients — sutil red glow atrás do hub (upper) e da CTA final (lower).
-          Cohesion fix: sem isso a seção lia "dead flat" entre Dores (warm) e BandaMarcas. Static, localized. */}
-      <div
-        aria-hidden
-        className="absolute top-0 inset-x-0 h-[45%] pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse 60% 80% at 50% 40%, rgba(255, 59, 59, 0.05) 0%, transparent 65%)',
-        }}
-      />
-      <div
-        aria-hidden
-        className="absolute bottom-0 inset-x-0 h-[35%] pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse 55% 70% at 50% 70%, rgba(255, 59, 59, 0.035) 0%, transparent 70%)',
-        }}
-      />
 
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center">
 
@@ -433,8 +407,9 @@ export default function ServicosDetalhado() {
               transition={{ delay: index * 0.08, duration: 0.7, ease: [0.16, 1, 0.3, 1] as any }}
               className="group relative w-full flex flex-col shadow-card-dark bg-tertiary rounded-2xl p-8 pb-12 sm:p-10 sm:pb-10 lg:p-12 lg:pb-12 md:hover:-translate-y-0.5 transition-transform duration-300 ease-out"
             >
-              {/* GlowingEffect — proximity-aware red border glow (mesmo Dores). */}
-              <GlowingEffect proximity={80} spread={36} borderWidth={1} />
+              {/* GlowingEffect — só no card-âncora (primeiro). Fase 1 subtração:
+                  scarcity sobre os 4 cards = atenção volta a ter peso. */}
+              {index === 0 && <GlowingEffect proximity={80} spread={36} borderWidth={1} />}
 
               {/* Hierarquia interna: eyebrow → label → descrição → bullets. relative z-10 acima do GlowingEffect. */}
               <div className="mb-8 relative z-10">

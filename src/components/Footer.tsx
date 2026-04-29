@@ -57,24 +57,6 @@ export default function Footer() {
       {/* Top color fade — dissolve abrupt cut com FormularioLead (#111111 → transparent revela bg-primary). */}
       <div aria-hidden className="absolute top-0 inset-x-0 h-20 md:h-24 pointer-events-none z-[1] bg-gradient-to-b from-[#111111] to-transparent" />
 
-      {/* Aurora-soft contida — só atrás da seção de fechamento (top 50%), não atrás de colunas/legal.
-          Wrapper absolute serve como contexto de positioning para o `inset:0` da .aurora-w4d-soft. */}
-      <div aria-hidden className="absolute top-0 left-0 right-0 h-[50%] pointer-events-none overflow-hidden">
-        <div className="aurora-w4d-soft" />
-      </div>
-
-      {/* Spotlight focal — gradient radial vermelho atrás do h2/CTA do closing scene.
-          Cria "palco" visual pra mensagem final, distinto da aurora-soft (atmosférica difusa).
-          Posicionado em 25% from left pq h2 é left-aligned (items-start). */}
-      <div
-        aria-hidden
-        className="absolute top-0 left-0 w-full md:w-[65%] h-[42%] pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse 60% 75% at 28% 50%, rgba(255, 59, 59, 0.09) 0%, rgba(255, 59, 59, 0.04) 35%, transparent 70%)',
-        }}
-      />
-
       {/* Fade final dramático — últimos ~240px afundam pra near-black.
           Usa rgba alpha em vez de #000000 hardcoded (CLAUDE.md proíbe pure black). */}
       <div
@@ -97,7 +79,10 @@ export default function Footer() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as any }}
           className="mb-16 md:mb-20 w-full flex flex-col items-start"
         >
-          <h2 className="h2-section font-semibold tracking-[-0.05em] text-white/95 leading-[1.08]">
+          {/* Closing scene H2 — Fase 2: text-3xl md:text-4xl (era h2-section 36-60px).
+              Hero já é o protagonista da página. Footer fecha com peso, não com gravitas competidora.
+              Apple regra: 1 frase domina a página inteira. */}
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.04em] text-white/95 leading-[1.1]">
             Marketing medido pelo que vende.
           </h2>
           <p className="mt-6 text-lg md:text-xl text-body font-normal leading-[1.7] max-w-2xl">

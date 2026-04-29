@@ -91,17 +91,6 @@ export default function FAQ() {
       {/* Top color fade — dissolve abrupt cut com Credibilidade (#111111 → transparent revela bg-primary). */}
       <div aria-hidden className="absolute top-0 inset-x-0 h-20 md:h-24 pointer-events-none z-[1] bg-gradient-to-b from-[#111111] to-transparent" />
 
-      {/* Atmospheric focal gradient — sutil red glow atrás do header centralizado.
-          Cohesion fix: balança o ritmo warm/dead da página. Static, localized. */}
-      <div
-        aria-hidden
-        className="absolute top-0 inset-x-0 h-[55%] pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse 55% 70% at 50% 35%, rgba(255, 59, 59, 0.04) 0%, transparent 70%)',
-        }}
-      />
-
       <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
 
         {/* Topo Centralizado */}

@@ -93,13 +93,10 @@ export default function Hero() {
       className="relative w-full min-h-[82dvh] flex flex-col items-center justify-center px-6 sm:px-12 lg:px-24 overflow-hidden pt-28 md:pt-32 pb-8 md:pb-16 noise-overlay"
     >
 
-      {/* Aurora W4D — camada principal (streaks rápidos 24s) */}
+      {/* Aurora W4D — camada única (streaks 24s).
+          Fase 1 subtração: aurora-w4d-slow removida pra reduzir empilhamento atmosférico
+          competindo com H1 + spotlight + dot-grid. Apple/Linear opera com 0-1 camada. */}
       <div aria-hidden className="aurora-w4d" />
-
-      {/* Aurora W4D secundário — camada lenta (48s, ângulo 80deg, offset diferente)
-          cria parallax entre 2 camadas. Depth atmosférico silencioso.
-          Mobile: hidden — em GPU integrada de baixo-end, 2 auroras com blur podem dropar frames. */}
-      <div aria-hidden className="aurora-w4d-slow hidden md:block" />
 
       {/* Spotlight cursor — radial vermelho sutil segue mouse (desktop only via mediaquery via JS).
           Transition opacity mascara entry/exit suave. */}

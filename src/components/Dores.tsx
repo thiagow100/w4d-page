@@ -71,15 +71,11 @@ const cardVariants = {
 
 export default function Dores() {
   return (
-    <section id="dores" className="relative w-full pt-6 pb-12 md:pt-12 md:pb-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay overflow-hidden">
+    <section id="dores" className="relative w-full pt-6 pb-12 md:pt-12 md:pb-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
 
       {/* Top color fade — dissolve abrupt cut com Hero (#0A0A0A → transparent revela bg-secondary).
           Cohesion fix: gradient 80-96px no topo da section pra suavizar a banda horizontal. */}
       <div aria-hidden className="absolute top-0 inset-x-0 h-20 md:h-24 pointer-events-none z-[1] bg-gradient-to-b from-[#0A0A0A] to-transparent" />
-
-      {/* Aurora W4D soft — continuidade atmosférica com o Hero. Camada única, blur 22px,
-          opacity 0.15, ciclo 56s. Silenciosa mas presente. */}
-      <div aria-hidden className="aurora-w4d-soft" />
 
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col gap-12 md:gap-16">
 
@@ -137,8 +133,9 @@ export default function Dores() {
               } as React.CSSProperties}
               className="sticky top-[var(--mobile-top)] md:relative md:top-auto shadow-stack-card bg-tertiary p-6 md:p-10 rounded-xl md:hover:-translate-y-0.5 transition-transform duration-300 ease-out flex flex-col md:h-full"
             >
-              {/* GlowingEffect — border red-single ilumina sob proximidade do cursor */}
-              <GlowingEffect proximity={80} spread={36} borderWidth={1} />
+              {/* GlowingEffect — só no card-âncora (primeiro). Fase 1 subtração:
+                  quando 4 cards brilham, nenhum brilha. Scarcity > repetition. */}
+              {index === 0 && <GlowingEffect proximity={80} spread={36} borderWidth={1} />}
 
               <div className="relative z-10 flex justify-between items-center mb-4 md:mb-8">
                 <span className="font-mono text-[11px] text-secondary tracking-[0.18em] uppercase">Sintoma / 0{index + 1}</span>

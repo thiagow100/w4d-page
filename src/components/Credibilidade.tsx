@@ -131,9 +131,6 @@ export default function Credibilidade() {
       {/* Top color fade — dissolve abrupt cut com BandaMarcas (#0A0A0A → transparent revela bg-secondary). */}
       <div aria-hidden className="absolute top-0 inset-x-0 h-20 md:h-24 pointer-events-none z-[1] bg-gradient-to-b from-[#0A0A0A] to-transparent" />
 
-      {/* Aurora W4D soft — continuidade atmosférica cross-section */}
-      <div aria-hidden className="aurora-w4d-soft" />
-
       {/* Fundo Gradiente */}
       <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-tertiary to-transparent z-0 opacity-80" />
 
@@ -169,14 +166,14 @@ export default function Credibilidade() {
             </span>
             {/* Year-chips — âncora visual scan-friendly, não substitui a prosa */}
             <div className="flex flex-wrap gap-2 mb-5">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-[0.12em]">
                 <span className="text-white/40">●</span> 2005 · Vendas
               </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-[0.12em]">
                 <span className="text-white/40">●</span> 2020 · TW Broker
               </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
-                <span className="text-white/40">●</span> Hoje · W4D
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-[0.12em]">
+                <span className="text-cta">●</span> Hoje · W4D
               </span>
             </div>
             <p className="text-body text-base md:text-lg font-normal leading-[1.75] max-w-[60ch]">
@@ -210,14 +207,14 @@ export default function Credibilidade() {
             </span>
             {/* Year-chips — âncora visual scan-friendly, não substitui a prosa */}
             <div className="flex flex-wrap gap-2 mb-5">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-[0.12em]">
                 <span className="text-white/40">●</span> 2011 · Gestão
               </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-[0.12em]">
                 <span className="text-white/40">●</span> 2019 · Tráfego
               </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-[11px] text-body tracking-wider">
-                <span className="text-white/40">●</span> Hoje · W4D
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-[0.12em]">
+                <span className="text-cta">●</span> Hoje · W4D
               </span>
             </div>
             <p className="text-body text-base md:text-lg font-normal leading-[1.75] max-w-[60ch]">

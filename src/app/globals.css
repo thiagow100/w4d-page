@@ -79,41 +79,44 @@ body {
     0 0 32px -10px oklch(62% 0.26 27 / 0.62);
 }
 
-/* Shadow-as-border dark (equivalente Vercel invertido pra #171717) */
+/* Shadow-as-border dark (equivalente Vercel invertido pra #171717).
+   Fase 3: ring 0.06 → 0.10 pra card ter presença visível em estado inert.
+   Antes, em estado de repouso o ring era invisível e o card lia como bloco de prosa. */
 .shadow-border-dark {
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.10);
 }
 
 /* Card sticky-stack: top-shadow no mobile (efeito folha-sobre-folha).
    Ajustado em intensidade pra não escurecer o título do card anterior
    que agora fica visível no topo da pilha (offset 5.5rem por card).
-   Desktop: ring + ambient normal. */
+   Desktop: ring + ambient normal. Fase 3: ring 0.06 → 0.10. */
 .shadow-stack-card {
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.10),
     0 -6px 20px rgba(0, 0, 0, 0.45);
   transition: box-shadow 0.3s ease-out;
 }
 @media (min-width: 768px) {
   .shadow-stack-card {
     box-shadow:
-      0 0 0 1px rgba(255, 255, 255, 0.06),
+      0 0 0 1px rgba(255, 255, 255, 0.10),
       0 2px 4px rgba(0, 0, 0, 0.3),
       0 8px 24px -12px rgba(0, 0, 0, 0.5);
   }
 }
 
-/* Card com ring-border + lift + ambient depth */
+/* Card com ring-border + lift + ambient depth.
+   Fase 3: ring inert 0.06 → 0.10, hover 0.14 → 0.18 (mantém step Δ0.08). */
 .shadow-card-dark {
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.10),
     0 2px 4px rgba(0, 0, 0, 0.3),
     0 8px 24px -12px rgba(0, 0, 0, 0.5);
   transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
 }
 .shadow-card-dark:hover {
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.14),
+    0 0 0 1px rgba(255, 255, 255, 0.18),
     0 4px 8px rgba(0, 0, 0, 0.4),
     0 16px 32px -12px rgba(0, 0, 0, 0.6);
 }
