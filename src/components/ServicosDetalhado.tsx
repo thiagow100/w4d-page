@@ -417,13 +417,6 @@ export default function ServicosDetalhado() {
               {/* GlowingEffect — proximity-aware red border glow (mesmo Dores). */}
               <GlowingEffect proximity={80} spread={36} borderWidth={1} />
 
-              {/* Corner markers — 4 squares brancos discretos aparecem nos cantos no hover.
-                  Pattern xAI/Aceternity Dark Grid: indica "this card is selected/active". */}
-              <span aria-hidden className="pointer-events-none absolute -left-1 -top-1 h-2 w-2 bg-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span aria-hidden className="pointer-events-none absolute -right-1 -top-1 h-2 w-2 bg-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span aria-hidden className="pointer-events-none absolute -left-1 -bottom-1 h-2 w-2 bg-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span aria-hidden className="pointer-events-none absolute -right-1 -bottom-1 h-2 w-2 bg-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
               {/* Hierarquia interna: eyebrow → label → descrição → bullets. relative z-10 acima do GlowingEffect. */}
               <div className="mb-8 relative z-10">
                 <div className="mb-5">
