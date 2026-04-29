@@ -364,7 +364,26 @@ function PlatformsVisual() {
 
 export default function ServicosDetalhado() {
   return (
-    <section id="servicos" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
+    <section id="servicos" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay overflow-hidden">
+
+      {/* Atmospheric focal gradients — sutil red glow atrás do hub (upper) e da CTA final (lower).
+          Cohesion fix: sem isso a seção lia "dead flat" entre Dores (warm) e BandaMarcas. Static, localized. */}
+      <div
+        aria-hidden
+        className="absolute top-0 inset-x-0 h-[45%] pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 60% 80% at 50% 40%, rgba(255, 59, 59, 0.05) 0%, transparent 65%)',
+        }}
+      />
+      <div
+        aria-hidden
+        className="absolute bottom-0 inset-x-0 h-[35%] pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 55% 70% at 50% 70%, rgba(255, 59, 59, 0.035) 0%, transparent 70%)',
+        }}
+      />
 
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center">
 

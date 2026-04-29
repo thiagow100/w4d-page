@@ -178,7 +178,17 @@ export default function FormularioLead() {
   };
 
   return (
-    <section id="formulario" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay">
+    <section id="formulario" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-secondary noise-overlay overflow-hidden">
+      {/* Atmospheric focal gradient — sutil red glow atrás da divisão título/form.
+          Cohesion fix: balança o ritmo warm/dead da página. Static, localized. */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 50% 60% at 30% 50%, rgba(255, 59, 59, 0.045) 0%, transparent 65%)',
+        }}
+      />
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
 
         <div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left">

@@ -86,7 +86,18 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-primary noise-overlay">
+    <section id="faq" className="relative w-full py-12 md:py-section px-6 sm:px-12 lg:px-24 bg-primary noise-overlay overflow-hidden">
+
+      {/* Atmospheric focal gradient — sutil red glow atrás do header centralizado.
+          Cohesion fix: balança o ritmo warm/dead da página. Static, localized. */}
+      <div
+        aria-hidden
+        className="absolute top-0 inset-x-0 h-[55%] pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 55% 70% at 50% 35%, rgba(255, 59, 59, 0.04) 0%, transparent 70%)',
+        }}
+      />
 
       <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
 
