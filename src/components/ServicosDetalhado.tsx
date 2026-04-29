@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { Check } from 'lucide-react';
 import Eyebrow from '@/components/Eyebrow';
+import { GlowingEffect } from '@/components/ui/glowing-effect';
 
 // Ícones coloridos vetoriais das plataformas
 const platforms = [
@@ -400,7 +401,9 @@ export default function ServicosDetalhado() {
         </motion.div>
 
         {/* Content Blocks — grid 2x2 limpo (sticky stack agora vive em Dores).
-            Serviços = entregas paralelas funcionais; Dores = acumulação emocional. */}
+            Serviços = entregas paralelas funcionais; Dores = acumulação emocional.
+            Cada card ganha GlowingEffect (border red proximity-aware, mesmo pattern Dores) +
+            corner-squares brancos discretos no hover (xAI/Aceternity Dark Grid pattern). */}
         <div className="w-full flex flex-col md:grid md:grid-cols-2 gap-8 lg:gap-12 relative">
           {services.map((service, index) => (
             <motion.div
@@ -409,10 +412,20 @@ export default function ServicosDetalhado() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: index * 0.08, duration: 0.7, ease: [0.16, 1, 0.3, 1] as any }}
-              className="w-full flex flex-col shadow-card-dark bg-tertiary rounded-2xl overflow-hidden p-8 pb-12 sm:p-10 sm:pb-10 lg:p-12 lg:pb-12 md:hover:-translate-y-0.5 transition-transform duration-300 ease-out"
+              className="group relative w-full flex flex-col shadow-card-dark bg-tertiary rounded-2xl p-8 pb-12 sm:p-10 sm:pb-10 lg:p-12 lg:pb-12 md:hover:-translate-y-0.5 transition-transform duration-300 ease-out"
             >
-              {/* Hierarquia interna: eyebrow → label → descrição → bullets */}
-              <div className="mb-8">
+              {/* GlowingEffect — proximity-aware red border glow (mesmo Dores). */}
+              <GlowingEffect proximity={80} spread={36} borderWidth={1} />
+
+              {/* Corner markers — 4 squares brancos discretos aparecem nos cantos no hover.
+                  Pattern xAI/Aceternity Dark Grid: indica "this card is selected/active". */}
+              <span aria-hidden className="pointer-events-none absolute -left-1 -top-1 h-2 w-2 bg-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span aria-hidden className="pointer-events-none absolute -right-1 -top-1 h-2 w-2 bg-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span aria-hidden className="pointer-events-none absolute -left-1 -bottom-1 h-2 w-2 bg-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span aria-hidden className="pointer-events-none absolute -right-1 -bottom-1 h-2 w-2 bg-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+              {/* Hierarquia interna: eyebrow → label → descrição → bullets. relative z-10 acima do GlowingEffect. */}
+              <div className="mb-8 relative z-10">
                 <div className="mb-5">
                   <Eyebrow>{service.subtitle}</Eyebrow>
                 </div>
@@ -424,7 +437,7 @@ export default function ServicosDetalhado() {
                 </p>
               </div>
 
-              <ul className="flex flex-col gap-4 flex-1 pt-6 border-t border-white/5">
+              <ul className="flex flex-col gap-4 flex-1 pt-6 border-t border-white/5 relative z-10">
                 {service.bullets.map((bullet, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <Check
