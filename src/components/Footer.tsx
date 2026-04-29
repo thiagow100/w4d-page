@@ -139,11 +139,11 @@ export default function Footer() {
             </span>
             <div className="flex flex-col gap-4">
               <a href="tel:+16892638133" className="flex items-center gap-3 text-primary hover:text-cta transition-colors duration-200 text-sm font-medium">
-                <Phone size={16} strokeWidth={2.5} className="text-secondary" />
+                <Phone aria-hidden size={16} strokeWidth={2.5} className="text-secondary" />
                 +1 689 263-8133
               </a>
               <a href="mailto:sales@w4d.com.br" className="flex items-center gap-3 text-primary hover:text-cta transition-colors duration-200 text-sm font-medium">
-                <Mail size={16} strokeWidth={2.5} className="text-secondary" />
+                <Mail aria-hidden size={16} strokeWidth={2.5} className="text-secondary" />
                 sales@w4d.com.br
               </a>
             </div>
@@ -155,7 +155,7 @@ export default function Footer() {
               Palhoça, SC
             </span>
             <div className="flex items-start gap-3 text-sm font-normal leading-relaxed">
-              <MapPin size={16} strokeWidth={2.5} className="text-secondary shrink-0 mt-0.5" />
+              <MapPin aria-hidden size={16} strokeWidth={2.5} className="text-secondary shrink-0 mt-0.5" />
               <div className="flex flex-col gap-1.5">
                 <span className="text-primary font-medium">Palhoça · Santa Catarina · Brasil</span>
                 <span className="font-mono text-[11px] text-secondary uppercase tracking-wider">
@@ -171,7 +171,7 @@ export default function Footer() {
               Orlando, FL
             </span>
             <div className="flex items-start gap-3 text-sm font-normal leading-relaxed">
-              <MapPin size={16} strokeWidth={2.5} className="text-secondary shrink-0 mt-0.5" />
+              <MapPin aria-hidden size={16} strokeWidth={2.5} className="text-secondary shrink-0 mt-0.5" />
               <div className="flex flex-col gap-1.5">
                 <span className="text-primary font-medium">Orlando · Florida · USA</span>
                 <span className="font-mono text-[11px] text-secondary uppercase tracking-wider">
@@ -208,7 +208,7 @@ export default function Footer() {
             </a>
             <div className="flex flex-col items-start gap-2 md:flex-row md:items-center md:gap-4">
               <span className="font-mono text-[11px] md:text-xs text-muted tracking-[0.12em] lowercase">
-                © 2026 · W4D
+                © {new Date().getFullYear()} · W4D
               </span>
               <span className="text-white/10 hidden md:block">|</span>
               <div className="flex flex-col items-start gap-2 md:flex-row md:items-center md:gap-4">

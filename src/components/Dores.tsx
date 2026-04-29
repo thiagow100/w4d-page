@@ -17,6 +17,7 @@ function PulseDot() {
   return (
     <motion.span
       ref={ref}
+      aria-hidden
       className="w-1.5 h-1.5 rounded-full"
       initial={{ backgroundColor: '#EC0000' }}
       animate={{
@@ -138,7 +139,7 @@ export default function Dores() {
               {index === 0 && <GlowingEffect proximity={80} spread={36} borderWidth={1} />}
 
               <div className="relative z-10 flex justify-between items-center mb-4 md:mb-8">
-                <span className="font-mono text-[11px] text-secondary tracking-[0.18em] uppercase">Sintoma / 0{index + 1}</span>
+                <span className="font-mono text-[11px] text-body tracking-[0.18em] uppercase">Sintoma / 0{index + 1}</span>
                 <PulseDot />
               </div>
               <h3 className="relative z-10 text-xl md:text-2xl font-semibold text-primary mb-3 md:mb-4 tracking-[-0.03em] leading-snug min-h-[2.5em] md:min-h-0">
@@ -149,7 +150,7 @@ export default function Dores() {
               </p>
               {pain.resolution && (
                 <div className="relative z-10 pt-4 mt-4 md:pt-5 md:mt-6 border-t border-white/5 flex items-start gap-3">
-                  <span className="text-white/60 text-sm mt-0.5">&rarr;</span>
+                  <span aria-hidden className="text-white/60 text-sm mt-0.5">&rarr;</span>
                   <p className="text-primary font-medium text-sm md:text-base leading-relaxed">
                     {pain.resolution}
                   </p>

@@ -194,7 +194,7 @@ export default function FormularioLead() {
           >
             <span className="font-mono text-xs text-cta/80 tracking-[0.18em] uppercase">05</span>
             <span className="text-cta/50" aria-hidden>/</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-cta" />
+            <span aria-hidden className="w-1.5 h-1.5 rounded-full bg-cta" />
             <span className="font-mono text-xs text-cta tracking-[0.18em] uppercase">
               O próximo passo
             </span>
@@ -319,7 +319,7 @@ export default function FormularioLead() {
                   disabled={!isValid || isSubmitting}
                   className="w-full group relative flex items-center justify-center px-8 py-4 mt-2 text-base md:text-lg font-semibold text-primary transition-all duration-300 ease-out bg-cta rounded-full disabled:bg-white/5 disabled:text-white/30 disabled:cursor-not-allowed hover:bg-cta-hover active:scale-[0.98] glow-cta"
                 >
-                  {isSubmitting ? "Enviando..." : (
+                  {isSubmitting ? "Enviando…" : (
                     <>
                       Enviar para análise <span className="ml-2 transition-transform group-hover:translate-x-1">&#8594;</span>
                     </>

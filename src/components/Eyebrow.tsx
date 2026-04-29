@@ -9,9 +9,19 @@ type EyebrowProps = {
   accent?: boolean;
   /** Numerador/denominador estilo Obsidian/Flock (ex: "01" ou "02 / 05"). Renderizado antes do texto. */
   index?: string;
+  /** Fase 5 WCAG: 'subtle' usa text-body (#A1) em vez de text-secondary (#73).
+   *  Necessário em contextos sobre bg-tertiary #1F (cards) onde text-secondary
+   *  fica em 2.57:1 (fail mesmo AA large). text-body fica em 4.78:1 ✓ AA. */
+  tone?: 'default' | 'subtle';
 };
 
-export default function Eyebrow({ children, className = '', accent = false, index }: EyebrowProps) {
+export default function Eyebrow({ children, className = '', accent = false, index, tone = 'default' }: EyebrowProps) {
+  const textColorClass = accent
+    ? 'text-cta'
+    : tone === 'subtle'
+    ? 'text-body'
+    : 'text-secondary';
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -26,7 +36,7 @@ export default function Eyebrow({ children, className = '', accent = false, inde
           <span className="text-secondary" aria-hidden>&bull;</span>
         </>
       )}
-      <span className={accent ? 'text-cta' : 'text-secondary'}>{children}</span>
+      <span className={textColorClass}>{children}</span>
     </motion.div>
   );
 }

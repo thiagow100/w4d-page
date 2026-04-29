@@ -116,6 +116,10 @@ function LeaderPhoto({ src, alt, initials, imgClassName = "object-cover object-t
         <img
           src={src}
           alt={alt}
+          width={800}
+          height={1000}
+          loading="lazy"
+          decoding="async"
           onError={() => setHasError(true)}
           className={`absolute inset-0 w-full h-full hover:opacity-90 transition-all duration-700 contrast-[1.08] saturate-[0.85] brightness-[0.95] ${imgClassName}`}
         />
@@ -158,22 +162,25 @@ export default function Credibilidade() {
               initials="TW"
               imgClassName="object-cover object-top origin-top scale-[1.2]"
             />
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.04em] text-primary leading-[1.1] mt-8 mb-2">
+            {/* Fase 5 — leader names: h2 → h3. As outras seções têm h2-section.
+                Aqui Eyebrow "Quem está por trás do trabalho" cumpre o papel de
+                label da seção; os 2 nomes ficam como h3 dentro do escopo da seção. */}
+            <h3 className="text-3xl md:text-4xl font-semibold tracking-[-0.04em] text-primary leading-[1.1] mt-8 mb-2">
               Thiago Weirich
-            </h2>
+            </h3>
             <span className="font-mono text-secondary text-xs tracking-[0.18em] uppercase mb-5">
               Fundador e Head of Performance
             </span>
             {/* Year-chips — âncora visual scan-friendly, não substitui a prosa */}
             <div className="flex flex-wrap gap-2 mb-5">
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-[0.12em]">
-                <span className="text-white/40">●</span> 2005 · Vendas
+                <span aria-hidden className="text-white/40">●</span> 2005 · Vendas
               </span>
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-[0.12em]">
-                <span className="text-white/40">●</span> 2020 · TW Broker
+                <span aria-hidden className="text-white/40">●</span> 2020 · TW Broker
               </span>
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-[0.12em]">
-                <span className="text-cta">●</span> Hoje · W4D
+                <span aria-hidden className="text-cta">●</span> Hoje · W4D
               </span>
             </div>
             <p className="text-body text-base md:text-lg font-normal leading-[1.75] max-w-[60ch]">
@@ -199,22 +206,22 @@ export default function Credibilidade() {
               alt="Carlos Murayama"
               initials="CM"
             />
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.04em] text-primary leading-[1.1] mt-8 mb-2">
+            <h3 className="text-3xl md:text-4xl font-semibold tracking-[-0.04em] text-primary leading-[1.1] mt-8 mb-2">
               Carlos Murayama
-            </h2>
+            </h3>
             <span className="font-mono text-secondary text-xs tracking-[0.18em] uppercase mb-5">
               Sócio e Head de Operação
             </span>
             {/* Year-chips — âncora visual scan-friendly, não substitui a prosa */}
             <div className="flex flex-wrap gap-2 mb-5">
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-[0.12em]">
-                <span className="text-white/40">●</span> 2011 · Gestão
+                <span aria-hidden className="text-white/40">●</span> 2011 · Gestão
               </span>
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-[0.12em]">
-                <span className="text-white/40">●</span> 2019 · Tráfego
+                <span aria-hidden className="text-white/40">●</span> 2019 · Tráfego
               </span>
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.02] font-mono text-xs text-body tracking-[0.12em]">
-                <span className="text-cta">●</span> Hoje · W4D
+                <span aria-hidden className="text-cta">●</span> Hoje · W4D
               </span>
             </div>
             <p className="text-body text-base md:text-lg font-normal leading-[1.75] max-w-[60ch]">

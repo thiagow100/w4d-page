@@ -342,6 +342,10 @@ function PlatformsVisual() {
             <img
               src={p.icon}
               alt={p.name}
+              width={48}
+              height={48}
+              loading="lazy"
+              decoding="async"
               className="w-10 h-10 md:w-12 md:h-12 object-contain opacity-80 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_14px_rgba(236,0,0,0.45)] transition-all duration-300 ease-out pointer-events-none"
             />
           ) : (
@@ -414,7 +418,8 @@ export default function ServicosDetalhado() {
               {/* Hierarquia interna: eyebrow → label → descrição → bullets. relative z-10 acima do GlowingEffect. */}
               <div className="mb-8 relative z-10">
                 <div className="mb-5">
-                  <Eyebrow>{service.subtitle}</Eyebrow>
+                  {/* tone="subtle" pra contraste AA non-large sobre bg-tertiary #1F dos cards */}
+                  <Eyebrow tone="subtle">{service.subtitle}</Eyebrow>
                 </div>
                 <h3 className="text-2xl md:text-3xl lg:text-[2rem] font-semibold tracking-[-0.04em] text-primary leading-[1.15] mb-5">
                   {service.label}
@@ -428,6 +433,7 @@ export default function ServicosDetalhado() {
                 {service.bullets.map((bullet, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <Check
+                      aria-hidden
                       size={16}
                       strokeWidth={2.5}
                       className="text-white/60 mt-1 shrink-0"
