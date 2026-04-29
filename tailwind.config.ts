@@ -46,6 +46,11 @@ const config: Config = {
         secondary: "#111111",
         tertiary: "#1A1A1A",
       },
+      // Tokens primários — use estes para body text e hierarquia geral.
+      // Para micro-states com opacidade precisa que não cabe nos 4 níveis
+      // (ex: heading text-white/95 levemente off-white, decorative dots
+      // text-white/40, placeholder text-white/30), use `text-white/XX` direto.
+      // text-white SEM alpha está PROIBIDO — sempre token text-primary.
       textColor: {
         primary: "#FFFFFF",
         body: "#A1A1A1",

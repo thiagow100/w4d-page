@@ -314,7 +314,7 @@ export default function FormularioLead() {
                 <button
                   type="submit"
                   disabled={!isValid || isSubmitting}
-                  className="w-full group relative flex items-center justify-center px-8 py-4 mt-2 text-base md:text-lg font-semibold text-white transition-all duration-300 ease-out bg-cta rounded-full disabled:bg-white/5 disabled:text-white/30 disabled:cursor-not-allowed hover:bg-cta-hover active:scale-[0.98] glow-cta"
+                  className="w-full group relative flex items-center justify-center px-8 py-4 mt-2 text-base md:text-lg font-semibold text-primary transition-all duration-300 ease-out bg-cta rounded-full disabled:bg-white/5 disabled:text-white/30 disabled:cursor-not-allowed hover:bg-cta-hover active:scale-[0.98] glow-cta"
                 >
                   {isSubmitting ? "Enviando..." : (
                     <>
