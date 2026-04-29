@@ -35,8 +35,11 @@ function Counter({ to, suffix, duration = 2, isStatic = false }: { to: number, s
   const digits = String(to).split('').map(Number);
   const ariaLabel = `${to}${suffix}`;
 
+  // Lighthouse a11y: aria-label em <span> sem role é proibido (axe rule).
+  // Pattern: visual decorativo (aria-hidden) + sr-only com valor narrável.
   return (
-    <span ref={ref} className={`${sizeClass} inline-flex items-baseline tabular-nums`} aria-label={ariaLabel}>
+    <span ref={ref} className={`${sizeClass} inline-flex items-baseline tabular-nums`}>
+      <span className="sr-only">{ariaLabel}</span>
       <span aria-hidden className="inline-flex items-baseline">
         {digits.map((digitValue, i) => (
           <RollingDigit

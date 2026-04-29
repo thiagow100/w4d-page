@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -34,6 +34,10 @@ function FloatingInput({
   type?: string;
 } & React.InputHTMLAttributes<HTMLInputElement>) {
   const [focused, setFocused] = useState(false);
+  // Lighthouse a11y: label.htmlFor + input.id obrigatório pra associação.
+  // useId garante id único + estável entre SSR/CSR.
+  const generatedId = useId();
+  const inputId = props.id || generatedId;
   const hasValue = Boolean(props.value && String(props.value).length > 0);
   const isFloating = focused || hasValue;
 
@@ -41,6 +45,7 @@ function FloatingInput({
     <div className="relative">
       <input
         {...props}
+        id={inputId}
         type={type}
         onFocus={(e) => { setFocused(true); props.onFocus?.(e); }}
         onBlur={(e) => { setFocused(false); props.onBlur?.(e); }}
@@ -56,6 +61,7 @@ function FloatingInput({
         }`}
       />
       <label
+        htmlFor={inputId}
         className={`absolute left-4 transition-all duration-200 ease-out pointer-events-none ${
           isFloating
             ? 'top-2 text-xs font-mono tracking-[0.12em] uppercase'
@@ -83,6 +89,8 @@ function FloatingSelect({
   options: { value: string; label: string }[];
 } & React.SelectHTMLAttributes<HTMLSelectElement>) {
   const [focused, setFocused] = useState(false);
+  const generatedId = useId();
+  const selectId = props.id || generatedId;
   const hasValue = Boolean(props.value && String(props.value).length > 0);
   const isFloating = focused || hasValue;
 
@@ -90,10 +98,10 @@ function FloatingSelect({
     <div className="relative">
       <select
         {...props}
+        id={selectId}
         onFocus={(e) => { setFocused(true); props.onFocus?.(e); }}
         onBlur={(e) => { setFocused(false); props.onBlur?.(e); }}
         style={{ colorScheme: 'dark' }}
-        aria-label={label}
         className={`w-full text-base pt-6 pb-2 px-4 rounded-lg outline-none transition-all duration-300 ease-out bg-white/5 border appearance-none cursor-pointer ${
           hasValue ? 'text-primary' : 'text-transparent'
         } ${
@@ -114,6 +122,7 @@ function FloatingSelect({
         ))}
       </select>
       <label
+        htmlFor={selectId}
         className={`absolute left-4 transition-all duration-200 ease-out pointer-events-none ${
           isFloating
             ? 'top-2 text-xs font-mono tracking-[0.12em] uppercase'
